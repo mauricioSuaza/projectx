@@ -42,4 +42,27 @@ Rails.application.routes.draw do
 
   get '/news',  to: 'users#news'
 
+
+  #admin dashboard routes
+  get '/admin_dashboard', to: 'admin_dashboard#dashboard_home'
+
+  get '/users_admin', to: 'admin_dashboard#users_admin'
+
+  get '/users/:id', to: 'users#show', as: 'user_show'
+
+  get '/donations_admin', to: 'admin_dashboard#donations_admin'
+
+  get '/donations/:id', to: 'donations#show', as: 'donation_show'
+
+  get '/requests_admin', to: 'admin_dashboard#requests_admin'
+
+  get '/requests/:id', to: 'requests#show', as: 'request_show'
+
+  get '/transactions_admin', to: 'admin_dashboard#transactions_admin'
+
+  get '/transactions/:id', to: 'transactions#show', as: 'transaction_show'
+
+  
+
+  
 end

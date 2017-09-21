@@ -41,7 +41,14 @@ class UsersController < ApplicationController
 
     def news
         render layout: "dashboard_layout"
+        
     end
+
+    def show
+        @user = User.find(params[:id])
+        render layout: "admin_dashboard_layout"
+    end
+
 private
     def donation_params
       params.permit(:value)
