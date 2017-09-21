@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  value: 1
+  donation: one
+  sender_id: 1
+  receiver_id: 1
+  status: false
+
+two:
+  value: 1
+  donation: two
+  sender_id: 1
+  receiver_id: 1
+  status: false

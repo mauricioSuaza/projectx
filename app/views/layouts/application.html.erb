@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ProjectBx</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all'%>
+    <%= javascript_include_tag 'application' %>
+
+    <%= action_cable_meta_tag %>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.4.3/sweetalert2.min.js'></script>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.4.3/sweetalert2.min.css' rel='stylesheet'>
+
+    <script src="https://use.fontawesome.com/e4b26ed800.js"></script>
+
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div id="page-wrapper" class="page-wrapper">
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Navigation Bar -->
+        <nav id="main-nav" class="navbar navbar-fixed-top main-nav colored-menu" style="margin:0px; box-shadow: 2px 2px 12px rgba(22, 70, 117, 0.54);">
+          <div class="container">
+
+            <!-- Logo Container -->
+            <div class="logo-container">
+              <a href="/" class="logo" style="padding: 27px 10px 10px 10px;!important">
+                <i class="pe-7s-cash"></i>
+                <p>Donating goals</p>
+              </a>
+            </div>
+
+            <div class="navbar-right buttMenu" style:"width: 73%; float:right!important;">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" style="background-color: #fff;">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar glyphicon glyphicon-tasks"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            </div>
+
+            <!-- Right Side Links -->
+            <div id="navbar" class="navbar-collapse collapse right-links">
+              <!-- Menu Start -->
+              <ul id="menu" class="menu nav navbar-nav" style="float: right;">
+                <!-- Menu Item -->
+                <!-- Menu Item -->
+                <li>
+                  <a href="/que_es" class="menu-item">Que es?</a>
+                  <div class="pill"></li>
+
+                  <!-- Menu Item -->
+                  <li>
+                    <a href="/como_funciona" class="menu-item ">Como funciona?</a>
+                    <div class="pill"></li>
+
+                    <!-- Menu Item -->
+                    <li>
+                      <a href="/testimonios" class="menu-item ">Testimonios</a>
+                      <div class="pill"></li>
+
+                      <li>
+                        <a href="#" class="menu-item has-drop">Info</a>
+                        <div class="pill">
+                          <ul class="dropdown">
+                            <li>
+                              <a href="#">Ayuda
+                                <span>Como ayudar?</span>
+                              </a>
+                            </li>
+                            <li>
+                              <a href="#">Sobre Bitcoin
+                                <span>Sobre bitcoins</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+
+                        <!-- Menu Item -->
+
+                        <!--
+                        <li>
+                          <a href="/contacto" class="menu-item ">Contact</a>
+                          <div class="pill">
+                        </li>
+
+                        <% if user_signed_in? %>
+                          <li>
+                            <%= link_to current_user.email.truncate(7), edit_user_registration_path, :class => 'menu-item' %>
+                          </li>
+                          <li>
+                            <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'button button-sm button-primary'  %>
+                          </li>
+                        <% else %>
+                          <li>
+                            <a href="/users/sign_in" class="menu-item ">Login</a>
+                            <div class="pill"></li>
+                            <li id="botonNav">
+                              <a href="/users/sign_up" class="button button-sm button-primary" style="padding: 10px 46px!important; margin-top: 22px;">Sign Up</a>
+                            </li>
+                        <% end %>
+                         Menu Item -->
+              </ul>
+
+                        </div>
+
+                      </div>
+
+                    </nav>
+
+                    <% if notice %>
+                    <script>
+                      swal("<%= notice %>");
+                    </script>
+                    <% end %>
+
+                    <% if alert%>
+                    <script>
+                      swal("<%= alert %>");
+                    </script>
+                    <% end %>
+
+                    <%= yield %>
+
+                    <!-- footer -->
+                    <footer class="footer">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-sm-40">
+                            <a href="index.html" class="logo mb20 own-logo">
+                              <i class="pe-7s-cash" style="font-size: 38px;"></i>
+                              <p style="font-size: 24px;">Donating goals</p>
+                            </a>
+                            <div class="dropdown" style="padding-left: 60px;">
+                              <button
+                                class="btn btn-default dropdown-toggle"
+                                type="button"
+                                id="dropdownMenu1"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="true"
+                                style="border-radius: 10px;width: 56%;height: 50px;vertical-align: middle;background: rgba(255, 255, 255, 0);margin: 0 auto;color: #fff;">
+                                Español
+                                <span class="caret"></span>
+                              </button>
+                              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="top: 117%; left: 65px;">
+                                <li>
+                                  <a href="#">Ingles</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+
+                          <div class="col-md-2 col-sm-12 col-xs-12 mb-sm-40" style="padding: 0px; text-align: center;">
+                            <ul class="list-links">
+                              <li>
+                                <a href="">Nestra Filosofía</a>
+                              </li>
+                              <li>
+                                <a href="">Blog</a>
+                              </li>
+                              <li>
+                                <a href="">Empieza ya!</a>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="col-md-2 col-sm-12 col-xs-12 mb-sm-40" style="padding: 0px; text-align: center;">
+                            <ul class="list-links">
+                              <li>
+                                <a href="">Términos y condiciones</a>
+                              </li>
+                              <li>
+                                <a href="">Privacidad</a>
+                              </li>
+                              <li>
+                                <a href="">Ayuda</a>
+                              </li>
+                            </ul>
+                          </div>
+
+                          <div class="col-md-4 col-sm-12 col-xs-12 mb-sm-40" style:"padding-top: 5px;">
+                            <h6 style="text-align:center;">Nos recomiendan</h6>
+
+                            <div class="">
+                              <div class="col-xs-4 fotos-footer">
+                                <img src="/images/foto_9.png" alt="" style="width:100%">
+                                <p style="text-align:center;">Pedro Alonso</p>
+                              </div>
+                              <div class="col-xs-4 fotos-footer">
+                                <img src="/images/foto_9_2.png" alt="" style="width:100%">
+                                <p style="text-align:center;">Joam Jacob</p>
+                              </div>
+                              <div class="col-xs-4 fotos-footer">
+                                <img src="/images/foto_9_3.png" alt="" style="width:100%">
+                                <p style="text-align:center;">Lucio Pérez</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- //row -->
+                      </div>
+                      <!-- //container -->
+                    </footer>
+                    <!-- //footer -->
+                  </div>
+                  <!-- //Main Content -->
+                </div>
+                <!-- // Page Wrapper -->
+              </body>
+            </html>

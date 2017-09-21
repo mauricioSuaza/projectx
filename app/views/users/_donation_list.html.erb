@@ -1,0 +1,72 @@
+        
+            <div class="well span8 offset2">
+                <div class="row-fluid user-row">
+                    <div class="span10">
+                        <strong>Code: DGDN<%= donation.id %></strong><br>
+                         <strong>Value: <%= donation.value %></strong>
+                       
+                    </div>
+                    <div class="span1 dropdown-user" data-for=".<%= donation.id%>">
+                        <i class="icon-chevron-down text-muted"></i>
+                    </div>
+                </div>
+                <div class="row-fluid user-infos <%= donation.id%>">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Donation information</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row-fluid">
+                                <div class="span6">
+                                    <table class="table table-condensed table-responsive table-user-information">
+                                        <tbody>
+                                        <tr>
+                                            <td>Value:</td>
+                                            <td><%= donation.value %></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Date:</td>
+                                            <td><%= donation.created_at.to_date %></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Status:</td>
+                                            <% if donation.completed %>
+                                                <td>Completed</td>
+                                            <% elsif donation.status == "pending"  %>
+                                                <td>Pending for requests</td>
+                                            <% else donation.status == "completed"  %>
+                                                <td>Pending for transactions completion</td>
+                                            <% end %>
+                                        </tr>
+                                        <tr>
+                                            <td>Value pending to be requested</td>
+                                            <td><%= donation.pending %></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total transactions</td>
+                                            <td><%= donation.transactions.count %></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Completed transactions</td>
+                                            <td><%= donation.transactions.where(status: true).count %></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="transactions-container">
+                            <div class="panel-transactions panel-secondary">
+                                <div class="">
+                                    <h3 class="panel-title">Donation transactions</h3>
+                                     <% donation.transactions.each do |transaction| %>
+                                        <%=   render :partial => 'transactions_container', locals: {transaction: transaction}%>
+                                     <% end %>
+                                </div>
+                            </div>
+                        </div>  
+                       <p>whateeeveeeer</p>
+                    </div> 
+                </div>
+            </div>
+        

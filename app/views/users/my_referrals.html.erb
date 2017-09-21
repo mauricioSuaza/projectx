@@ -1,0 +1,51 @@
+  <nav class="own-navbar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#" style="font-size: 18px;color: #606060;line-height: 20px;">MY REFERRALS</a>
+        </div>
+    </div>
+  </nav>
+
+
+  <div class="blog-area bg-light blog-page"> 
+    <div class="col-md-12">
+      <div class="pt-20 text-center">
+        <br>
+        <div class="row">
+          <br>
+          <h1>My childrens (Level 1)</h1>
+          <br>
+          <% @current_user_children.each do |children_first_level|%> 
+            <div class="col-md-4" style="margin-bottom: 29px;">
+              <h4>
+                Nombre: <%=children_first_level.name%> 
+                <br>
+                Email: <%=children_first_level.email%>
+              </h4>
+            </div>
+          <%end%>
+        </div>
+        <div class="row">
+          <h1>My childrens (Level 2)</h1>
+          <% @current_user_children.each do |children_first_level|%> 
+            <% children_first_level.children.each do |children_second_level|%>
+              <br>
+              <div class="col-md-4">
+                <h4>
+                  PADRE: <%=children_second_level.parent.name%> 
+                  <br>
+                  Nombre: <%=children_second_level.name%> 
+                  <br>
+                  Email: <%=children_second_level.email%>
+                  <br>
+                </h4>
+              </div>
+            <%end%>
+          <%end%>
+        </div>
+      </div>       
+    </div>    
+  </div>
+
+ 
+

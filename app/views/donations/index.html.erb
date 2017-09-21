@@ -1,0 +1,47 @@
+<div class="container">
+  
+  <h1>Donaciones</h1>
+<%= link_to  "Hacer donacion", {user: current_user}%>
+
+
+<%= form_tag("/enviar_donacion", method: "post", class: 'sub-form') do %>
+  <%= number_field_tag "donation[value]", "", placeholder: 'Escriba el valor a donar', class: '', type: 'number', required: true%>
+  <%= hidden_field_tag 'asd', value: current_user, class: 'asd' %>
+  <%= submit_tag("ENVIAR", class: "enviar-sub")%>
+<% end %>
+
+<br>
+<br>
+<br>
+<!-- 
+<%= link_to "Requerir donacion", request_donation_path, class: 'btn btn-primary'%>
+ -->
+
+<div class="container">
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Requerir donacion</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h1>Su saldo es: <%= current_user.saldo%></h1>
+        </div>
+        <%= form_tag("/requerir_donacion", method: "post", class: 'sub-form') do %>
+          <%= number_field_tag "request[:value]", "", placeholder: 'Email', class: 'input-sub form-control', type: 'email', required: true%>
+          <%= submit_tag("ENVIAR", class: "enviar-sub")%>
+        <% end %>
+      </div>
+      
+    </div>
+  </div>
+  
+</div>
+
+
+</div>
+

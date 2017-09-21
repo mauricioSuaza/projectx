@@ -1,0 +1,137 @@
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>ProjectBx</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all'%>
+    <%= javascript_include_tag 'application' %>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.4.3/sweetalert2.min.js'>
+    </script>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.4.3/sweetalert2.min.css' rel='stylesheet'>
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+        <% if notice %>
+            <script>
+                swal("<%= notice %>");
+            </script>
+        <% end %>
+
+        <% if alert%>
+            <script>
+                swal("<%= alert %>");
+            </script>
+        <% end %>
+
+
+
+        <div class="dashboard-wrapper">
+
+      <!--SideBar-->
+  		<div class="sidebar">
+
+  			<div class="sidebar-wrapper">
+  				<div style="border-bottom: 1px solid #fff;">
+                    <a href="/" class="logo" >
+                        <i class="pe-7s-cash"></i>
+                        <p>Donating Goals</p>
+                    </a>
+                    <div style="padding: 10px 30px;">
+                        <% if user_signed_in? %>
+                            <p>Hello <%= current_user.email %></p>  
+                            <p>Balance <%= current_user.saldo %></p>  
+                        <% end%> 
+                    </div>
+                        
+                </div>
+
+                
+
+                
+
+                <ul class="nav own-nav">
+                        
+                    <li>
+                        <a href="/my_dashboard">
+                            <i class="fa fa-home" aria-hidden="true"></i>
+                            <p>Workspace</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/account_balance">
+                            <i class="fa fa-folder-o" aria-hidden="true"></i>
+                            <p>Account Balance </p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/my_referrals">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            <p>Referrals</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/chats">
+                           
+                            <i class="fa fa-comments" aria-hidden="true"></i>
+                            <p>Conversations</p>
+                        </a>
+                    </li>
+
+
+                     <li>
+                        <a href="/news">
+                           
+                            <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+                            <p>News info</p>
+                        </a>
+                    </li>
+
+                   
+    
+                    <li>
+                        <% if user_signed_in? %>
+                            <%= link_to edit_user_registration_path  do %>
+                                <i class="fa fa-cogs" aria-hidden="true"></i>
+                                <p>Account settings</p>
+                            <%end%>
+                        <%end%>
+                    </li>
+
+                    <li>
+                        <%= link_to  destroy_user_session_path, method: :delete do%>
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>
+                            <p>Log out</p>
+                        <%end%>
+                    </li>
+
+                    <li>
+                        <%@admin = User.where(admin: true)%>
+                        <%= button_to chats_path(sender_id: current_user.id, recipient_id: @admin.ids.first), class: 'button button-primary button-sm' do %>
+                            <p>
+                                <i class="fa fa-plug" aria-hidden="true"></i>
+                                Technical support
+                            </p>
+                        <%end%>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+      <!--SideBar-->
+
+      <div class="main-panel">
+            <%= yield %>
+      </div>
+
+    </div>
+    
+  </body>
+  </html>

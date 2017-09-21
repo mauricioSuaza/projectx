@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="ui-segment">
+    <h3><i class="fa fa-envelope-o mail-icon" aria-hidden="true"></i> Nuevos mensajes</h3>  
+    <div class="row">
+      <div class="col-md-8">
+        <div class="messages-recived">
+          <div class="row tables">
+            <div class="col-md-4">
+              <p class="text-center">
+                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                Nombre usuario
+              </p>
+            </div>
+            <div class="col-md-4">
+              <p class="text-center">
+                <i class="fa fa-envelope-open-o" aria-hidden="true"></i>
+                Ultimo mensaje
+              </p>
+            </div>
+            <div class="col-md-4">
+              <p class="text-center">
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                Hora mensaje
+              </p>
+            </div>
+          </div>
+          <div class="row">
+            <% @chats.each do |chat| %>
+              <%unless chat.messages.empty?%>
+                <% if chat.sender_id == current_user.id || chat.recipient_id == current_user.id %>
+                  <% if chat.sender_id == current_user.id %>
+                    <% recipient = User.find(chat.recipient_id) %>
+                  <% else %>
+                    <% recipient = User.find(chat.sender_id) %>
+                  <% end %>
+                  <div class="col-md-4">
+                    <p class="text-center">
+                      <%= link_to recipient.name, chat_messages_path(chat)%>
+                    </p>
+                  </div>
+                   <div class="col-md-4">
+                    <p class="text-center">
+                      <%if !chat.messages.empty?%>
+                        <%= link_to chat.messages.last.body, chat_messages_path(chat)%>
+                      <%else%>
+                        No tienes mensajes
+                      <%end%>
+                    </p>
+                  </div>
+                   <div class="col-md-4">
+                    <p class="text-center">
+                      <%if !chat.messages.empty?%>
+                        <%= link_to chat.messages.last.created_at.strftime("%m/%d/%y  %H:%M:%S"), chat_messages_path(chat)%>
+                       <%else%>
+                        No tienes mensajes
+                      <%end%>
+                    </p>
+                  </div>
+                <% end %>
+              <%end%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+         <div class="ui segment">
+            <h3><i class="fa fa-user-secret" aria-hidden="true"></i> Usuarios disponibles</h3>
+            <br>
+            <div class="text-center">
+              <% @users.first(5).each do |user| %>
+                <% if user.id != current_user.id %>
+                <div class="item">
+                  <div class="row">
+                    <div class="col-md-6"> 
+                      <%= button_to chats_path(sender_id: current_user.id, recipient_id: user.id), class: 'chat-button' do %>
+                        <p class="iniciar-chat">
+                          <i class="fa fa-weixin" aria-hidden="true"></i>
+                           <%= user.email %> 
+                        </p>
+                      <%end%>
+                    </div>
+                  </div>
+                </div>
+                <% end %>
+              <% end %>
+            </div>
+            <br>
+            <%= button_to chats_path(sender_id: current_user.id, recipient_id: @admin.ids.first), class: 'button button-primary button-sm' do %>
+              <p>
+                <i class="fa fa-plug" aria-hidden="true"></i>
+                Soporte técnico
+              </p>
+            <%end%>
+          </div>
+      </div>
+    </div>  
+  </div>
+ 
+  <br>
+  <br>
+</div>

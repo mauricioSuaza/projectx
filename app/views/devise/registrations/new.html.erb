@@ -1,0 +1,83 @@
+<div class="container">
+    
+    <div class="pt20 pb80">
+        <div class="row">
+          <div class="login-box col-md-10 col-md-offset-1 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
+            <h3>Registrate Hoy!</h3>
+
+             <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: 'col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0') do |f| %>
+              <%= devise_error_messages! %>
+
+              <div class="col-md-6">
+                <div class="field">
+                  <%= f.text_field :name, placeholder: "Nombre" %>
+                </div>
+                <div class="field">
+                  <%= f.email_field :email, placeholder: "Email" %>
+                </div>
+                <div class="field">
+                  <%= f.text_field :btc, placeholder: "Bitcoin wallet" %>
+                </div>
+                <div class="field">
+                  <%= f.telephone_field :phone, id:"country", placeholder: "Phone"%>
+                </div>
+              
+              </div>
+              
+              <div class="col-md-6">
+
+                <div class="field">
+                <%= f.email_field :refferal, placeholder: "Referral Email"  %>
+                </div>
+                <div class="field">
+                  <%@password_min = ""%>
+                  <% if @minimum_password_length %>
+                    <% @password_min = @minimum_password_length.to_s + " characters minimum" %>
+                  <%end%>
+                  <%= f.password_field :password, autocomplete: "off", placeholder: "Password " + @password_min %>
+                </div>
+                <div class="field">
+                  <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Password Confirmation" %>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="col-md-6 col-md-offset-3">
+                  <div class="actions">
+                    <%= f.submit "Sign up", class: 'button button-md btn-block button-primary' %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        
+        </div><!-- //row -->          
+    </div>
+</div>
+
+<script>
+
+    $("#country").intlTelInput({
+         preferredCountries: ['ec', '', 'cl', 'us','pa', 'mx', 'co','ar', 've', 'pe', 'uy'], 
+         utilsScript: "/js/utils.js"
+    });
+
+    $("#country").intlTelInput("loadUtils", "/js/utils.js");
+
+    $("#country").change(function() {
+      var intlNumber = $("#country").intlTelInput("getNumber");
+      console.log("number is " + intlNumber );
+      $("#country").val(intlNumber);
+    });
+
+    $(".selected-flag").click(function(){
+      var intlNumber = $("#country").intlTelInput("getNumber");
+      console.log("number is " + intlNumber );
+      $("#country").val(intlNumber);
+    });
+
+  </script>
+
+ 
+
+
+

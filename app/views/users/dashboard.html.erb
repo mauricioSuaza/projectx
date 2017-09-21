@@ -1,0 +1,54 @@
+  <nav class="own-navbar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#" style="font-size: 18px;color: #606060;line-height: 20px;">WORKSPACE</a>
+        </div>
+    </div>
+  </nav>
+
+
+  <div class="blog-area bg-light blog-page"> 
+    <div class="col-md-12">
+        <div class="pt-20 text-center">
+            <div class="col-md-6 donations-container" > 
+                <h1>Send donation</h1>
+                <div class="col-md-4 col-md-offset-4 col-sm-12 ">
+                    <div class ="send-donation-form"> 
+                        <%= form_tag("/send_donation", method: "post") do %>
+                        <%= number_field_tag(:value) %>
+                        <%= submit_tag("Send donation", class: "btn btn-primary btn-primary btn-sm") %>
+                        <% end %>
+                    </div>
+                </div>
+                <div class ="donations-list col-md-12">
+                    <% @donations.each do |donation| %>
+                        <div class ="donations-list" style="border: solid 1px; margin: 15px;">
+                            <%=   render :partial => 'donation_list', locals: {donation: donation}%>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+            <div class="col-md-6 donations-container"> 
+                <h1>Request donation</h1>
+                <div class="col-md-4 col-md-offset-4 col-sm-12 ">
+                    <div class ="request-donation-form"> 
+                        <%= form_tag("/request_donation", method: "post") do %>
+                        <%= number_field_tag(:value) %>
+                        <%= submit_tag("Request donation", class: "btn btn-primary btn-primary btn-sm") %>
+                        <% end %>
+                    </div>
+                </div>
+                <div class ="donations-list col-md-12">
+                    <% @requests.each do |request| %>
+                        <div class ="donations-list" style="border: solid 1px; margin: 15px;">
+                            <%=   render :partial => 'requests_list', locals: {request: request}%>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>       
+    </div>    
+  </div>
+
+ 
+

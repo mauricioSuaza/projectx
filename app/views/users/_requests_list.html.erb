@@ -1,0 +1,73 @@
+        
+            <div class="well span8 offset2">
+
+                <div class="row-fluid user-row">
+                    <div class="span10">
+                        <strong>Code: DGRQ<%= request.id %></strong><br>
+                         <strong>Value: <%= request.value %></strong>
+                       
+                    </div>
+                    <div class="span1 dropdown-user" data-for=".r<%= request.id%>">
+                        <i class="icon-chevron-down text-muted"></i>
+                    </div>
+                </div>
+                <div class="row-fluid user-infos r<%= request.id%>">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Request information</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row-fluid">
+                                <div class="span6">
+                                    <table class="table table-condensed table-responsive table-user-information">
+                                        <tbody>
+                                        <tr>
+                                            <td>Value:</td>
+                                            <td><%= request.value %></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Date:</td>
+                                            <td><%= request.created_at.to_date %></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Status:</td>
+                                            <% if request.completed %>
+                                                <td>Completed</td>
+                                            <% elsif request.status == "pending"  %>
+                                                <td>Pending for donations</td>
+                                            <% else request.status == "completed"  %>
+                                                <td>Pending for transactions completion</td>
+                                            <% end %>
+                                        </tr>
+                                        <tr>
+                                            <td>Value pending for donations</td>
+                                            <td><%= request.pending %></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total transactions</td>
+                                            <td><%= request.transactions.count %></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Completed transactions</td>
+                                            <td><%= request.transactions.where(status: true).count %></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="transactions-container">
+                            <div class="panel-transactions panel-secondary">
+                                <div class="">
+                                    <h3 class="panel-title">Donation transactions</h3>
+                                     <% request.transactions.each do |transaction| %>
+                                        <%=   render :partial => 'request_transactions_container', locals: {transaction: transaction}%>
+                                     <% end %>
+                                </div>
+                            </div>
+                        </div>  
+                       <p>whateeeveeeer</p>
+                    </div> 
+                </div>
+            </div>
+       

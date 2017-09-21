@@ -1,0 +1,71 @@
+  <nav class="own-navbar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#" style="font-size: 18px;color: #606060;line-height: 20px;">Chat</a>
+        </div>
+    </div>
+  </nav>
+
+
+  <div class="blog-area bg-light blog-page"> 
+    <div class="col-md-12">
+        <div class="pt-20 text-center">
+          <div class="">
+            <br>
+            <br>
+            <h4 class="text-center">
+              <%if current_user.email == @chat.sender.email%>
+                <i class="fa fa-user-o" aria-hidden="true"></i> <%=@chat.recipient.name.capitalize%> 
+              <%else%>
+                <i class="fa fa-user-o" aria-hidden="true"></i> <%=@chat.sender.name.capitalize%>
+              <%end%>
+            </h4>
+            <br>
+            <div class="row" id="messages">
+              <div class="ui segment">
+                <% @messages.each do |message| %>
+                  <% if message.body %>
+                    <% user = User.find(message.user_id) %>
+                    <div class="item">
+                      <div class="content">
+                        <div class="header"><strong><%= user.name %></strong> <%= message.message_time %></div>
+                        <div class="list">
+                          <div class="item">
+                            <%= message.body %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+            <%=form_for [@chat, @message], html: { id: "message-form-chat", data: {admin: @admin, current_user_admin: @current_user_admin, messages_count: @messages_count }} do |f|%>
+            
+              <div class="field ">
+                <%= f.text_area :body, class: "form-control body-input", data: {textarea: "message"} %>
+              </div>
+              
+                <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
+              <div class="text-center">
+                <%= f.button :submit, class: "ui blue labeled submit icon button responder text-center enviar-chat", data: {send: "message"} %>
+            
+              </div>
+            <% end %>
+          </div>
+          <br>   
+
+        </div>       
+    </div>    
+  </div>
+
+ 
+
+
+
+
+
+
+
+
+

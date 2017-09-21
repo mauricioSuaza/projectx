@@ -1,0 +1,46 @@
+.ui-segment{
+	margin-top: 50px;
+}
+
+.messages-recived{
+	margin-top: 20px;
+  background-color: #fff;
+  border: 2px solid #eaeaea;
+  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
+  text-align: left;
+  padding: 44px 22px;
+  position: relative;
+}
+
+.mail-icon{
+	margin-right: 10px;
+}
+
+.messages-recived .tables .col-md-4 p{
+	width: 80%;
+  border-bottom: 2px solid #eaeaea;
+  margin: 0 auto;
+}
+
+.iniciar-chat{
+	background: white;
+}
+
+.chat-button{
+	background: white !important;
+}
+
+.tables{
+	margin-bottom: 10px;
+}
+
+.responder{
+	width: 20%;
+	margin: 0 auto;
+}
+
+.item{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}

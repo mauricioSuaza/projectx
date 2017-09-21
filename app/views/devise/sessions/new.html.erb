@@ -1,0 +1,46 @@
+
+<div class="pt80 pb80">
+
+    <div class="container">
+        <div class="row">
+
+            <p class="text-center mb20">Don't have an account yet? <a href="page-register.html">Sign up</a></p>
+
+            <div class="login-box col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
+
+                <h3>Log In</h3>
+                <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: 
+              'col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0') do |f| %>
+                  <div class="field">
+                    <%= f.label :email %><br />
+                    <%= f.email_field :email, autofocus: true %>
+                  </div>
+
+                  <div class="field">
+                    <%= f.label :password %><br />
+                    <%= f.password_field :password, autocomplete: "off" %>
+                  </div>
+
+                  <% if devise_mapping.rememberable? -%>
+                    <div class="field">
+                      <%= f.check_box :remember_me %>
+                      <%= f.label :remember_me %>
+                    </div>
+                  <% end -%>
+
+                  <div class="actions">
+                    <%= f.submit "Log in", class: 'button button-md btn-block button-primary' %>
+                  </div>     
+                <% end %>
+            </div>
+
+        </div><!-- //row -->
+
+
+    </div>
+        
+</div>
+    
+
+
+ 
