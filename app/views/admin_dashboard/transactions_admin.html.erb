@@ -10,14 +10,10 @@
   <div class="blog-area bg-light blog-page"> 
     <div class="col-md-12">
         <div class="pt-20 text-center">
-            
-  
 
-
-
-
-
-
+          <div class="donations-container">         
+              <%= render(partial: 'transactions_list', locals: {transactions: @transactions}) %>
+          </div>
 
 
         </div>       

@@ -23,6 +23,11 @@
   background-position: center center
 }
 
+
+.sidebar p {
+  color: #fff;
+}
+
 .admin-sidebar, .main-panel{
   overflow-x: scroll;
   overflow-y: scroll;

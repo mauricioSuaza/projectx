@@ -13,11 +13,35 @@
     <div class="col-md-12">
         <div class="pt-20 text-center">
             
-  
-          <div class="donations-container"> 
-                   <p>Nombre: <%= @user.name %></p>
+          <div class="col-md-8 col-md-offset-2">
+            <div class="donations-container"> 
+                    <p>Nombre: <%= @user.name %></p>
+                    <p>Email: <%= @user.email %></p>
+                    <p>Saldo: <%= @user.saldo %></p>
+            </div>
           </div>
 
+          <div class="col-md-6">
+              <h1>Donations</h1>
+              <div class ="donations-list col-md-12">
+                  <% @donations.each do |donation| %>
+                      <div class ="donations-list" style="border: solid 1px; margin: 15px;">
+                          <%=   render :partial => 'admin_donation_list', locals: {donation: donation}%>
+                      </div>
+                  <% end %>
+              </div>
+          </div>
+
+          <div class="col-md-6">
+              <h1>Requests</h1>
+              <div class ="donations-list col-md-12">
+                    <% @requests.each do |request| %>
+                        <div class ="donations-list" style="border: solid 1px; margin: 15px;">
+                            <%=   render :partial => 'admin_request_list', locals: {request: request}%>
+                        </div>
+                    <% end %>
+              </div>
+          </div>
 
         </div>       
     </div>    

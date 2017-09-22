@@ -46,6 +46,8 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
+        @donations = @user.donations
+        @requests = @user.requests
         render layout: "admin_dashboard_layout"
     end
 
