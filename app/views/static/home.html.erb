@@ -313,7 +313,7 @@
 <%= javascript_include_tag 'main' %>
 
 <script type="text/javascript">
-var d = new Date(new Date().getTime() + 90 * 120 * 120 * 2000);
+var d = new Date(new Date().getTime() + 48 * 120 * 120 * 2000);
 
 // default example
 simplyCountdown('.simply-countdown-one', {
@@ -322,13 +322,6 @@ simplyCountdown('.simply-countdown-one', {
   day: d.getDate()
 });
 
-//jQuery example
-$('#simply-countdown-losange').simplyCountdown({
-  year: d.getFullYear(),
-  month: d.getMonth() + 1,
-  day: d.getDate(),
-  enableUtc: false
-});
 
 $(".hero-slider").slick({
 
