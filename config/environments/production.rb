@@ -56,7 +56,7 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "project_bx_#{Rails.env}"
     
-    config.action_mailer.default_url_options = { :host => "https://donatingoals.herokuapp.com/"  }
+    config.action_mailer.default_url_options = { :host => "https://staging-donatingoals.herokuapp.com/"  }
 
     # Raises error for missing translations
     # config.action_view.raise_on_missing_translations = true
