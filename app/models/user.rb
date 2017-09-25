@@ -12,16 +12,13 @@ class User < ApplicationRecord
   extend ActsAsTree::TreeView
   attr_accessor :refferal
 
-
+  validates :name, presence: true
+  validates :phone, presence: true
+  validates :btc, presence: true
 
   def set_saldo_zero
     self.saldo ||= 0
   end
-
-  def confirmation_required?
-    false
-  end
-  
   
   def send_donation (value)
 

@@ -24,7 +24,7 @@ Rails.application.routes.draw do
 
   get '/confirm_transaction', to: 'transactions#confirm_transaction', as: 'transaction_confirm'
 
-  devise_for :users, controllers: { registrations: 'registrations' }
+  devise_for :users, controllers: { registrations: 'registrations', confirmations: 'confirmations' }
 
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
@@ -41,5 +41,7 @@ Rails.application.routes.draw do
   get '/account_balance',  to: 'users#account_balance'
 
   get '/news',  to: 'users#news'
+
+  get '/mail_test', to: 'static#mail'
 
 end

@@ -1,5 +1,79 @@
-<p>Welcome <%= @email %>!</p>
 
-<p>You can confirm your account email through the link below:</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Donating Goals</title>
+
+
+    <%= stylesheet_link_tag    'application', media: 'all'%>
+    <%= javascript_include_tag 'application' %>
+
+
+
+    <script src="https://use.fontawesome.com/e4b26ed800.js"></script>
+
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="favico.jpeg">
+  </head>
+
+  <body>
+    <div id="page-wrapper" class="page-wrapper">
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Navigation Bar -->
+       
+
+            <div class="content text-center" style="margin-top:100px;margin-bottom:30px;">
+
+              <%= yield %>
+
+              <h1 style="color:#1d5a96; font-size:50px;font-weight:600;">Estas Adentro </h1>
+
+              <h4 style="color:##555; margin-top:30px;  margin-bottom:30px;" >Tu cuenta ha sido creada exitosamente Haz click en el siguiente enlace para verificar tu correo electronico y activarla. </h4>
+
+              <%= link_to 'Confirmar my cuenta', confirmation_url(@resource, confirmation_token: @token), class:"btn btn-primary"%>
+             
+              
+            </div>
+              
+
+                <!-- footer -->
+                <footer class="footer">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-2 col-sm-12 col-xs-12 mb-sm-40">
+                       
+                        
+                      </div>
+
+                      <div class="col-md-8 col-sm-12 col-xs-12 mb-sm-40" style="padding: 0px; text-align: center;">
+                        <h2 style="color:white;">Tus sueños son nuestro compromiso</h2>
+                      </div>
+                      <div class="col-md-2 col-sm-12 col-xs-12 mb-sm-40" style="padding: 0px; text-align: center;">
+                        
+                      </div>
+
+                      
+                    </div>
+                    <!-- //row -->
+                  </div>
+                  <!-- //container -->
+                </footer>
+                <!-- //footer -->
+              </div>
+              <!-- //Main Content -->
+            </div>
+            <!-- // Page Wrapper -->
+          </body>
+        </html>
+
+
+
+
+
+
+
+
+

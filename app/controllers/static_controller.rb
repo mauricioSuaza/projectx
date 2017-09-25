@@ -21,4 +21,9 @@ class StaticController < ApplicationController
   def coming_soon
     render layout: "blank"
   end
+
+  def mail
+    render layout: "blank_two"
+  end
+
 end
