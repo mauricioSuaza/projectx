@@ -5,10 +5,11 @@
  * License : MIT
  * Version : 1.3.2
  * Author : Vincent Loy <vincent.loy1@gmail.com>
- * Contributors : 
+ * Contributors :
  *  - Justin Beasley <JustinB@harvest.org>
  *  - Nathan Smith <NathanS@harvest.org>
  */
+
 /*global window, document*/
 (function (exports) {
     'use strict';
@@ -30,7 +31,7 @@
             key;
         out = out || {};
 
-        for (i = 1; i < arguments.length; i += 1) {
+        for (i = 1; i < arguments.length; i ++) {
             obj = arguments[i];
 
             if (obj) {
