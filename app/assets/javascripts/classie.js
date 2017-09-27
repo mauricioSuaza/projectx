@@ -21,10 +21,10 @@ $(document).ready(function(){
     margin:10,
     responsive:{
         0:{
-            items:1
+            items:0
         },
-        600:{
-            items:3
+        720:{
+            items:1
         },
         1000:{
             items:3

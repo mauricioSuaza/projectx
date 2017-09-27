@@ -388,10 +388,13 @@ h3.section-title {
 h5.section-title {
     font-size: 16px;
     color: #555;
-    margin: 0 0 20px 0;
+    margin: 0 0 40px 0;
     text-align: left;
 }
 
+.contacto{
+  margin-top: 240px;
+}
 /* ---------------------------------------------
 
 Color shortcodes
@@ -1012,7 +1015,7 @@ Menu on the right
 .menu > li {
     display: inline-block;
     position: relative;
-    margin: 0px 50px;
+    margin: 0px 35px;
 }
 
 .menu li a.menu-item {
@@ -1720,6 +1723,7 @@ Team
 .team-member {
     text-align: center;
     transition: all .5s ease;
+    box-shadow: 1px 1px 8px rgba(60, 113, 164, 0.37);
 }
 
 .team-member .image-holder {
@@ -2529,8 +2533,269 @@ Margin Shortcodes
   padding-top: 120px;
 }
 
+.info-imagen{
+  width: 100%;
+  height: auto;
+  background: #3c71a4;
+}
+
+.info-imagen h2{
+  font-size: 50px;
+  padding: 150px 20px;
+  color: #fff;
+}
+
+.imagen-icon{
+  width: 80%;
+}
+
+.div-imagen{
+  padding: 0px;
+  margin: 82px 0px 0px;
+}
+
+.testimonios{
+  margin: 82px 30px;
+}
+
+.section-title2{
+  margin: 100px 0px 30px;
+  font-size: 30px!important;
+  font-weight: 600;
+  text-align: center;
+}
+
+.info-test{
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.icon-box-2{
+  display: block!important;
+}
+
+.parag{
+  font-size: 20px;
+}
 /* Portrait tablet to landscape and desktop */
 @media (max-width: 1000px) {
+
+  .icon-box-2 i {
+    font-size: 190px!important;
+  }
+
+  .icon-box-2 h4 {
+    font-size: 50px!important;
+  }
+
+  .icon-box-2 a {
+    font-size: 45px!important;
+  }
+
+  .pull-right{
+    font-size: 30px!important;
+  }
+
+  .parag {
+    font-size: 30px;
+    line-height: 1.4;
+  }
+
+  .features-list .features-footer{
+    font-size: 89px!important;
+    line-height: 1.1;
+    padding: 17px;
+  }
+
+  .duration{
+    font-size: 50px!important;
+  }
+
+  .card-img-top{
+    height: 100%!important;
+    width: 100%!important;
+    vertical-align: middle;
+    margin: 0 auto;
+  }
+
+  .section-title2{
+    margin: 50px 0px;
+    text-align: center;
+    font-weight: 800;
+    font-size: 60px!important;
+  }
+
+  .info-test{
+    text-align: center;
+    font-size: 51px!important;
+    line-height: 1.2!important;
+  }
+
+  .testimonios{
+    margin: 239px 30px 100px;
+  }
+
+  h3.section-title{
+    text-align: center;
+    font-size: 58px;
+  }
+
+  .section-tab{
+    font-size: 41px!important;
+    line-height: 1.3;
+    text-align: center;
+    margin: 50px 0px;
+  }
+
+  .btn-fel{
+    margin: 68px!important;
+  }
+
+  .btn-fel a{
+    font-size: 40px;
+    padding: 23px 60px;
+  }
+
+  .price-box{
+    margin: 30px!important;
+  }
+
+  .price-box h5{
+    font-size: 60px;
+  }
+
+  .price-box h6{
+    font-size: 46px;
+    line-height: 1.2;
+  }
+
+  .page-title2{
+    margin-top: 50px;
+    text-align: center;
+  }
+
+  .page-title2 h1{
+    font-size: 80px;
+    margin: 41px 0px;
+  }
+
+  .page-title2 p{
+    width: 100%!important;
+    font-size: 59px;
+    line-height: 1.2;
+  }
+
+  .info-met{
+    padding: 0px 30px!important;
+    margin: 47px 0px 47px!important;
+    text-align: center;
+  }
+
+  .info-met h1{
+    font-size: 115px!important;
+  }
+
+  .info-met p{
+    font-size: 54px!important;
+    padding: 20px!important;
+  }
+
+  .div-imagen{
+    margin: 239px 0px 0px;
+  }
+
+  .team-member{
+    box-shadow: none;
+  }
+  .team-member .image-holder{
+    border: 0px;
+  }
+
+  .fa{
+    font-size: 50px!important;
+    margin: 20px;
+  }
+
+  .member-info{
+    padding: 30px;
+  }
+
+  .team-member .member-info p{
+    font-size: 50px;
+  }
+
+  .team-member .member-info h5{
+    line-height: 1;
+    font-size: 60px;
+    font-weight: 700;
+  }
+
+  .team-member .member-info h6{
+    font-size: 40px;
+  }
+
+  .info-imagen{
+    width: 85%;
+    height: auto;
+    background: #1d5a96;
+    margin: 0 auto;
+  }
+  .info-imagen h2{
+    font-size: 90px;
+    padding: 270px 0px;
+    color: #fff;
+    text-shadow: 2px 2px 1px black;
+  }
+
+  .info-white h1{
+    font-weight: 700;
+    text-shadow: 2px 2px 12px rgba(22, 92, 144, 0.59);
+    font-size: 90px;
+  }
+
+  .icon-box-1 h4{
+    font-size: 50px;
+    margin-left: 0px;
+  }
+
+  .icon-box-1 p{
+    font-size: 52px;
+    line-height: 1.2;
+  }
+
+  .section-info p{
+    font-size: 45px!important;
+    line-height: 1.2!important;
+    font-weight: 800!important;
+    margin: 50px 0px;
+    text-align: center;
+  }
+
+  .page-title{
+    margin-top: 250px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+  }
+
+  .breadcrumb{
+    display: none;
+  }
+
+  .page-title h1{
+    text-align: center;
+    font-size: 70px;
+    padding: 49px 0px 0px;
+    font-weight: 600;
+  }
+
+  .page-title p{
+    font-size: 61px;
+    line-height: 1.2;
+    text-align: center;
+    margin: 25px;
+    font-weight: 900;
+    padding: 20px;
+  }
 
   .caret{
     border-top: 14px dashed!important;
@@ -2654,7 +2919,7 @@ Margin Shortcodes
   }
 
   .countdown-wrap{
-    padding: 250px 40px!important;
+    padding: 420px 40px 150px!important;
   }
 
   .main-nav .container{
@@ -2956,11 +3221,13 @@ Margin Shortcodes
     }
 
     .page-title h1 {
-        font-size: 32px;
+      font-size: 48px;
+      margin: 20px;
     }
 
     .page-title p {
-        font-size: 13px;
+      font-size: 22px;
+      margin: 25px;
     }
 
     .breadcrumb a {
