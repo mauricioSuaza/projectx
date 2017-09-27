@@ -12,17 +12,17 @@ Rails.application.routes.draw do
   get '/testimonios', to: 'static#testimonios'
   get '/contacto', to: 'static#contacto'
 
-  get '/my_dashboard',  to: 'users#dashboard', as: 'user_dashboard'
+  #get '/my_dashboard',  to: 'users#dashboard', as: 'user_dashboard'
 
-  get '/my_referrals',  to: 'users#my_referrals'
+  #get '/my_referrals',  to: 'users#my_referrals'
 
-  post '/send_donation',  to: 'users#donation_send'
+  #post '/send_donation',  to: 'users#donation_send'
 
-  post '/request_donation', to: 'users#donation_request'
+  #post '/request_donation', to: 'users#donation_request'
 
-  post '/add_invoice', to: 'transactions#add_invoice'
+  #post '/add_invoice', to: 'transactions#add_invoice'
 
-  get '/confirm_transaction', to: 'transactions#confirm_transaction', as: 'transaction_confirm'
+  #get '/confirm_transaction', to: 'transactions#confirm_transaction', as: 'transaction_confirm'
 
   devise_for :users, controllers: { registrations: 'registrations', confirmations: 'confirmations' }
 
@@ -38,9 +38,9 @@ Rails.application.routes.draw do
 
   get '/coming_soon',  to: 'static#coming_soon', as: 'coming'
 
-  get '/account_balance',  to: 'users#account_balance'
+  #get '/account_balance',  to: 'users#account_balance'
 
-  get '/news',  to: 'users#news'
+  #get '/news',  to: 'users#news'
 
   get '/mail_test', to: 'static#mail'
 
