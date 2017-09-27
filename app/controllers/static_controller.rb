@@ -16,6 +16,7 @@ class StaticController < ApplicationController
   end
 
   def contacto
+    @contact_message = ContactMessage.new
   end
 
   def coming_soon

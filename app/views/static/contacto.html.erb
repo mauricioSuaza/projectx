@@ -70,6 +70,9 @@
 </div>
 <!-- //Contact Info -->
 
+
+
+
 <!-- Section -->
 <div class="pt80 pb80">
 
@@ -79,21 +82,32 @@
 
             <h5 class="section-title col-xs-12" style="font-size: 40px;">Envíanos un Mensaje</h5>
 
-            <form class="contact-form col-xs-12" role="form" method="post" action="">
+            <%= form_for(@contact_message) do |f| %>
+              <% if @contact_message.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(c@ontact_message.errors.count, "error") %> prohibited this contact_message from being saved:</h2>
+
+                    <ul>
+                    <% @contact_message.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                    </ul>
+                  </div>
+                <% end %>
 
                 <div class="field col-sm-6 col-xs-12">
                     <label>Tu Nombre*</label>
-                    <input type="text" id="name" name="name" required="required" value=""><p class='text-danger'></p>
+                    <input type="text" id="name" name="contact_message[name]" required="required" value=""><p class='text-danger'></p>
                 </div>
 
                 <div class="field col-sm-6 col-xs-12">
                     <label>Tu Correo Electrónico*</label>
-                    <input type="email" id="email" name="email" required="required" value=""><p class='text-danger'></p>
+                    <input type="email" id="email" name="contact_message[email]" required="required" value=""><p class='text-danger'></p>
                 </div>
 
                 <div class="field col-xs-12">
                     <label>Tu Mensaje*</label>
-                    <textarea rows="2" name="message" required="required"></textarea><p class='text-danger'></p>
+                    <textarea rows="2" name="contact_message[content]" required="required"></textarea><p class='text-danger'></p>
                 </div>
 
                 <div class="field col-xs-4 col-xs-offset-4">
@@ -103,7 +117,7 @@
                 <div class="field">
                     <?php echo $result; ?>
                 </div>
-            </form>
+           <% end %>
 
         </div><!-- //row -->
 

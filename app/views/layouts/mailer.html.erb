@@ -1,107 +1,13 @@
-
-
-
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Donating Goals</title>
-    <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all'%>
-    <%= javascript_include_tag 'application' %>
-
-
-
-    <script src="https://use.fontawesome.com/e4b26ed800.js"></script>
-
-    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-    <link rel="shortcut icon" type="image/x-icon" href="favico.jpeg">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
   </head>
 
   <body>
-    <div id="page-wrapper" class="page-wrapper">
-      <!-- Main Content -->
-      <div class="main-content">
-        <!-- Navigation Bar -->
-        <nav id="main-nav" class="navbar navbar-fixed-top main-nav colored-menu" style="margin:0px; box-shadow: 2px 2px 12px rgba(22, 70, 117, 0.54);">
-            <div class="container-fluid" style="padding: 0px;">
-
-                <div class="logo-container">
-                <a href="/" class="logo" style="padding: 27px 10px 10px 10px;!important">
-                    <i class="pe-7s-cash"></i>
-                    <p>Donating goals</p>
-                </a>
-                </div>
-
-                <div class="navbar-right buttMenu" style:"width: 73%; float:right!important; margin-top:9px;!important">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" style="background-color: #fff;">
-                    <i class="fa fa-bars" aria-hidden="true" style="font-size: 41px;"></i>
-                </button>
-                </div>
-
-                <!-- Right Side Links -->
-                <div id="navbar" class="navbar-collapse collapse right-links">
-                <!-- Menu Start -->
-                    <ul id="menu" class="menu nav navbar-nav">
-                    <!-- Menu Item -->
-                    <!-- Menu Item -->
-                        <li>
-                        <a href="" class="menu-item"><h3>Abrimos el 10 de octubre</h3></a>
-                        <div class="pill">
-                        </li>
-
-                    
-                    </ul>
-
-                </div>
-
-            </div>
-
-        </nav>
-
-       
-         
-     
-
-            <div class="content text-center" style="margin-top:100px;margin-bottom:30px;">
-
-              <%= yield %>
-
-              <h1 style="color:#1d5a96; font-size:50px;font-weight:600;">Estas Adentro </h1>
-
-              <h4 style="color:##555; margin-top:30px;  margin-bottom:30px;" >Tu cuenta ha sido creada exitosamente Haz click en el siguiente en lace para verificar tu correo electronico y activarla. </h4>
-
-              <a href="/users/sign_up" class="btn btn-primary" tabindex="-1"> Registrate </a>
-              
-            </div>
-              
-
-                <!-- footer -->
-                <footer class="footer">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-md-2 col-sm-12 col-xs-12 mb-sm-40">
-                       
-                        
-                      </div>
-
-                      <div class="col-md-8 col-sm-12 col-xs-12 mb-sm-40" style="padding: 0px; text-align: center;">
-                        <h2 style="color:white;">Tus sueños son nuestro compromiso</h2>
-                      </div>
-                      <div class="col-md-2 col-sm-12 col-xs-12 mb-sm-40" style="padding: 0px; text-align: center;">
-                        
-                      </div>
-
-                      
-                    </div>
-                    <!-- //row -->
-                  </div>
-                  <!-- //container -->
-                </footer>
-                <!-- //footer -->
-              </div>
-              <!-- //Main Content -->
-            </div>
-            <!-- // Page Wrapper -->
-          </body>
-        </html>
+    <%= yield %>
+  </body>
+</html>

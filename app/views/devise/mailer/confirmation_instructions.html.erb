@@ -1,73 +1,349 @@
 
-
-
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Donating Goals</title>
+
+<head>
+  <title>ProjectBx</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+  <meta name="viewport" content="width=device-width" />
 
 
-    <%= stylesheet_link_tag    'application', media: 'all'%>
-    <%= javascript_include_tag 'application' %>
+  <style>
+  
+  </style>
+  <style>
+        .logo-container {
+          float: left;
+          width: 40%;
+          height: 100%;
+          margin: 30px;
+        }
+
+        .logo-container a {
+          display: block;
+        }
+
+        .logo i {
+          color: #fff;
+          line-height: 20px;
+          font-size: 24px;
+          margin-right: 10px;
+          vertical-align: middle;
+        }
+
+        .logo p {
+          color: #fff;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          display: inline-block;
+          vertical-align: middle;
+          line-height: 20px;
+          font-weight: 700;
+          font-size: 20px;
+          margin: 0px;
+        }
+
+        .own-nav-right{
+          float: right;
+        color: #164675;
+        background: #fff;
+        margin: 20px;
+        font-size: 20px;
+        border: 1px solid #164675;
+        border-radius: 10px;
+        text-align: center;
+        width: 25%;
+        }
+
+        .own-nav-right p{
+          margin: 5px;
+        }
+
+        
+
+        .info-contenido{
+          padding-top: 40px;
+        }
+
+        .info-contenido h1{
+          color: #164675;
+          margin-top: 40px;
+          font-weight: 500;
+          font-size: 67px;
+          text-shadow: 2px 2px 12px rgba(22, 70, 117, 0.45);
+        }
+
+        .info-contenido p{
+          font-size: 20px;
+          margin: 15px 0px 50px;
+        }
+
+        .cont-btn{
+          display: flex;
+          justify-content: end;
+        }
+
+        .own-btn-mail{
+          font-size: 17px;
+          color: #fff;
+          background: #6D9F00;
+          padding: 15px 40px;
+          font-weight: 700;
+          border-radius: 10px;
+          text-decoration: none;
+          margin: 0px 0px 50px;
+          box-shadow: 2px 2px 12px rgba(22, 70, 117, 0.31);
+        }
+
+        .own-btn-mail:hover{
+          color: #6D9F00;
+          background: #fff;
+          text-decoration: none;
+          border: 1px solid #6D9F00;
+        }
+
+        .welcome{
+          width: 100%;
+          top: 82px;
+          background: #c1c1c1;
+          padding: 30px;
+        }
+
+        .welcome p{
+          font-size: 26px;
+          color: #777777;
+          margin: 30px 0px;
+        }
+
+        .welcome span{
+          color: #164675;
+          font-weight: 500;
+        }
+
+        .cont-btn2{
+          display: flex;
+          justify-content: center;
+        }
+
+        .own-btn-mail2{
+          font-size: 17px;
+          color: #fff;
+          background: #164675;
+          padding: 15px 40px;
+          font-weight: 700;
+          border-radius: 10px;
+          text-decoration: none;
+          margin: 30px;
+          box-shadow: 2px 2px 12px rgba(22, 70, 117, 0.31);
+        }
+
+        .own-btn-mail2:hover{
+          color: #164675;
+          background: #c1c1c1;
+          text-decoration: none;
+          border: 1px solid #164675;
+        }
+
+        .preguntas{
+          width: 100%;
+          top: 82px;
+          background: #6D9F00;
+          text-align: center;
+          color: #fff;
+          padding: 70px 0px;
+        }
+
+        .preguntas p{
+          font-size: 29px;
+        }
+
+        .own-btn-mail3{
+          font-size: 17px;
+          color: #fff;
+          background: #6D9F00;
+          border: 1px solid white;
+          padding: 21px 51px;
+          font-weight: 700;
+          border-radius: 10px;
+          text-decoration: none;
+          margin: 30px;
+        }
+
+        .own-btn-mail3:hover{
+          color: #164675;
+          background: #6d9f00;
+          text-decoration: none;
+          border: 1px solid #164675;
+        }
+
+        .social{
+          text-align: center;
+          font-size: 50px;
+          color: #fff;
+          padding: 10px;
+        }
+
+        .info-footer{
+          text-align: center;
+          color: #fff;
+          font-size: 30px;
+          padding: 10px;
+          font-weight: 600;
+        }
+
+        .social i{
+          margin: 15px;
+        }
+
+        .foto-info{
+          box-shadow: 2px 2px 12px rgba(22, 70, 117, 0.31);
+        }
+
+        @media (max-width: 1000px){
+
+          .own-nav-right{
+            width: 40%;
+          }
+
+          #main-nav{
+            padding: 30px;
+          }
+
+          .info-contenido{
+            text-align: center;
+          }
+
+          .info-contenido p{
+            font-size: 50px;
+            margin: 55px 0px 50px;
+          }
+
+          .cont-btn{
+            justify-content: center;
+          }
+
+          .own-btn-mail{
+            font-size: 57px;
+          }
+
+          .welcome h3{
+            font-size: 40px;
+          }
+
+          .welcome p{
+            font-size: 45px;
+            color: #777777;
+            text-align: center;
+            margin: 30px 0px;
+            line-height: 1.2;
+          }
+
+          .own-btn-mail2{
+            font-size: 55px;
+          }
+
+          .preguntas h2{
+            font-size: 75px;
+            margin-bottom: 30px;
+          }
+
+          .preguntas p{
+            font-size: 51px;
+            margin-bottom: 35px;
+            margin-top: 44px;
+          }
+
+          .own-btn-mail3{
+            font-size: 50px;
+          }
+
+          .social i:hover{
+            color: #000;
+          }
+
+        }
+  </style>
+  <!--Pe-icon-7-->
 
 
+</head>
 
-    <script src="https://use.fontawesome.com/e4b26ed800.js"></script>
+<body>
+  <div id="page-wrapper" class="page-wrapper">
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Navigation Bar -->
+      <nav id="main-nav" class="navbar navbar-fixed-top main-nav colored-menu" style="box-shadow: 2px 2px 12px rgba(22, 70, 117, 0.54); background: rgb(22, 70, 117);">
+        <div class="container">
+          <!-- Logo Container -->
+          <div class="logo-container">
+            <a href="/" class="logo">
+              <i class="pe-7s-cash"></i>
+              <p>Donating goals</p>
+            </a>
+          </div>
 
-    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-    <link rel="shortcut icon" type="image/x-icon" href="favico.jpeg">
-  </head>
+          <div class="own-nav-right">
+            <p>Abrimos el 10 de Ocutbre</p>
+          </div>
+        </div>
+      </nav>
 
-  <body>
-    <div id="page-wrapper" class="page-wrapper">
-      <!-- Main Content -->
-      <div class="main-content">
-        <!-- Navigation Bar -->
-       
-
-            <div class="content text-center" style="margin-top:100px;margin-bottom:30px;">
-
-              <%= yield %>
-
-              <h1 style="color:#1d5a96; font-size:50px;font-weight:600;">Estas Adentro </h1>
-
-              <h4 style="color:##555; margin-top:30px;  margin-bottom:30px;" >Tu cuenta ha sido creada exitosamente Haz click en el siguiente enlace para verificar tu correo electronico y activarla. </h4>
-
-              <%= link_to 'Confirmar my cuenta', confirmation_url(@resource, confirmation_token: @token), class:"btn btn-primary"%>
-             
-              
-            </div>
-              
-
-                <!-- footer -->
-                <footer class="footer">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-md-2 col-sm-12 col-xs-12 mb-sm-40">
-                       
-                        
-                      </div>
-
-                      <div class="col-md-8 col-sm-12 col-xs-12 mb-sm-40" style="padding: 0px; text-align: center;">
-                        <h2 style="color:white;">Tus sueños son nuestro compromiso</h2>
-                      </div>
-                      <div class="col-md-2 col-sm-12 col-xs-12 mb-sm-40" style="padding: 0px; text-align: center;">
-                        
-                      </div>
-
-                      
-                    </div>
-                    <!-- //row -->
-                  </div>
-                  <!-- //container -->
-                </footer>
-                <!-- //footer -->
+      <div class="info">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 col-xs-12 info-contenido">
+              <h1>ESTÁS ADENTRO</h1>
+              <p>Ya eres parte de nuestra comunidad y estamos felices por esto.
+                Estás tan solo a un paso de que empieces a hacer realidad tus sueños.</p>
+              <div class="cont-btn">
+                <%= link_to 'Verificar Tu Correo', confirmation_url(@resource, confirmation_token: @token), class:"own-btn-mail"%>
               </div>
-              <!-- //Main Content -->
             </div>
-            <!-- // Page Wrapper -->
-          </body>
-        </html>
+            
+          </div>
+        </div>
+      </div>
+
+      <div class="welcome">
+        <div class="container">
+          <h3>Hola:</h3>
+          <p>Tu cuenta ha sido creada correctamente. Por último necesitamos verificar tu correo electrónico da click en el siguiente enlace para activar tu cuenta. Ten en cuenta que lo que acabas
+            de hacer es un pre- registro y que nuestro sitio estará disponible al público a partir del <span>10 de OCTUBRE</span></p>
+          <div class="cont-btn2">
+            <%= link_to 'Verificar Tu Correo', confirmation_url(@resource, confirmation_token: @token), class:"own-btn-mail2"%>
+          </div>
+        </div>
+      </div>
+
+      <div class="preguntas">
+        <div class="container">
+          <h2 style="text-shadow: 2px 2px 12px #164675;">¿PREGUNTAS?</h2>
+          <p>Habla con nuestro equipo de soporte en vivo 24/7</p>
+          <p>¡Hablamos Español!</p>
+          <div class="cont-btn2">
+            <a href="http://www.donatinggoals.com/contacto" class="own-btn-mail3">Enviar mensaje</a>
+          </div>
+        </div>
+      </div>
+
+      <footer style="background:#164675;">
+        <div class="social">
+          <i class="fa fa-facebook-square" aria-hidden="true"></i>
+          <i class="fa fa-twitter-square" aria-hidden="true"></i>
+          <i class="fa fa-instagram" aria-hidden="true"></i>
+        </div>
+        <div class="info-footer">
+          <p style="margin:0px;">Tus sueños, son nuestro compromiso</p>
+          <p style="font-size: 20px;">www.donatinggoals.com</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+</body>
 
 
 
@@ -77,3 +353,5 @@
 
 
 
+
+             
