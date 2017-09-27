@@ -60,12 +60,12 @@
                                 <div class="">
                                     <h3 class="panel-title">Donation transactions</h3>
                                      <% donation.transactions.each do |transaction| %>
-                                        <%=   render :partial => 'admin_transactions_container', locals: {transaction: transaction}%>
+                                        <%=   render :partial => 'users/admin_transactions_container', locals: {transaction: transaction}%>
                                      <% end %>
                                 </div>
                             </div>
                         </div>  
-                       <p>whateeeveeeer</p>
+                        <p>whateeeveeeer</p>
                     </div> 
                 </div>
             </div>

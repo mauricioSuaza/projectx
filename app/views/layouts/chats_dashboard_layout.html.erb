@@ -1,0 +1,84 @@
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <title>ProjectBx</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all'%>
+    <%= javascript_include_tag 'application' %>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.4.3/sweetalert2.min.js'>
+    </script>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.4.3/sweetalert2.min.css' rel='stylesheet'>
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+        <% if notice %>
+            <script>
+                swal("<%= notice %>");
+            </script>
+        <% end %>
+
+        <% if alert%>
+            <script>
+                swal("<%= alert %>");
+            </script>
+        <% end %>
+
+
+
+        <div class="dashboard-wrapper">
+
+      <!--SideBar-->
+  		<div class="sidebar">
+
+  			<div class="sidebar-wrapper">
+  				<div style="border-bottom: 1px solid #fff;">
+                    <a href="/" class="logo" >
+                        <i class="pe-7s-cash"></i>
+                        <p>Donating Goals</p>
+                    </a>
+                    <div style="padding: 10px 30px;">
+                        <% if user_signed_in? %>
+                            <p>Hello <%= current_user.email %></p>  
+                        <% end%> 
+                    </div>
+                        
+                </div>
+
+                <ul class="nav own-nav">
+                        
+                    <li>
+                        <a href="/chats">
+                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                            <p>Messages</p>
+                        </a>
+                    </li>
+
+                    
+
+                    <li>
+                        <%= link_to  destroy_user_session_path, method: :delete do%>
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>
+                            <p>Log out</p>
+                        <%end%>
+                    </li>
+
+
+
+
+                </ul>
+            </div>
+        </div>
+      <!--SideBar-->
+
+      <div class="main-panel">
+            <%= yield %>
+      </div>
+
+    </div>
+    
+  </body>
+  </html>

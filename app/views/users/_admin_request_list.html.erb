@@ -61,7 +61,7 @@
                                 <div class="">
                                     <h3 class="panel-title">Donation transactions</h3>
                                      <% request.transactions.each do |transaction| %>
-                                        <%=   render :partial => 'admin_requests_transactions_container', locals: {transaction: transaction}%>
+                                        <%=   render :partial => 'users/admin_requests_transactions_container', locals: {transaction: transaction}%>
                                      <% end %>
                                 </div>
                             </div>
