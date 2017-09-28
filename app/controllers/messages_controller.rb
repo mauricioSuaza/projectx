@@ -38,7 +38,10 @@ class MessagesController < ApplicationController
     @message = @chat.messages.new(message_params)
     if @admin == true
       if @current_user_admin == false
-        if @messages_count == 1
+        if @messages_count == 1 
+          redirect_to chat_messages_path(@chat.id)
+          flash[:notice] = "You can't send another message until an admin reply you back. Thank you for your patience"
+        elsif @messages_count > 2 && !Chat.find(@chat.id).messages.last.user.admin?
           redirect_to chat_messages_path(@chat.id)
           flash[:notice] = "You can't send another message until an admin reply you back. Thank you for your patience"
         else

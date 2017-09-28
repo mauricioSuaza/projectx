@@ -21,7 +21,7 @@ class ChatsController < ApplicationController
   def destroy
     @chat.destroy
     respond_to do |format|
-      format.html { redirect_to chats_url, notice: 'Conversacion fue eliminada' }
+      format.html { redirect_to chats_url, notice: 'Chat was destroyed.' }
       format.json { head :no_content }
     end
   end

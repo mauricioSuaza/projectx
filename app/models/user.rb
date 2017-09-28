@@ -19,6 +19,15 @@ class User < ApplicationRecord
   def set_saldo_zero
     self.saldo ||= 0
   end
+
+
+  def confirmation_required?
+    false
+  end
+
+  def update_test
+    self.update(name: 'test')
+  end
   
   def send_donation (value)
 
