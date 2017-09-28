@@ -1015,7 +1015,7 @@ Menu on the right
 .menu > li {
     display: inline-block;
     position: relative;
-    margin: 0px 35px;
+    margin: 0px 20px;
 }
 
 .menu li a.menu-item {
@@ -3464,7 +3464,7 @@ line-height: 1.4;
   font-size: 60px;
 }
 
-.fotos-footer:hover img{
+.fotos-footer img{
   border: 1px solid white;
   border-radius: 50%;
 }
