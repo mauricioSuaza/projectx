@@ -12,8 +12,6 @@ class User < ApplicationRecord
   extend ActsAsTree::TreeView
   attr_accessor :refferal
 
-
-
   def set_saldo_zero
     self.saldo ||= 0
   end
@@ -21,7 +19,10 @@ class User < ApplicationRecord
   def confirmation_required?
     false
   end
-  
+
+  def update_test
+    self.update(name: 'test')
+  end
   
   def send_donation (value)
 

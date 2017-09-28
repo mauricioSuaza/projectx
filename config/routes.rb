@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # Serve websocket cable requests in-process
+  require 'sidekiq/web'
 
+  mount Sidekiq::Web => '/sidekiq'
   mount ActionCable.server => '/cable'
 
   root to: 'static#home'
@@ -31,6 +33,9 @@ Rails.application.routes.draw do
   end
 
   resources :donations
+
+  post 'test', to: 'users#test', as: 'test'
+
 
   resources :chats do
     resources :messages
