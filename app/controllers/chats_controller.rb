@@ -6,6 +6,13 @@ class ChatsController < ApplicationController
     @users = User.all
     @chats = Chat.all
     @admin = User.where(admin: true)
+    render layout: "dashboard_layout"
+  end
+
+  def admin_index
+    @users = User.all
+    @chats = Chat.all
+    @admin = User.where(admin: true)
     render layout: "chats_dashboard_layout"
   end
 
@@ -15,7 +22,11 @@ class ChatsController < ApplicationController
     else
       @chat = Chat.create!(chat_parms)
     end
-    redirect_to chat_messages_path(@chat)
+    if current_user.admin
+      redirect_to support_chat_path(@chat)
+    else
+      redirect_to chat_messages_path(@chat)
+    end
   end
 
 

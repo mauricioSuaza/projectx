@@ -3,7 +3,7 @@
       
     <div class="row">
       <div class="col-md-8">
-        <h3><i class="fa fa-envelope-o mail-icon" aria-hidden="true"></i> Chats</h3>
+        <h3><i class="fa fa-envelope-o mail-icon" aria-hidden="true"></i> Nuevos mensajes</h3>
         <div class="messages-recived">
           <div class="row tables">
             <div class="col-md-4">
@@ -65,7 +65,27 @@
       </div>
       <div class="col-md-4">
         <div class="ui-segment">
-          
+          <h3><i class="fa fa-user-secret" aria-hidden="true"></i> Usuarios </h3>
+          <br>
+            <div class="text-center chat-users-container">
+              <% User.all.each do |user| %>
+                <% if user.id != current_user.id %>
+                  <div class="item">
+                    <div class="row">
+                      <div class="col-md-6 text-center"> 
+                        <%= button_to support_messages_path(sender_id: current_user.id, recipient_id: user.id), class: 'chat-button' do %>
+                          <p class="iniciar-chat">
+                            <i class="fa fa-weixin" aria-hidden="true"></i>
+                            <%= user.email %> 
+                          </p>
+                        <%end%>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          <br>
         </div>
       </div>
     </div>  

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+ 
+  resources :articles
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # Serve websocket cable requests in-process
@@ -62,7 +64,11 @@ Rails.application.routes.draw do
 
   get '/transactions/:id', to: 'transactions#show', as: 'transaction_show'
 
-  
+  #Support admin routes
+  get  '/admin_chats',to: 'chats#admin_index' 
 
+  post  '/admin_messages',to: 'chats#create', as: 'support_messages'
+
+  get  '/support_chats/:chat_id',to: 'messages#admin_index' , as: 'support_chat'
   
 end
