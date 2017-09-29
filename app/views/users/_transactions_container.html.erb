@@ -1,7 +1,11 @@
-       
+<%transc_color = 'panel-headingtwo'%>
+<%if transaction.status%>
+    <%transc_color = 'panel-heading'%>
+<%end%>
+
 <div class="transactions-container col-md-10 col-md-offset-1">
     <div class="panel-transactions panel-secondary">
-        <div class="panel-heading">
+        <div class="<%=transc_color%>">
             <h3 class="panel-title">Transaction <%= transaction.id %></h3>
         </div>
         <table class="table table-condensed table-responsive table-user-information">

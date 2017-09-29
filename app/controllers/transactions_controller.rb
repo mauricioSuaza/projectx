@@ -9,14 +9,31 @@ class TransactionsController < ApplicationController
 
   def confirm_transaction
     @transaction = Transaction.find(params[:transaction_id])
-    
+
     if @transaction.receiver_id == current_user.id
-      UserWorker.perform_in(1.minutes, @transaction.id)
-      flash[:notice] = "Transaction sucesfully confirmed!. Your total balance will be updated 
-          in 15 days, thank you for trusting in us."
-      redirect_to '/my_dashboard'  
+        @transaction.update(status: true)
+        donation_check @transaction
+        request_check @transaction
+        redirect_to '/my_dashboard', notice: "Transactions succesfully cofirmed"
     else
-      redirect_to '/my_dashboard', notice: "you don't have permission to acces this transaction"
+        redirect_to '/my_dashboard', notice: "you don't have permission to acces this transaction"
+    end
+
+  end
+
+  def donation_check (transaction)
+    @donation = Donation.find(transaction.donation_id)
+    if @donation.transactions.all? {|transc| transc.status == true}
+      @donation.update(completed: true)
+      UserWorker.perform_in(10.seconds,  @donation.id)
+    end
+    @donation
+  end
+
+  def request_check (transaction)
+    @request = Request.find(transaction.request_id)
+    if @request.transactions.all? {|transc| transc.status == true}
+      @donation.update(completed: true)
     end
   end
 

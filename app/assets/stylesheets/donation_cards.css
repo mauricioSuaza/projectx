@@ -122,6 +122,12 @@
     color: #FFFFFF;
 } 
 
+.panel-secondary > .panel-headingtwo {
+    background-color: #b60d0d;
+    border-color: #b60d0d;
+    color: #FFFFFF;
+} 
+
 .buttons-container{
 
     margin-bottom: 12px;
