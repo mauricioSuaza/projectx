@@ -1,5 +1,11 @@
   <nav class="own-navbar">
     <div class="container-fluid">
+      <!-- menu mobile display -->
+        <button class="navbar-toggle own-btn-nav" data-target="navbar-collapse" data-toggle="collapse">
+          <span class="icon icon-bar"></span>
+          <span class="icon icon-bar"></span>
+          <span class="icon icon-bar"></span>
+        </button>
         <div class="navbar-header">
           <a class="navbar-brand" href="#" style="font-size: 18px;color: #606060;line-height: 20px;">Chat</a>
         </div>
@@ -7,31 +13,31 @@
   </nav>
 
 
-  <div class="blog-area bg-light blog-page"> 
-    <div class="col-md-12">
-        <div class="pt-20 text-center">
-          <div class="">
-            <br>
-            <br>
-            <h4 class="text-center">
+  <div class="container-fluid" style="padding:0px; margin:30px 0px;">
+    <div class="col-xs-12">
+        <div class="message-cont">
+          <div class="cont-mensaje">
+            <h4 class="title-chat-int">
               <%if current_user.email == @chat.sender.email%>
-                <i class="fa fa-user-o" aria-hidden="true"></i> <%=@chat.recipient.name.capitalize%> 
+                <i class="fa fa-user-o" aria-hidden="true"></i> <%=@chat.recipient.name.capitalize%>
               <%else%>
                 <i class="fa fa-user-o" aria-hidden="true"></i> <%=@chat.sender.name.capitalize%>
               <%end%>
             </h4>
-            <br>
             <div class="row" id="messages">
               <div class="ui segment">
                 <% @messages.each do |message| %>
                   <% if message.body %>
                     <% user = User.find(message.user_id) %>
-                    <div class="item">
+                    <div class="item" style="padding: 20px;">
                       <div class="content">
-                        <div class="header"><strong><%= user.name %></strong> <%= message.message_time %></div>
+                        <div class="header"><strong><%= user.name %></strong></div>
                         <div class="list">
-                          <div class="item">
+                          <div class="item item-chat-cont" style="border-bottom:1px solid grey; width:20%;">
                             <%= message.body %>
+                            <div class="" style="font-size: 9px; font-weight: 500; float: right; margin: 10px 0px 0px;">
+                              <%= message.message_time %>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -40,32 +46,22 @@
                 <% end %>
               </div>
             </div>
+          </div>
+
+          <div>
             <%=form_for [@chat, @message], html: { id: "message-form-chat", data: {admin: @admin, current_user_admin: @current_user_admin, messages_count: @messages_count }} do |f|%>
-            
-              <div class="field ">
+
+              <div class="field">
                 <%= f.text_area :body, class: "form-control body-input", data: {textarea: "message"} %>
               </div>
-              
+
                 <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
-              <div class="text-center">
+              <div class="text-center" style="margin: 30px;">
                 <%= f.button :submit, class: "ui blue labeled submit icon button responder text-center enviar-chat", data: {send: "message"} %>
-            
+
               </div>
             <% end %>
           </div>
-          <br>   
-
-        </div>       
-    </div>    
+        </div>
+    </div>
   </div>
-
- 
-
-
-
-
-
-
-
-
-

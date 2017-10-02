@@ -6,6 +6,7 @@ class ChatsController < ApplicationController
     @users = User.all
     @chats = Chat.all
     @admin = User.where(admin: true)
+    render layout: "dashboard_layout"
   end
 
   def create

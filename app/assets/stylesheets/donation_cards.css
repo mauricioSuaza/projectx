@@ -1,52 +1,69 @@
 
+/*.panel-secondary > .panel-headingtwo{
+  background-color: #b60d0d;
+  border-color: #b60d0d ;
+  color: #FFFFFF ;
+  display: flex;
+  justify-content: space-around;
+  font-size: 60px;
+  padding: 10px 15px;
+}*/
+
 .panel {
     background-color: #FFFFFF;
-    border: 1px solid rgba(0, 0, 0, 0);
-    border-radius: 4px 4px 4px 4px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    border:none;
+    /*border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);*/
     margin-bottom: 20px;
-}   
+}
 
 .panel-primary {
     border-color: #428BCA;
-}   
+}
 
 .panel-primary > .panel-heading {
     background-color: #428BCA;
     border-color: #428BCA;
-    color: #FFFFFF;
-}   
+    display: flex;
+    justify-content: space-around;
+    font-size: 60px;
+    color: rgba(45, 94, 136, 0.84);
+}
 
 .panel-heading {
     border-bottom: 1px solid rgba(0, 0, 0, 0);
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     padding: 10px 15px;
-}   
+}
 
 .panel-title {
-    font-size: 16px;
+    font-size: 35px;
+    color: #fff;
+    line-height: 1;
+    font-weight: 700;
     margin-bottom: 0;
     margin-top: 0;
-}   
+}
 
 .panel-body:before, .panel-body:after {
     content: " ";
     display: table;
-}   
+}
 
 .panel-body:before, .panel-body:after {
     content: " ";
     display: table;
-}   
+}
 
 .panel-body:after {
     clear: both;
-}   
+}
 
 .panel-body {
     padding: 15px;
-}   
+    border: 1px solid #438bc9;
+}
 
 .panel-footer {
     background-color: #F5F5F5;
@@ -66,9 +83,14 @@
 }
 
 .dropdown-user {
-    margin: 13px 0;
-    padding: 5px;
-    height: 100%;
+  margin: 15px;
+  padding: 5px;
+  height: 100%;
+}
+
+.dropdown-user i{
+  font-size: 30px;
+  color: #fff;
 }
 
 .dropdown-user:hover {
@@ -95,7 +117,7 @@
     border-radius: 4px 4px 4px 4px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
     margin-bottom: 20px;
-}  
+}
 
 
 .panel-transactions {
@@ -104,25 +126,73 @@
     border-radius: 4px 4px 4px 4px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
     margin-bottom: 20px;
-    
-}   
+
+}
 
 .transactions-container{
-    margin-top: 10px;
+  margin:20px 0px;
 
 }
 
 .panel-secondary {
-    border-color: #234664;
-}   
+  border-color: #5db75c;
+  padding: 0px;
+}
+
+.panel-secondaryred {
+  border-color: #b60c0d;
+  padding: 0px;
+}
 
 .panel-secondary > .panel-heading {
-    background-color: #114830;
+    background-color: #5db65c;
     border-color: #114830;
     color: #FFFFFF;
-} 
+    font-size: 60px;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.panel-secondaryred > .panel-heading {
+  background-color: #b60d0d;
+  border-color: #b60d0d ;
+  color: #FFFFFF ;
+  display: flex;
+  justify-content: space-around;
+  font-size: 60px;
+}
 
 .buttons-container{
+    margin: 20px 5px;
+    display: flex;
+    justify-content: space-around;
+}
 
-    margin-bottom: 12px;
+.left-tab{
+  color: #000;
+  font-weight: 600;
+}
+
+.dntn_color{
+  background-color: #b60d0d;
+}
+
+.own-btn-form{
+  font-size: 15px;
+}
+
+.own-btn-form2{
+  font-size: 14px;
+  margin: 10px 0px 0px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.request-donation-form img{
+  width: 100%;
+}
+
+.dropdown-user i{
+  color: #000;
 }

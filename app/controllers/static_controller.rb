@@ -1,9 +1,11 @@
 class StaticController < ApplicationController
 
   def home
+=begin
     if current_user
       sign_out current_user
     end
+=end
   end
 
   def como_funciona
