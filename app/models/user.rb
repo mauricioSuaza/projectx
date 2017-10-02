@@ -21,7 +21,6 @@ class User < ApplicationRecord
     self.saldo ||= 0
   end
 
-
   def confirmation_required?
     false
   end
@@ -82,7 +81,7 @@ class User < ApplicationRecord
     end
     #crear la transacción
     transaction = donation.transactions.create(value: transaction_value, sender_id: donation.user_id, receiver_id: request.user_id, request_id: request.id)
-    
+    TransactionWorker.perform_in(10.seconds, transaction.id)
     #hacer update de la donación
     #Actualizar estado de la donacion 
     if residuo==0

@@ -9,7 +9,6 @@ class TransactionsController < ApplicationController
 
   def confirm_transaction
     @transaction = Transaction.find(params[:transaction_id])
-
     if @transaction.receiver_id == current_user.id
         @transaction.update(status: true)
         donation_check @transaction
