@@ -9,7 +9,6 @@ class TransactionsController < ApplicationController
 
   def confirm_transaction
     @transaction = Transaction.find(params[:transaction_id])
-    
     if @transaction.receiver_id == current_user.id
       UserWorker.perform_in(1.minutes, @transaction.id)
       flash[:notice] = "Transaction sucesfully confirmed!. Your total balance will be updated 
