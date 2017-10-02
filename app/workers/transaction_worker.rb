@@ -11,10 +11,9 @@ class TransactionWorker
     @transaction = Transaction.find(transaction_id)
     if @transaction.status == false
       @transaction.donation.user.update(blocked: true)
-      byebug
+      @transaction.update(completed: 1)
       @user = User.find(@transaction.receiver_id)
       @user.update(saldo: @user.saldo + @transaction.value)
-      
       #create notificacion fallida.
     end
   end

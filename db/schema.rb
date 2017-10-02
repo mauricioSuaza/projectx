@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171002192826) do
+ActiveRecord::Schema.define(version: 20171002230108) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20171002192826) do
     t.datetime "updated_at",                  null: false
     t.integer  "request_id"
     t.string   "invoice"
+    t.integer  "completed",   default: 0
     t.index ["donation_id"], name: "index_transactions_on_donation_id"
     t.index ["request_id"], name: "index_transactions_on_request_id"
   end

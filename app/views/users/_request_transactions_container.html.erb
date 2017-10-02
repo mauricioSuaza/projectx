@@ -77,11 +77,12 @@
             <% if transaction.status %>
                 <h3>Transaction already confirmed</h3>
             <%else%>
-            <!--<%= form_tag("/confirm_transaction", method: "post") do %>
-                <%= hidden_field_tag :transaction_id, transaction.id %>
-                <%= submit_tag("Confirm transaction", class: "btn btn-info") %>
-                <%end%>-->
-                <%= link_to "Confirm transaction", transaction_confirm_path(transaction_id: transaction.id), method: :get,  data: { confirm: 'Are you sure?' } %>
+                 <% if transaction.completed ==  "canceled" %>
+                   <h4>Esta transaccion fue cancelada y el saldo fue devuelto sin ser afectado</h4>
+                 <%else%>
+                    <%= link_to "Confirm transaction", transaction_confirm_path(transaction_id: transaction.id), method: :get,  data: { confirm: 'Are you sure?' } %>
+                 <%end%>
+
             <%end%>
 
             </div>
