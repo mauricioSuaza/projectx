@@ -44,9 +44,9 @@ Rails.application.routes.draw do
 
   get '/coming_soon',  to: 'static#coming_soon', as: 'coming'
 
-  #get '/account_balance',  to: 'users#account_balance'
+  get '/account_balance',  to: 'users#account_balance'
 
-  #get '/news',  to: 'users#news'
+  get '/news',  to: 'users#news'
 
   get '/mail_test', to: 'static#mail'
 

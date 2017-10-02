@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171002043836) do
+ActiveRecord::Schema.define(version: 20171002192826) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -116,6 +116,12 @@ ActiveRecord::Schema.define(version: 20171002043836) do
     t.integer  "parent_id"
     t.string   "ancestry"
     t.integer  "ancestry_depth",         default: 0
+    t.decimal  "level_one_amount",       default: "0.0"
+    t.decimal  "level_two_amount",       default: "0.0"
+    t.decimal  "level_three_amount",     default: "0.0"
+    t.decimal  "level_four_amount",      default: "0.0"
+    t.decimal  "level_five_amount",      default: "0.0"
+    t.decimal  "level_six_amount",       default: "0.0"
     t.index ["ancestry"], name: "index_users_on_ancestry"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
