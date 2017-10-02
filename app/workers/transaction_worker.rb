@@ -9,7 +9,6 @@ class TransactionWorker
 
 	def perform(transaction_id)
     @transaction = Transaction.find(transaction_id)
-    byebug
     if @transaction.status == false
       @transaction.donation.user.update(blocked: true)
     end

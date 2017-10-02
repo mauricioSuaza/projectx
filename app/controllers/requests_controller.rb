@@ -22,7 +22,6 @@ class RequestsController < ApplicationController
 
   def request_donation
     if current_user.saldo > 0
-      debugger
       @user = current_user.requests.create(requested: true,)
       respond_to do |format|
         if @user.update
