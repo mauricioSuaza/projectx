@@ -10,7 +10,7 @@ class Transaction < ApplicationRecord
     #@sender.update(saldo:  (@sender.saldo + (@transaction.value + (@transaction.value*0.3))))
     #redirect_to '/my_dashboard', notice: "transaction sucesfully confirmed"
     #UserWorker.perform_in(10.seconds, self.id)
-   end
+  end
 
 
 end

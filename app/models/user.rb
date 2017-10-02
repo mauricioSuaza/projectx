@@ -8,8 +8,9 @@ class User < ApplicationRecord
   has_many :donations
   has_many :requests
   before_save :set_saldo_zero
-  acts_as_tree order: "email"
-  extend ActsAsTree::TreeView
+ # acts_as_tree order: "email"
+  has_ancestry cache_depth: true
+  #extend ActsAsTree::TreeView
   attr_accessor :refferal
 
   validates :name, presence: true
@@ -153,6 +154,8 @@ class User < ApplicationRecord
     block.order('created_at DESC').last()
 
   end
+
+
 
 end
     

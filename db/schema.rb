@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170927055440) do
+ActiveRecord::Schema.define(version: 20171002043836) do
+
+  create_table "articles", force: :cascade do |t|
+    t.string   "title"
+    t.string   "content"
+    t.string   "invoice"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "chats", force: :cascade do |t|
     t.integer  "sender_id"
@@ -106,6 +114,9 @@ ActiveRecord::Schema.define(version: 20170927055440) do
     t.datetime "locked_at"
     t.boolean  "admin",                  default: false
     t.integer  "parent_id"
+    t.string   "ancestry"
+    t.integer  "ancestry_depth",         default: 0
+    t.index ["ancestry"], name: "index_users_on_ancestry"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

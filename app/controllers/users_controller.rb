@@ -31,6 +31,12 @@ class UsersController < ApplicationController
     def my_referrals
       @current_user_children = current_user.children
       render layout: "dashboard_layout"
+      @hijos_1 = @user.descendants(:at_depth => 1)
+			@hijos_2 = @user.descendants(:at_depth => 2)
+			@hijos_3 = @user.descendants(:at_depth => 3)
+			@hijos_4 = @user.descendants(:at_depth => 4)
+			@hijos_5 = @user.descendants(:at_depth => 5)
+			@hijos_6 = @user.descendants(:at_depth => 6)
     end
 
     def account_balance
