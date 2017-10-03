@@ -42,7 +42,7 @@
             </div>
           </div>
 
-          <div class="row">
+          <div class="row" style="margin:40px!important;">
             <% @chats.each do |chat| %>
               <%unless chat.messages.empty?%>
                 <% if chat.sender_id == current_user.id || chat.recipient_id == current_user.id %>
@@ -51,26 +51,33 @@
                   <% else %>
                     <% recipient = User.find(chat.sender_id) %>
                   <% end %>
-                  <div class="col-md-4 col-xs-6 row-chats">
-                    <p class="text-center">
-                      <%= link_to recipient.name, chat_messages_path(chat)%>
+                  <div class="col-md-4 col-xs-6" style="padding: 5px;">
+                    <p class="text-center col-chat" style="border-bottom: 1px solid rgba(0, 0, 0, 0.18);">
+                      <span class="chat-title">
+                        <%= link_to recipient.name, chat_messages_path(chat)%>
+                      </span>
                     </p>
                   </div>
-                   <div class="col-md-4 hidden-xs row-chats">
-                    <p class="text-center">
+                   <div class="col-md-4 hidden-xs" style="padding: 5px;">
+                    <p class="text-center col-chat" style="border-bottom: 1px solid rgba(0, 0, 0, 0.18);">
                       <%if !chat.messages.empty?%>
-                        <%= link_to chat.messages.last.body, chat_messages_path(chat)%>
+                        <span class="chat-title">
+                          <%=link_to chat.messages.last.body, chat_messages_path(chat)%>
+                        </span>
                       <%else%>
-                        No tienes mensajes
+                        <span>No tienes mensajes</span>
                       <%end%>
                     </p>
                   </div>
-                   <div class="col-md-4 col-xs-6 row-chats">
-                    <p class="text-center">
+                   <div class="col-md-4 col-xs-6" style="padding: 5px;">
+                    <p class="text-center col-chat" style="border-bottom: 1px solid rgba(0, 0, 0, 0.18);">
                       <%if !chat.messages.empty?%>
+                      <span class="chat-title">
                         <%= link_to chat.messages.last.created_at.strftime("%m/%d/%y  %H:%M:%S"), chat_messages_path(chat)%>
+                      </span>
+
                        <%else%>
-                        No tienes mensajes
+                        <span> No tienes mensajes</span>
                       <%end%>
                     </p>
                   </div>

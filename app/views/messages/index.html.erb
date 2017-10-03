@@ -1,3 +1,4 @@
+
   <nav class="own-navbar">
     <div class="container-fluid">
       <!-- menu mobile display -->
@@ -19,23 +20,30 @@
           <div class="cont-mensaje">
             <h4 class="title-chat-int">
               <%if current_user.email == @chat.sender.email%>
-                <i class="fa fa-user-o" aria-hidden="true"></i> <%=@chat.recipient.name.capitalize%>
+                <i class="fa fa-user" aria-hidden="true"></i> <%=@chat.recipient.name.capitalize%>
               <%else%>
-                <i class="fa fa-user-o" aria-hidden="true"></i> <%=@chat.sender.name.capitalize%>
+                <i class="fa fa-user" aria-hidden="true"></i> <%=@chat.sender.name.capitalize%>
               <%end%>
             </h4>
             <div class="row" id="messages">
-              <div class="ui segment">
+              <div class="ui segment" style="display: flex; flex-direction: column;">
                 <% @messages.each do |message| %>
                   <% if message.body %>
                     <% user = User.find(message.user_id) %>
-                    <div class="item" style="padding: 20px;">
+                    <%if message.user_id == @chat.recipient_id%>
+                      <%align_item = 'align'%>
+                      <%chat_cont = 'item-chat-cont'%>
+                    <%else%>
+                      <%align_item = 'aligntwo'%>
+                      <%chat_cont = 'item-chat-contwo'%>
+                    <%end%>
+                    <div class="item <%=align_item%>" style="padding: 20px;">
                       <div class="content">
                         <div class="header"><strong><%= user.name %></strong></div>
                         <div class="list">
-                          <div class="item item-chat-cont" style="border-bottom:1px solid grey; width:20%;">
+                          <div class="item <%=chat_cont%>">
                             <%= message.body %>
-                            <div class="" style="font-size: 9px; font-weight: 500; float: right; margin: 10px 0px 0px;">
+                            <div class="" style="font-size: 9px; font-weight: 500; float: right; margin: 15px 0px 0px 5px;">
                               <%= message.message_time %>
                             </div>
                           </div>

@@ -1,17 +1,51 @@
+  .align{
+    align-self: flex-end;
+  }
+
+  .aligntwo{
+    align-self: flex-start;
+  }
+
+  #close{
+    font-size: 50px;
+    margin: 17px 19px;
+  }
+
+  .chat-title a{
+    color:#000;
+  }
+
+  .col-chat:hover{
+    background: rgba(128, 128, 128, 0.43);
+  }
+
+  .col-chat:hover a{
+    color: #fff;
+  }
+
   .own-btn-nav{
     background-color: #1d5a96!important;
     color: #fff;
   }
 
 .item-chat-cont{
-  border-bottom: 1px solid grey;
-  width: 40%!important;
-  border: 1px solid #1d5a96;
+  border: 1px solid rgba(29, 90, 150, 0.23);
+  box-shadow: 2px 2px 4px rgba(29, 90, 150, 0.49);
   padding: 10px;
   border-radius: 10px;
   font-weight: 600;
-  color: #fff;
-  background: #4580bb;
+  color: #000;
+  background: rgba(29, 115, 199, 0.47);
+}
+
+.item-chat-contwo{
+  border: 1px solid rgba(140, 140, 140, 0.23);
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 600;
+  color: #000;
+  box-shadow: 2px 2px 4px rgba(130, 130, 130, 0.49);
+  background: #e4e7ea;
 }
 
 .cont-mensaje{
@@ -219,6 +253,23 @@
   background: rgba(255, 181, 88, 0.49);
 }
 
+.cardId-ref{
+  margin: 0 auto;
+  width: 85px;
+  padding: 10px 0px;
+  height: 45px;
+  font-weight: 700;
+  color: #000;
+  border: 1px solid #F0AF5D;
+  border-radius: 10px;
+  background: rgba(255, 181, 88, 0.49);
+}
+
+.color-act{
+  color: #60B660;
+  font-weight: 700;
+}
+
 .font_color{
   color: #60B660;
   font-weight: 700;
@@ -295,7 +346,7 @@
   background: rgba(109, 158, 1, 0.48);
 }
 
-.navbar-toggle {
+.own-btn-nav{
   display: block!important;
 }
 
