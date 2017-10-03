@@ -40,6 +40,7 @@ class UsersController < ApplicationController
     end
 
     def news
+        @news = Article.all
         render layout: "dashboard_layout"
         
     end

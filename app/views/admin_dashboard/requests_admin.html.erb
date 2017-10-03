@@ -13,6 +13,7 @@
             
          <div class="donations-container">         
             <%= render(partial: 'requests_list', locals: {requests: @requests}) %>
+            <%= will_paginate @requests %>
         </div>
 
         </div>       

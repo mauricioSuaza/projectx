@@ -5,20 +5,24 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     @articles = Article.all
+    render layout: "admin_dashboard_layout"
   end
 
   # GET /articles/1
   # GET /articles/1.json
   def show
+    render layout: "admin_dashboard_layout"
   end
 
   # GET /articles/new
   def new
     @article = Article.new
+    render layout: "admin_dashboard_layout"
   end
 
   # GET /articles/1/edit
   def edit
+    render layout: "admin_dashboard_layout"
   end
 
   # POST /articles

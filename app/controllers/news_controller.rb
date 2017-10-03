@@ -5,6 +5,7 @@ class NewsController < ApplicationController
   # GET /news.json
   def index
     @news = New.all
+    
   end
 
   # GET /news/1

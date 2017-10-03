@@ -1,31 +1,60 @@
-<p id="notice"><%= notice %></p>
+  <nav class="own-navbar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#" style="font-size: 18px;color: #606060;line-height: 20px;">ARTICLES</a>
+        </div>
+    </div>
+  </nav>
 
-<h1>Articles</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th>Invoice</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div class="blog-area bg-light blog-page"> 
+    <div class="col-md-12">
+        <div class="pt-20 text-center">
 
-  <tbody>
-    <% @articles.each do |article| %>
-      <tr>
-        <td><%= article.title %></td>
-        <td><%= article.content %></td>
-        <td><%= article.invoice %></td>
-        <td><%= link_to 'Show', article %></td>
-        <td><%= link_to 'Edit', edit_article_path(article) %></td>
-        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          <p id="notice"><%= notice %></p>
 
-<br>
+          <h1>Articles</h1>
 
-<%= link_to 'New Article', new_article_path %>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Titulo</th>
+                <th>Contenido</th>
+                <th>Imagen</th>
+                <th colspan="3"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @articles.each do |article| %>
+                <tr>
+                  <td><%= truncate( article.title, :length => 30) %></td>
+                  <td><%= truncate( article.content, :length => 40) %></td>
+                  <% if article.invoice.url.present? %>
+                      <td> <%= image_tag(article.invoice.url, height: '64', width: '64') %></td>
+                  <% else %>
+                    <td> </td>
+                  <% end %>
+                  <td><%= link_to 'Mostrar', article %></td>
+                  <td><%= link_to 'Editar', edit_article_path(article) %></td>
+                  <td><%= link_to 'Borrar', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+
+          <br>
+
+          <%= link_to 'New Article', new_article_path %>
+
+        </div>       
+    </div>    
+  </div>
+
+
+
+
+
+
+
+

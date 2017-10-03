@@ -13,8 +13,8 @@
 
           <div class="donations-container">         
               <%= render(partial: 'transactions_list', locals: {transactions: @transactions}) %>
+              <%= will_paginate @transactions %>
           </div>
-
 
         </div>       
     </div>    

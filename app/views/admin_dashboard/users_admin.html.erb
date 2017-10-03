@@ -15,6 +15,7 @@
           <div class="donations-container"> 
           
                  <%= render(partial: 'users_list', locals: { users: @users }) %>
+                 <%= will_paginate @users %>
           </div>
 
 

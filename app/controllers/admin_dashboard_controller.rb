@@ -7,22 +7,22 @@ class AdminDashboardController < ApplicationController
     end
 
     def users_admin
-        @users = User.all
+        @users = User.paginate(:page => params[:page], :per_page => 15)
         render layout: "admin_dashboard_layout"
     end
 
     def donations_admin
-        @donations = Donation.all
+        @donations = Donation.paginate(:page => params[:page], :per_page => 15)
         render layout: "admin_dashboard_layout"
     end
 
     def requests_admin
-        @requests = Request.all
+        @requests = Request.paginate(:page => params[:page], :per_page => 15)
         render layout: "admin_dashboard_layout"
     end
 
     def transactions_admin
-        @transactions = Transaction.all
+        @transactions = Transaction.paginate(:page => params[:page], :per_page => 15)
         render layout: "admin_dashboard_layout"
     end
 end
