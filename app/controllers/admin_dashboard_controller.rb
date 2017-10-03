@@ -1,6 +1,7 @@
 class AdminDashboardController < ApplicationController
 
     before_action :authenticate_user!
+    
 
     def dashboard_home
         render layout: "admin_dashboard_layout"

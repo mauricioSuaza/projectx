@@ -28,7 +28,12 @@
                     <tr>
                         <th>Donation</th>
                         <th>Value</th>
+                        <th>Pending for request</th>
                         <th>Status</th>
+                        <th>Transactions</th>
+                        <th>Done transactions</th>
+                        <th>Donation Increment</th>
+                        <th>Actual value</th>
                         <th>Date</th>
                         <!-- <th colspan="3"></th> -->
                     </tr>
@@ -38,20 +43,44 @@
                     <% @donations.each do |donation| %>
 
                     <%color_font = 'font_colortwo'%>
-                    <%if donation.status%>
+                    <%if donation.completed &&  donation.pending==0%>
                        <%color_font = 'font_color'%>
                     <%end%>
 
-                        <tr>
-                            <td>
-                              <div class="cardId">
-                               DG<%= donation.id %>
-                              </div>
-                            </td>
-                            <td><%= donation.value %></td>
-                            <td class="<%=color_font%>"><%= donation.status %></td>
-                            <td><%= donation.created_at.to_date %></td>
-                        </tr>
+                    <tr>
+                        <td>
+                          <div class="cardId">
+                            DG<%= donation.id %>
+                          </div>
+                        </td>
+                        <td><%= donation.value %></td>
+                        <td><%= donation.pending %></td>
+                        <%if  donation.completed &&  donation.pending==0%>
+                          <td class="<%=color_font%>">Completed</td>
+                        <%else%>
+                          <td class="<%=color_font%>">Pending</td>
+                        <%end%>
+                        <td><%= donation.transactions.count %></td>
+                        <td><%= donation.transactions.where(status: true).count %></td>
+
+                          <%if donation.completed%>
+                            <%incremento_diario = (donation.value * 0.25)/15 %>
+                            <%incremento_actual = (((Time.parse(DateTime.now.to_s) - Time.parse(donation.created_at.to_s))/3600)/24)*incremento_diario  %>
+                            <%valor_total = donation.value+(donation.value * 0.25) %>
+                            <%incremento_total = (donation.value * 0.25) %>
+                            <%if ((Time.parse(DateTime.now.to_s) - Time.parse(donation.created_at.to_s))/3600)/24 > 15%>
+                              <td><%= number_with_precision(incremento_total, precision: 3)  %></td>
+                              <td><%= number_with_precision(valor_total, precision: 3)%></td>
+                            <%else %>
+                              <td><%=number_with_precision(incremento_actual, precision: 3)%></td>
+                              <td><%= number_with_precision(donation.value + incremento_actual)%></td>
+                            <%end%> 
+                        <%else%>
+                            <td>Pendiente</td>
+                            <td>Pendiente </td>
+                        <%end%>
+                          <td><%= donation.created_at.to_date %></td>
+                    </tr>
                     <% end %>
                     </tbody>
                 </table>
@@ -69,7 +98,11 @@
                     <tr>
                         <th>Donation</th>
                         <th>Value</th>
+                        <th>Pending</th>
                         <th>Status</th>
+                        <th>Transaction</th>
+                        <th>Completed Transaction</th>
+                        
                         <th>Date</th>
                         <!-- <th colspan="3"></th> -->
                     </tr>
@@ -89,7 +122,18 @@
                               </div>
                             </td>
                             <td><%= request.value %></td>
-                            <td class="<%=color_fontR%>"><%= request.status %></td>
+                            <td><%= request.pending %></td>
+                            <%color_font = 'font_colortwo'%>
+                            <%if request.completed &&  request.pending==0%>
+                               <%color_font = 'font_color'%>
+                            <%end%>
+                            <%if  request.completed &&  request.pending==0%>
+                              <td class="<%=color_font%>">Completed</td>
+                            <%else%>
+                              <td class="<%=color_font%>">Pending</td>
+                            <%end%>
+                            <td><%= request.transactions.count %></td>
+                            <td><%= request.transactions.where(status: true).count %></td> 
                             <td><%= request.created_at.to_date %></td>
                          </tr>
                     <% end %>

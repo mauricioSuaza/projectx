@@ -5,6 +5,6 @@ class Donation < ApplicationRecord
   belongs_to :user
   has_many :transactions, dependent: :destroy
   enum status: { pending: 0, completed: 1 }
-  validates :value, presence: true, numericality: { greater_than: 10, less_than: 10000}
+  validates :value, presence: true, numericality: { greater_than: 100, less_than: 10000}
 
 end

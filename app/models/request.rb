@@ -6,11 +6,17 @@ class Request < ApplicationRecord
   enum requested: { waiting: 0, done: 1 }
   
   after_create :set_pending
+
+
   
   private 
   
   def set_pending
     self.update(pending: self.value )
   end
+
+ 
+
+  
   
 end

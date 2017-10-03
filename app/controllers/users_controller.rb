@@ -20,11 +20,15 @@ class UsersController < ApplicationController
     end
 
     def donation_request
-      if params[:value]
-        current_user.request_donation(donation_params[:value].to_i)
-        redirect_to '/my_dashboard', :notice => "Request succesfully sent" 
+      if params[:value].to_f > 0
+        if current_user.saldo > params[:value].to_f
+          current_user.request_donation(donation_params[:value].to_i)
+          redirect_to '/my_dashboard', :notice => "Request succesfully sent" 
+        else
+          redirect_to '/my_dashboard', :notice => "Saldo insuficiente" 
+        end
       else
-        redirect_to '/my_dashboard', :notice => "Invalid donation value" 
+        redirect_to '/my_dashboard', :notice => "No donation value specified" 
       end
     end
 

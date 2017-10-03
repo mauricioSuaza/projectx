@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  rolify
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
@@ -17,6 +19,8 @@ class User < ApplicationRecord
   validates :phone, presence: true
   validates :btc, presence: true
 
+  after_create :assign_default_role
+
   def set_saldo_zero
     self.saldo ||= 0
   end
@@ -27,6 +31,10 @@ class User < ApplicationRecord
 
   def update_test
     self.update(name: 'test')
+  end
+
+  def assign_default_role
+    self.add_role(:user) if self.roles.blank?
   end
   
   def send_donation (value)
@@ -41,16 +49,17 @@ class User < ApplicationRecord
 
     donation_state = 0  #estado de la donación, si ya ha sido repartida o aun no. 
     
-    donation = self.donations.create(value: donation_value, pending: residuo, status: donation_state)
+    donation = self.donations.new(value: donation_value, pending: residuo, status: donation_state)
     
     #revisar resultados del metodo mientras haya residuo y la cola se puede actualziar con transacciones pendientes volver a repartir
+    if donation.save
+      while((donation.pending > 0) && request )
 
-    while((donation.pending > 0) && request )
-
-        create_transaction(request, donation, residuo) 
-        #Funcion para realizar el envio con las variables configuradas
-        request = get_oldest_request() #Tomar el request mas antiguo
-  
+          create_transaction(request, donation, residuo) 
+          #Funcion para realizar el envio con las variables configuradas
+          request = get_oldest_request() #Tomar el request mas antiguo
+    
+      end
     end
 
     donation.id
@@ -81,7 +90,7 @@ class User < ApplicationRecord
     end
     #crear la transacción
     transaction = donation.transactions.create(value: transaction_value, sender_id: donation.user_id, receiver_id: request.user_id, request_id: request.id)
-    TransactionWorker.perform_in(10.seconds, transaction.id)
+    TransactionWorker.perform_in(120.seconds, transaction.id)
     #hacer update de la donación
     #Actualizar estado de la donacion 
     if residuo==0

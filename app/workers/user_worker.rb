@@ -9,7 +9,7 @@ class UserWorker
 	def perform(donation_id)
 		@donation = Donation.find(donation_id)
 		@user = User.find(@donation.user_id)
-		@user.update(saldo: @user.saldo + (@donation.value + (@donation.value*0.3)))
+		@user.update(saldo: @user.saldo + (@donation.value + (@donation.value*0.25)))
 		#Update all my parents
 		@padre_1 = @user.ancestors(:at_depth => -1).first
 

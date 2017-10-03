@@ -32,7 +32,7 @@ class TransactionsController < ApplicationController
   def request_check (transaction)
     @request = Request.find(transaction.request_id)
     if @request.transactions.all? {|transc| transc.status == true}
-      @donation.update(completed: true)
+      @request.update(completed: true)
     end
   end
 
