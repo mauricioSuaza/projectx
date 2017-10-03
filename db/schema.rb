@@ -12,14 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20171002230108) do
 
-  create_table "articles", force: :cascade do |t|
-    t.string   "title"
-    t.string   "content"
-    t.string   "invoice"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "chats", force: :cascade do |t|
     t.integer  "sender_id"
     t.integer  "recipient_id"
@@ -115,6 +107,7 @@ ActiveRecord::Schema.define(version: 20171002230108) do
     t.datetime "locked_at"
     t.boolean  "admin",                  default: false
     t.integer  "parent_id"
+    t.boolean  "blocked"
     t.string   "ancestry"
     t.integer  "ancestry_depth",         default: 0
     t.decimal  "level_one_amount",       default: "0.0"
@@ -123,7 +116,6 @@ ActiveRecord::Schema.define(version: 20171002230108) do
     t.decimal  "level_four_amount",      default: "0.0"
     t.decimal  "level_five_amount",      default: "0.0"
     t.decimal  "level_six_amount",       default: "0.0"
-    t.boolean  "blocked"
     t.index ["ancestry"], name: "index_users_on_ancestry"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
