@@ -36,6 +36,12 @@ class TransactionsController < ApplicationController
     end
   end
 
+  def show
+    @transaction = Transaction.find(params[:id])
+    render layout: "admin_dashboard_layout"
+  end
+
+
 private
   def invoice_params
     params.permit(:invoice)

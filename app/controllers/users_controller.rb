@@ -55,8 +55,39 @@ class UsersController < ApplicationController
     end
 
     def news
-      render layout: "dashboard_layout"
+        @news = Article.all
+        render layout: "dashboard_layout"
     end
+
+    def show
+        @user = User.find(params[:id])
+        @donations = @user.donations
+        @requests = @user.requests
+        @completed_requests_number = @user.requests.where(completed: true).count
+        @donations_number =  @user.donations.count 
+        @completed_donations_number = @user.donations.where(completed: true).count
+        @requests_number = @user.requests.count       
+        @donations_total =  total_donations_value @user
+        @requests_total =  total_requests_value @user
+        render layout: "admin_dashboard_layout"
+    end
+
+    def total_donations_value (user)
+        total = 0
+        user.donations.each do |don|
+            total += don.value
+        end
+        total
+    end
+
+    def total_requests_value (user)
+        total = 0
+        user.requests.each do |req|
+            total += req.value
+        end
+        total
+    end
+
 private
     def donation_params
       params.permit(:value)

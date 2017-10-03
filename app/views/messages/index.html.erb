@@ -19,9 +19,17 @@
           <div class="cont-mensaje">
             <h4 class="title-chat-int">
               <%if current_user.email == @chat.sender.email%>
-                <i class="fa fa-user-o" aria-hidden="true"></i> <%=@chat.recipient.name.capitalize%>
+                <%if @chat.recipient.name%> 
+                  <i class="fa fa-user-o" aria-hidden="true"></i> <%=@chat.recipient.name.capitalize%> 
+                <%else%>
+                  <i class="fa fa-user-o" aria-hidden="true"></i> <%=@chat.recipient.email%> 
+                <%end%>
               <%else%>
-                <i class="fa fa-user-o" aria-hidden="true"></i> <%=@chat.sender.name.capitalize%>
+                <%if @chat.sender.name%> 
+                  <i class="fa fa-user-o" aria-hidden="true"></i> <%=@chat.sender.name.capitalize%>
+                <%else%>
+                  <i class="fa fa-user-o" aria-hidden="true"></i> <%=@chat.sender.name.capitalize%>
+                <%end %>
               <%end%>
             </h4>
             <div class="row" id="messages">

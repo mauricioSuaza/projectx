@@ -9,13 +9,24 @@ class ChatsController < ApplicationController
     render layout: "dashboard_layout"
   end
 
+  def admin_index
+    @users = User.all
+    @chats = Chat.all
+    @admin = User.where(admin: true)
+    render layout: "chats_dashboard_layout"
+  end
+
   def create
     if Chat.between(params[:sender_id],params[:recipient_id]).present?
       @chat = Chat.between(params[:sender_id], params[:recipient_id]).first
     else
       @chat = Chat.create!(chat_parms)
     end
-    redirect_to chat_messages_path(@chat)
+    if current_user.admin
+      redirect_to support_chat_path(@chat)
+    else
+      redirect_to chat_messages_path(@chat)
+    end
   end
 
 

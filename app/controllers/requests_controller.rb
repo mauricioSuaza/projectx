@@ -9,6 +9,8 @@ class RequestsController < ApplicationController
   # GET /Donations/1
   # GET /Donations/1.json
   def show
+    @request = Request.find(params[:id])
+    render layout: "admin_dashboard_layout"
   end
 
   # GET /Donations/new

@@ -23,6 +23,26 @@ class MessagesController < ApplicationController
     render layout: "dashboard_layout"
   end
 
+
+  def admin_index
+    @messages = @chat.messages
+    if @messages.length > 10
+      @over_ten = true
+      @messages = @messages[-10..-1]
+    end
+    if params[:m]
+      @over_ten = false
+      @messages = @chat.messages
+    end
+    if @messages.last
+      if @messages.last.user_id != current_user.id
+        @messages.last.read = true;
+      end
+    end
+    @message = @chat.messages.new
+    render layout: "chats_dashboard_layout"
+  end
+
   def new
     @message = @chat.messages.new
   end
