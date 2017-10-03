@@ -1,3 +1,11 @@
+  .btcwdgt-footer{
+    display: none!important;
+  }
+
+  .post-btc{
+
+  }
+
   .align{
     align-self: flex-end;
   }

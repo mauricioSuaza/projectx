@@ -1,6 +1,7 @@
 ;(function () {
 
 	'use strict';
+	$(".btcwdgt-footer").hide();
 
 	var isMobile = {
 		Android: function() {
