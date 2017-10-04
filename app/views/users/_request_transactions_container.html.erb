@@ -66,8 +66,8 @@
                             <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#img<%=transaction.id%>">Check invoice</button>
                         </div>
                     <% else %>
-                        <div class="col-md-12">
-                            <span>Invoice not sent yet</span>
+                        <div>
+                            <span style="color:red; font-style:italic; font-size:12px;">"Invoice not sent yet"</span>
                         </div>
                     <% end  %>
 
@@ -75,19 +75,21 @@
             </div>
         </div>
          <div class="col-md-8 col-md-offset-2" style="margin-top:15px;">
-            <div class="">
+            
             <% if transaction.status %>
-                <h3>Transaction already confirmed</h3>
+                <h4 style="border: 1px solid #5db65c;padding: 8px;background: #5db65c;color: #fff;border-radius: 5px;margin: 10px;width: 100%;">Transaction already confirmed</h4>
             <%else%>
                  <% if transaction.completed ==  "canceled" %>
-                   <h4>Esta transaccion fue cancelada y el saldo fue devuelto sin ser afectado</h4>
+                   <h4 style="border: 1px solid #cc2626;padding: 8px;background: #cc2626;color: #fff;border-radius: 5px;margin: 10px;width: 100%;">Esta transaccion fue cancelada y el saldo fue devuelto sin ser afectado</h4>
                  <%else%>
-                    <%= link_to "Confirm transaction", transaction_confirm_path(transaction_id: transaction.id), method: :get,  data: { confirm: 'Are you sure?' } %>
+                    <div class="btn btn-success btn-md" style="margin:20px;">
+                     <%= link_to "Confirm transaction", transaction_confirm_path(transaction_id: transaction.id), method: :get,  data: { confirm: 'Are you sure?' }, style:'color:#fff;' %>
+                    </div>
                  <%end%>
 
             <%end%>
 
-        </div>
+        
     </div>
 </div>
 
