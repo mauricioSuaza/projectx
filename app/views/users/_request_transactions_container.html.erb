@@ -17,7 +17,8 @@
                 <td style="text-align:left;">Value:</td>
                 <td><%= transaction.value %></td>
             </tr>
-            <%unless transaction.completed?%>
+            
+            <%if transaction.status == false%>
               <tr>
                 <%@remaining = transaction.created_at + 72.hours %>
                 <%@time_now = DateTime.now %>
