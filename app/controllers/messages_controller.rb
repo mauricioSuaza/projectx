@@ -46,6 +46,7 @@ class MessagesController < ApplicationController
           flash[:notice] = "You can't send another message until an admin reply you back. Thank you for your patience"
         else
           @message.save
+          create_notification(@message)
           #passing broadcast messages_chanel
           ActionCable.server.broadcast 'messages',
             message: @message.body,
@@ -57,6 +58,7 @@ class MessagesController < ApplicationController
         end
       else
         @message.save
+        create_notification(@message)
         #passing broadcast messages_chanel
         ActionCable.server.broadcast 'messages',
           message: @message.body,
@@ -68,6 +70,7 @@ class MessagesController < ApplicationController
       end
     else
       if @message.save
+        create_notification(@message)
         #passing broadcast messages_chanel
         ActionCable.server.broadcast 'messages',
           message: @message.body,
@@ -77,6 +80,14 @@ class MessagesController < ApplicationController
           current_user_admin: current_user.admin?,
           count: @chat.messages.count
       end
+    end
+  end
+
+  def create_notification(data)
+    @receiver = User.find(data.chat.recipient_id)
+    if !data.nil? 
+      @receiver.notifications.create(owner_id: data.user_id, read: false, 
+        message_id: data.id)
     end
   end
 

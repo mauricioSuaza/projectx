@@ -1,0 +1,49 @@
+<br>
+<br>
+<br>
+
+<h1 class="text-center">Notificaciones</h1>
+
+<div class="container">
+  <h3>Transacciones Requeridas</h3>
+  <br>
+  <ol>
+    <%@notifications.each do |notification|%>
+      <br>
+      <%if !notification.value.nil?%>
+        <li><h4>El usuario <%=notification.user.name%> te a enviado un sueño por valor de $<%=notification.value%>, recuerda confirmar la transaccion para terminar el proceso.</h4></li>
+      <%elsif !notification.message_id.nil?%>        
+        <li>
+          <h4 class="chat-notification" style="background: transparent; ">
+            <%= button_to chats_path(sender_id: current_user.id, recipient_id: notification.owner_id), style: 'background: transparent' do %>
+              Has recibido un nuevo de mensaje de  <%=notification.user.name%>. Click aqui para ir a conversacion!
+            <%end%>
+          </h4>
+        </li>
+      <%end%>        
+    <%end%>
+  </ol>
+</div>
+
+<style>
+  .chat-notification form{
+    display: inline;
+  }
+</style>
+
+
+
+
+<!-- 
+
+
+Cuando se completa -transaccion-
+ = DECIR AL QUE LA ENVIO QU EL USUARIO A ACEPTADO SU TRANSACCOIN
+ = DECIR AL QUE LA ACEPTO QUE LA TRANSACCION FUE ACEPTADA.
+
+
+
+Cuando no se completa una transaccion despues 72h tiempo
+
+1)transaction_incompleted-->  
+

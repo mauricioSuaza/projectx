@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     before_action :authenticate_user!
-    before_action :is_blocked, only: [:dashboard, :my_referrals, :account_balance, :news]
+    before_action :is_blocked, only: [:dashboard, :my_referrals, :account_balance, :news, :notifications]
     
 
     def is_blocked
@@ -63,6 +63,13 @@ class UsersController < ApplicationController
     def news
       render layout: "dashboard_layout"
     end
+
+    def notifications
+      @notifications = current_user.notifications.order('created_at DESC')
+      current_user.notifications.order('created_at DESC').where(read: false).update(read: true)
+      render layout: "dashboard_layout"
+    end
+
 private
     def donation_params
       params.permit(:value)

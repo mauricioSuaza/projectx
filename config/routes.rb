@@ -19,6 +19,10 @@ Rails.application.routes.draw do
 
   get '/my_referrals',  to: 'users#my_referrals'
 
+  get '/notificaciones',  to: 'users#notifications'
+
+  post '/notif', to: 'users#notifications', as: 'readed'
+
   post '/send_donation',  to: 'users#donation_send'
 
   post '/request_donation', to: 'users#donation_request'

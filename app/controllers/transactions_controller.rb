@@ -13,6 +13,7 @@ class TransactionsController < ApplicationController
         @transaction.update(status: true)
         donation_check @transaction
         request_check @transaction
+        create_notification @transaction
         redirect_to '/my_dashboard', notice: "Transactions succesfully cofirmed"
     else
         redirect_to '/my_dashboard', notice: "you don't have permission to acces this transaction"
@@ -33,6 +34,14 @@ class TransactionsController < ApplicationController
     @request = Request.find(transaction.request_id)
     if @request.transactions.all? {|transc| transc.status == true}
       @donation.update(completed: true)
+    end
+  end
+
+  def create_notification(data)
+    byebug
+    @receiver = User.find(data.receiver_id)
+    if !data.nil? 
+      @receiver.notifications.create(owner_id: data.sender_id, value: data.value, read: false)
     end
   end
 
