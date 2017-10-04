@@ -43,12 +43,21 @@ class User < ApplicationRecord
 
   def send_donation (value)
 
+    
+
     #Configuración de variables para inicializar la donación
     request = get_oldest_request() #Tomar el request mas antiguo
 
     donation_value = value.round() #valor de la donacion ingresada  
-    
-    residuo = donation_value #valor pendiente por entregar de la donación, campo pending de la donación
+
+    #calculo de valores generados para el owner
+    owner_user = User.with_role(:owner).first
+
+    owner_tran_val = value*0.1;
+
+    residuo = donation_value - (donation_value*0.1) #valor pendiente por entregar de la donación, campo pending de la donación
+
+
 
     donation_state = 0  #estado de la donación, si ya ha sido repartida o aun no. 
     
@@ -56,6 +65,13 @@ class User < ApplicationRecord
     
     #revisar resultados del metodo mientras haya residuo y la cola se puede actualziar con transacciones pendientes volver a repartir
     if donation.save
+      #crear transaction al owner 
+
+      #transaccion generada para el owner
+      transaction = donation.transactions.create(value: owner_tran_val, sender_id: donation.user_id, receiver_id: owner_user.id)
+      TransactionWorker.perform_in(120.minutes, transaction.id)
+
+
       while((donation.pending > 0) && request )
 
           create_transaction(request, donation, residuo) 
@@ -169,6 +185,7 @@ class User < ApplicationRecord
       @receiver.notifications.create(owner_id: data.sender_id, value: data.value, read: false)
     end
   end
+
 
 
 end

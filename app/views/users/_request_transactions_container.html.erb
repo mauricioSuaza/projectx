@@ -13,92 +13,85 @@
         </div>
         <table class="table table-condensed table-responsive table-user-information">
             <tbody>
-            <tr>
-                <td style="text-align:left;">Value:</td>
-                <td><%= transaction.value %></td>
-            </tr>
+                <tr>
+                    <td style="text-align:left;">Value:</td>
+                    <td><%= transaction.value %></td>
+                </tr>
             
-            <%if transaction.status == false%>
-              <tr>
-                <%@remaining = transaction.created_at + 72.hours %>
-                <%@time_now = DateTime.now %>
-                <%@time_left = (((@remaining - @time_now)/60)/60)%>
-                <%@time_left%>
-                  <td style="text-align:left;">Time remaining:</td>
-                  <td><%=@time_left.round(1)%> hours</td>
-              </tr>
-            <%end%>
-            <tr>
-                <td style="text-align:left;">Status:</td>
-                <% if transaction.status%>
-                    <td>Completed</td>
-                <% else  %>
-                    <td>Pending </td>
-                <% end%>
-            </tr>
-            <tr>
-                <td style="text-align:left;">Sender name:</td>
-                <td><%= User.find(transaction.sender_id).name %></td>
-            </tr>
+                <%if transaction.status == false%>
+                <tr>
+                    <%@remaining = transaction.created_at + 72.hours %>
+                    <%@time_now = DateTime.now %>
+                    <%@time_left = (((@remaining - @time_now)/60)/60)%>
+                    <%@time_left%>
+                    <td style="text-align:left;">Time remaining:</td>
+                    <td><%=@time_left.round(1)%> hours</td>
+                </tr>
+                <%end%>
+                <tr>
+                    <td style="text-align:left;">Status:</td>
+                    <% if transaction.status%>
+                        <td>Completed</td>
+                    <% else  %>
+                        <td>Pending </td>
+                    <% end%>
+                </tr>
+                <tr>
+                    <td style="text-align:left;">Sender name:</td>
+                    <td><%= User.find(transaction.sender_id).name %></td>
+                </tr>
 
-            <tr>
-                <td style="text-align:left;">Sender phone:</td>
-                <td><%= User.find(transaction.sender_id).phone %></td>
-            </tr>
+                <tr>
+                    <td style="text-align:left;">Sender phone:</td>
+                    <td><%= User.find(transaction.sender_id).phone %></td>
+                </tr>
 
-            <tr>
-                <td style="text-align:left;">Sender email:</td>
-                <td><%= User.find(transaction.sender_id).email %></td>
-            </tr>
-            <tr>
-                <td style="text-align:left;">Sender wallet</td>
-                <td><%= User.find(transaction.sender_id).btc %></td>
-            </tr>
-
+                <tr>
+                    <td style="text-align:left;">Sender email:</td>
+                    <td><%= User.find(transaction.sender_id).email %></td>
+                </tr>
+                <tr>
+                    <td style="text-align:left;">Sender wallet</td>
+                    <td><%= User.find(transaction.sender_id).btc %></td>
+                </tr>
             </tbody>
         </table>
         <div class="buttons-container">
-          <div class="row">
-            <div class="col-md-6">
-                <%= button_to chats_path(sender_id: current_user.id, recipient_id: transaction.sender_id), class: 'btn btn-primary' do %>
-                    <i class="fa fa-weixin" aria-hidden="true"></i>
-                    Message
-                <%end%>
-            </div>
-            <div class="col-md-6">
-                <div class="">
-
-                     <% if transaction.invoice.url %>
-                        <div class="col-md-12">
-                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#img<%=transaction.id%>">Check invoice</button>
-                        </div>
-                    <% else %>
-                        <div>
-                            <span style="color:red; font-style:italic; font-size:12px;">"Invoice not sent yet"</span>
-                        </div>
-                    <% end  %>
-
+            <div class="row">
+                <div class="col-md-6">
+                    <%= button_to chats_path(sender_id: current_user.id, recipient_id: transaction.sender_id), class: 'btn btn-primary' do %>
+                        <i class="fa fa-weixin" aria-hidden="true"></i>
+                        Message
+                    <%end%>
+                </div>
+                <div class="col-md-6">
+                    <div class="">
+                        <% if transaction.invoice.url %>
+                            <div class="col-md-12">
+                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#img<%=transaction.id%>">Check invoice</button>
+                            </div>
+                        <% else %>
+                            <div>
+                                <span style="color:red; font-style:italic; font-size:12px;">"Invoice not sent yet"</span>
+                            </div>
+                        <% end  %>
+                    </div>
                 </div>
             </div>
+            <div class="col-md-8 col-md-offset-2" style="margin-top:15px;">
+                <% if transaction.status %>
+                    <h4 style="border: 1px solid #5db65c;padding: 8px;background: #5db65c;color: #fff;border-radius: 5px;margin: 10px;width: 100%;">Transaction already confirmed</h4>
+                <%else%>
+                    <% if transaction.completed ==  "canceled" %>
+                        <h4 style="border: 1px solid #cc2626;padding: 8px;background: #cc2626;color: #fff;border-radius: 5px;margin: 10px;width: 100%;">Esta transaccion fue cancelada y el saldo fue devuelto sin ser afectado</h4>
+                    <%else%>
+                        <div class="btn btn-success btn-md" style="margin:20px;">
+                            <%= link_to "Confirm transaction", transaction_confirm_path(transaction_id: transaction.id), method: :get,  data: { confirm: 'Are you sure?' }, style:'color:#fff;' %>
+                        </div>
+                    <%end%>
+                <%end%>
+            </div>
         </div>
-        <div class="col-md-8 col-md-offset-2" style="margin-top:15px;">
-            
-            <% if transaction.status %>
-                <h4 style="border: 1px solid #5db65c;padding: 8px;background: #5db65c;color: #fff;border-radius: 5px;margin: 10px;width: 100%;">Transaction already confirmed</h4>
-            <%else%>
-                 <% if transaction.completed ==  "canceled" %>
-                   <h4 style="border: 1px solid #cc2626;padding: 8px;background: #cc2626;color: #fff;border-radius: 5px;margin: 10px;width: 100%;">Esta transaccion fue cancelada y el saldo fue devuelto sin ser afectado</h4>
-                 <%else%>
-                    <div class="btn btn-success btn-md" style="margin:20px;">
-                     <%= link_to "Confirm transaction", transaction_confirm_path(transaction_id: transaction.id), method: :get,  data: { confirm: 'Are you sure?' }, style:'color:#fff;' %>
-                    </div>
-                 <%end%>
-
-            <%end%>
-
-        </div >
-
-        
     </div>
 </div>
 
