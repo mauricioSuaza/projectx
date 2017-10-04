@@ -41,7 +41,7 @@
               <%end%>
             </h4>
             <div class="row" id="messages">
-              <div class="ui segment" style="display: flex; flex-direction: column;">
+              <div class="ui segment" style="display: flex; flex-direction: column;height: 52vh;overflow: scroll;" >
                 <% @messages.each do |message| %>
 
                   <% if message.body %>
@@ -76,7 +76,7 @@
           <div>
             <%=form_for [@chat, @message], html: { id: "message-form-chat", data: {admin: @admin, current_user_admin: @current_user_admin, messages_count: @messages_count }} do |f|%>
 
-              <div class="field">
+              <div class="field" style="width:70%;margin: auto!important;">
                 <%= f.text_area :body, class: "form-control body-input", data: {textarea: "message"} %>
               </div>
 

@@ -130,8 +130,8 @@
                     </li>
 
                     <li>
-                        <%@admin = User.where(admin: true)%>
-                        <%= button_to chats_path(sender_id: current_user.id, recipient_id: @admin.ids.first), class: 'button button-primary button-sm' do %>
+                        <%@admin = User.with_role(:support).first%>
+                        <%= button_to chats_path(sender_id: current_user.id, recipient_id: @admin.id), class: 'button button-primary button-sm' do %>
                             <p>
                                 <i class="fa fa-plug" aria-hidden="true"></i>
                                 Technical support
