@@ -1,3 +1,100 @@
+
+  .not-disp{
+    border: 2px solid black;
+    padding: 9px 3px 3px 3px;
+    border-radius: 50%;
+    height: 42px;
+    margin: 0px 7px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .icon-not{
+    margin: 0px 10px;
+    font-size: 19px!important;
+    color: #2578ca;
+    font-weight: 700!important;
+  }
+
+  .not-value{
+    padding: 10px;
+    background: rgba(75, 132, 189, 0.27);
+    color: #000;
+    border-top: 2px solid rgba(152, 148, 148, 0.36);
+  }
+
+  .title-not{
+    border-bottom: 1px solid black;
+    width: 70%;
+    padding: 20px;
+    margin: auto;
+  }
+
+  .point-level{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: auto;
+    color: #fff;
+    vertical-align: middle;
+    padding: 4px;
+    background: rgba(3, 118, 230, 0.56);
+  }
+
+  .point-level2{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: auto;
+    color: #fff;
+    vertical-align: middle;
+    padding: 4px;
+    background: rgba(45, 160, 77, 0.56);
+  }
+
+  .point-level3{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: auto;
+    color: #fff;
+    vertical-align: middle;
+    padding: 4px;
+    background: rgba(185, 9, 9, 0.56);
+  }
+
+  .point-level4{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: auto;
+    color: #fff;
+    vertical-align: middle;
+    padding: 4px;
+    background: rgba(169, 167, 27, 0.56);
+  }
+
+  .point-level5{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: auto;
+    color: #fff;
+    vertical-align: middle;
+    padding: 4px;
+    background: rgba(156, 39, 176, 0.56);
+  }
+
+  .point-level6{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: auto;
+    color: #fff;
+    vertical-align: middle;
+    padding: 4px;
+    background: rgba(0, 188, 212, 0.56);
+  }
+
   .btcwdgt-footer{
     display: none!important;
   }
@@ -163,7 +260,7 @@
 .own-nav>li {
     position: relative;
     display: block;
-    margin-bottom: 15px;
+    margin-bottom: 13px;
 }
 
 .own-nav>li>a{

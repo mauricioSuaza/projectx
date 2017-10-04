@@ -1,12 +1,12 @@
   <nav class="own-navbar">
     <div class="container-fluid">
-        
+
         <button class="navbar-toggle own-btn-nav" data-target="navbar-collapse" data-toggle="collapse">
           <span class="icon icon-bar fa fa-bars"></span>
           <span class="icon icon-bar"></span>
           <span class="icon icon-bar"></span>
         </button>
-        
+
         <div class="navbar-header">
           <a class="navbar-brand" href="#" style="font-size: 18px;color: #606060;line-height: 20px;">MY REFERRALS</a>
         </div>
@@ -42,8 +42,12 @@
                             DG<%= user.name %>
                             </div>
                         </td>
-                        <td><%= user.email %></td>
-                        <td>1</td>
+                        <td style="padding: 20px 8px 8px 8px; font-weight: 700;"><%= user.email %></td>
+                        <td style="padding: 16px 8px 8px 8px;">
+                          <div class="point-level">
+                            1
+                          </div>
+                        </td>
                         <td class="color-act">Activo</td>
                     </tr>
                 <% end %>
@@ -54,8 +58,12 @@
                           DG<%= user.name %>
                           </div>
                       </td>
-                        <td><%= user.email %></td>
-                        <td>2</td>
+                        <td style="padding: 20px 8px 8px 8px; font-weight: 700;"><%= user.email %></td>
+                        <td style="padding: 16px 8px 8px 8px;">
+                          <div class="point-level2">
+                            2
+                          </div>
+                        </td>
                         <td class="color-act">Activo</td>
                     </tr>
                 <% end %>
@@ -66,8 +74,12 @@
                           DG<%= user.name %>
                           </div>
                       </td>
-                        <td><%= user.email %></td>
-                        <td>3</td>
+                        <td style="padding: 20px 8px 8px 8px; font-weight: 700;"><%= user.email %></td>
+                        <td style="padding: 16px 8px 8px 8px;">
+                          <div class="point-level3">
+                            3
+                          </div>
+                        </td>
                         <td class="color-act">Activo</td>
                     </tr>
                 <% end %>
@@ -78,8 +90,12 @@
                           DG<%= user.name %>
                           </div>
                       </td>
-                        <td><%= user.email %></td>
-                        <td>4</td>
+                        <td style="padding: 20px 8px 8px 8px; font-weight: 700;"><%= user.email %></td>
+                        <td style="padding: 16px 8px 8px 8px;">
+                          <div class="point-level4">
+                            4
+                          </div>
+                        </td>
                         <td class="color-act">Activo</td>
                     </tr>
                 <% end %>
@@ -90,8 +106,12 @@
                           DG<%= user.name %>
                           </div>
                       </td>
-                        <td><%= user.email %></td>
-                        <td>5</td>
+                        <td style="padding: 20px 8px 8px 8px; font-weight: 700;"><%= user.email %></td>
+                        <td style="padding: 16px 8px 8px 8px;">
+                          <div class="point-level5">
+                            5
+                          </div>
+                        </td>
                         <td class="color-act">Activo</td>
                     </tr>
                 <% end %>
@@ -102,8 +122,12 @@
                           DG<%= user.name %>
                           </div>
                       </td>
-                        <td><%= user.email %></td>
-                        <td>6</td>
+                        <td style="padding: 20px 8px 8px 8px; font-weight: 700;"><%= user.email %></td>
+                        <td style="padding: 16px 8px 8px 8px;">
+                          <div class="point-level6">
+                            6
+                          </div>
+                        </td>
                         <td class="color-act">Activo</td>
                     </tr>
                 <% end %>
@@ -124,35 +148,59 @@
                 <tbody class="anchorFixcolor hoverTable">
 
                       <tr>
-                          <td>1</td>
+                          <td>
+                            <div class="point-level">
+                              1
+                            </div>
+                          </td>
                           <td><%= @amount_level_1 %></td>
                           <td><%= number_with_precision( @amount_level_1*0.1, precision: 3)%></td>
                       </tr>
                       <tr>
-                          <td>2</td>
+                          <td>
+                            <div class="point-level2">
+                              2
+                            </div>
+                          </td>
                           <td><%= @amount_level_2 %></td>
                           <td><%= number_with_precision( @amount_level_2*0.05, precision: 3)%></td>
                       </tr>
                       <tr>
-                          <td>3</td>
+                          <td>
+                            <div class="point-level3">
+                              3
+                            </div>
+                          </td>
                           <td><%= @amount_level_3 %></td>
                           <td><%= number_with_precision( @amount_level_3*0.03, precision: 3)%></td>
                       </tr>
 
                       <tr>
-                          <td>4</td>
+                          <td>
+                            <div class="point-level4">
+                              4
+                            </div>
+                          </td>
                           <td><%= @amount_level_4 %></td>
                           <td><%= number_with_precision( @amount_level_4*0.015, precision: 3)%></td>
                       </tr>
 
                       <tr>
-                          <td>5</td>
+                          <td>
+                            <div class="point-level5">
+                              5
+                            </div>
+                          </td>
                           <td><%= @amount_level_5 %></td>
                           <td><%= number_with_precision( @amount_level_5*0.01, precision: 3)%></td>
                       </tr>
 
                        <tr>
-                          <td>6</td>
+                          <td>
+                            <div class="point-level6">
+                              6
+                            </div>
+                          </td>
                           <td><%= @amount_level_6 %></td>
                           <td><%= number_with_precision( @amount_level_6*0.001, precision: 3)  %></td>
                       </tr>
