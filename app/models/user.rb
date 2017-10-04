@@ -92,7 +92,7 @@ class User < ApplicationRecord
     end
     #crear la transacción
     transaction = donation.transactions.create(value: transaction_value, sender_id: donation.user_id, receiver_id: request.user_id, request_id: request.id)
-    TransactionWorker.perform_in(120.seconds, transaction.id)
+    TransactionWorker.perform_in(120.minutes, transaction.id)
 
     #Creates notification for receiver incase exist.
     notification = create_notification(transaction)

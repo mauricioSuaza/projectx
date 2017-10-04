@@ -17,10 +17,16 @@
                 <td style="text-align:left;">Value:</td>
                 <td><%= transaction.value %></td>
             </tr>
-            <tr>
-                <td style="text-align:left;">Time remaining:</td>
-                <td>23 Hours</td>
-            </tr>
+            <%unless transaction.completed?%>
+              <tr>
+                <%@remaining = transaction.created_at + 72.hours %>
+                <%@time_now = DateTime.now %>
+                <%@time_left = (((@remaining - @time_now)/60)/60)%>
+                <%@time_left%>
+                  <td style="text-align:left;">Time remaining:</td>
+                  <td><%=@time_left.round(1)%> hours</td>
+              </tr>
+            <%end%>
             <tr>
                 <td style="text-align:left;">Status:</td>
                 <% if transaction.status%>
