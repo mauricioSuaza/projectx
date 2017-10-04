@@ -1,135 +1,165 @@
   <nav class="own-navbar">
     <div class="container-fluid">
+        
+        <button class="navbar-toggle own-btn-nav" data-target="navbar-collapse" data-toggle="collapse">
+          <span class="icon icon-bar fa fa-bars"></span>
+          <span class="icon icon-bar"></span>
+          <span class="icon icon-bar"></span>
+        </button>
+        
         <div class="navbar-header">
           <a class="navbar-brand" href="#" style="font-size: 18px;color: #606060;line-height: 20px;">MY REFERRALS</a>
+        </div>
+
+        <div style="float:right; margin-right:20px;">
+          <script type="text/javascript">
+          crypt_single_base_currency = "Bitcoin (BTC)";crypt_single_target_currency = "US Dollar (USD)";crypt_single_font_family = "Verdana";crypt_single_font_size = "small";</script>
+          <script type="text/javascript" src="https://www.cryptonator.com/ui/js/widget/single_widget.js"></script>
         </div>
     </div>
   </nav>
 
 
-  <div class="blog-area bg-light blog-page"> 
+  <div class="container-fluid" style="margin-top: 40px;">
     <div class="col-md-12">
       <div class="pt-20 text-center">
-        <br>
-
-         <table class='table table-bordered table-striped responsive-table'>
+         <table class='table table-hover table-striped responsive-table'>
               <thead class="blue-text text-darken-4">
               <tr>
                   <th>Nombre</th>
                   <th>Correo</th>
                   <th>Nivel</th>
                   <th>Estado</th>
-                  <th colspan="3"></th>
               </tr>
               </thead>
 
               <tbody class="anchorFixcolor hoverTable">
-        
+
                 <% @hijos_1.each do |user| %>
                     <tr>
-                        <td>DG<%= user.name %></td>
+                        <td>
+                          <div class="cardId-ref">
+                            DG<%= user.name %>
+                            </div>
+                        </td>
                         <td><%= user.email %></td>
                         <td>1</td>
-                        <td>Activo</td>
+                        <td class="color-act">Activo</td>
                     </tr>
                 <% end %>
                 <% @hijos_2.each do |user| %>
                     <tr>
-                        <td>DG<%= user.name %></td>
+                      <td>
+                        <div class="cardId-ref">
+                          DG<%= user.name %>
+                          </div>
+                      </td>
                         <td><%= user.email %></td>
                         <td>2</td>
-                        <td>Activo</td>
+                        <td class="color-act">Activo</td>
                     </tr>
                 <% end %>
                 <% @hijos_3.each do |user| %>
                     <tr>
-                        <td>DG<%= user.name %></td>
+                      <td>
+                        <div class="cardId-ref">
+                          DG<%= user.name %>
+                          </div>
+                      </td>
                         <td><%= user.email %></td>
                         <td>3</td>
-                        <td>Activo</td>
+                        <td class="color-act">Activo</td>
                     </tr>
                 <% end %>
                 <% @hijos_4.each do |user| %>
                     <tr>
-                        <td>DG<%= user.name %></td>
+                      <td>
+                        <div class="cardId-ref">
+                          DG<%= user.name %>
+                          </div>
+                      </td>
                         <td><%= user.email %></td>
                         <td>4</td>
-                        <td>Activo</td>
+                        <td class="color-act">Activo</td>
                     </tr>
                 <% end %>
                 <% @hijos_5.each do |user| %>
                     <tr>
-                        <td>DG<%= user.name %></td>
+                      <td>
+                        <div class="cardId-ref">
+                          DG<%= user.name %>
+                          </div>
+                      </td>
                         <td><%= user.email %></td>
                         <td>5</td>
-                        <td>Activo</td>
+                        <td class="color-act">Activo</td>
                     </tr>
                 <% end %>
                 <% @hijos_6.each do |user| %>
                     <tr>
-                        <td>DG<%= user.name %></td>
+                      <td>
+                        <div class="cardId-ref">
+                          DG<%= user.name %>
+                          </div>
+                      </td>
                         <td><%= user.email %></td>
                         <td>6</td>
-                        <td>Activo</td>
+                        <td class="color-act">Activo</td>
                     </tr>
                 <% end %>
               </tbody>
           </table>
+        </div>
+        <div class="pt-20 text-center">
+          <div class="" style="margin-top:40px;">
+            <table class='table table-hover table-striped responsive-table'>
+                <thead class="blue-text text-darken-4">
+                <tr>
+                    <th>Nivel</th>
+                    <th>Total donado</th>
+                    <th>Total bono</th>
+                </tr>
+                </thead>
 
+                <tbody class="anchorFixcolor hoverTable">
 
-          <table class='table table-bordered table-striped responsive-table'>
-              <thead class="blue-text text-darken-4">
-              <tr>
-                  <th>Nivel</th>
-                  <th>Total donado</th>
-                  <th>Total bono</th>
-                  <th colspan="3"></th>
-              </tr>
-              </thead>
+                      <tr>
+                          <td>1</td>
+                          <td><%= @amount_level_1 %></td>
+                          <td><%= number_with_precision( @amount_level_1*0.1, precision: 3)%></td>
+                      </tr>
+                      <tr>
+                          <td>2</td>
+                          <td><%= @amount_level_2 %></td>
+                          <td><%= number_with_precision( @amount_level_2*0.05, precision: 3)%></td>
+                      </tr>
+                      <tr>
+                          <td>3</td>
+                          <td><%= @amount_level_3 %></td>
+                          <td><%= number_with_precision( @amount_level_3*0.03, precision: 3)%></td>
+                      </tr>
 
-              <tbody class="anchorFixcolor hoverTable">
-        
-                    <tr>
-                        <td>1</td>
-                        <td><%= @amount_level_1 %></td>
-                        <td><%= number_with_precision( @amount_level_1*0.1, precision: 3)%></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td><%= @amount_level_2 %></td>
-                        <td><%= number_with_precision( @amount_level_2*0.05, precision: 3)%></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td><%= @amount_level_3 %></td>
-                        <td><%= number_with_precision( @amount_level_3*0.03, precision: 3)%></td>
-                    </tr>
+                      <tr>
+                          <td>4</td>
+                          <td><%= @amount_level_4 %></td>
+                          <td><%= number_with_precision( @amount_level_4*0.015, precision: 3)%></td>
+                      </tr>
 
-                    <tr>
-                        <td>4</td>
-                        <td><%= @amount_level_4 %></td>
-                        <td><%= number_with_precision( @amount_level_4*0.015, precision: 3)%></td>
-                    </tr>
+                      <tr>
+                          <td>5</td>
+                          <td><%= @amount_level_5 %></td>
+                          <td><%= number_with_precision( @amount_level_5*0.01, precision: 3)%></td>
+                      </tr>
 
-                    <tr>
-                        <td>5</td>
-                        <td><%= @amount_level_5 %></td>
-                        <td><%= number_with_precision( @amount_level_5*0.01, precision: 3)%></td>
-                    </tr>
+                       <tr>
+                          <td>6</td>
+                          <td><%= @amount_level_6 %></td>
+                          <td><%= number_with_precision( @amount_level_6*0.001, precision: 3)  %></td>
+                      </tr>
 
-                     <tr>
-                        <td>6</td>
-                        <td><%= @amount_level_6 %></td>
-                        <td><%= number_with_precision( @amount_level_6*0.001, precision: 3)  %></td>
-                    </tr>
-              
-              </tbody>
-          </table>
-      </div>       
-    </div>    
+                </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
   </div>
-
- 
-
- 
-

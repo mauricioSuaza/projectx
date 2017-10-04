@@ -3,8 +3,10 @@ var count = 0;
 
 $(window).resize(function(){
 
-     if ($(window).width() <= 768) {
+  var count = 0;
 
+     if ($(window).width() <= 768) {
+       count = 0;
        $(".sidebar").animate({
            width: "0%"
        }, 500);
@@ -14,7 +16,7 @@ $(window).resize(function(){
      }
 
      if ($(window).width() <= 1000 && $(window).width() > 769) {
-
+       count = 0;
        $(".sidebar").animate({
            width: "30%"
        }, 500);
@@ -26,7 +28,7 @@ $(window).resize(function(){
      }
 
      if ($(window).width() > 1001) {
-
+       count = 0;
        $(".sidebar").animate({
            width: "20%"
        }, 500);
@@ -36,13 +38,13 @@ $(window).resize(function(){
 
        $("#close").addClass('hide');
      }
-
 });
 
   $(".own-btn-nav").click(function() {
-    count++;
+
        if ($(window).width() <= 768) {
          console.log("estoy haciendo click");
+         count++;
 
          var isEven = function(someNumber) {
              return (someNumber % 2 === 0) ? true : false;
@@ -57,18 +59,21 @@ $(window).resize(function(){
              $("#close").removeClass('hide');
            }
            $("#close").click(function() {
+
              $(".sidebar").animate({
                  width: "0%"
              }, 500);
              $(".main-panel").animate({
                  width: "100%"
              }, 500);
+             count=0;
            });
 
        }
 
        if ($(window).width() <= 1000 && $(window).width() > 769) {
          console.log("estoy haciendo click");
+         count++;
 
          var isEven = function(someNumber) {
              return (someNumber % 2 === 0) ? true : false;
@@ -88,12 +93,13 @@ $(window).resize(function(){
                  $(".main-panel").animate({
                      width: "100%"
                  }, 500);
+                 count=0;
              }
        }
 
        if ($(window).width() > 1000){
          console.log("estoy haciendo click");
-
+         count++;
          var isEven = function(someNumber) {
              return (someNumber % 2 === 0) ? true : false;
          };
@@ -112,6 +118,7 @@ $(window).resize(function(){
                  $(".main-panel").animate({
                      width: "100%"
                  }, 500);
+                 count=0;
              }
        }
 

@@ -50,26 +50,28 @@
 
             </tbody>
         </table>
-        <div class="buttons-container col-md-12">
-        <div class="col-md-6">
-            <%= button_to chats_path(sender_id: current_user.id, recipient_id: transaction.sender_id), class: 'btn btn-primary' do %>
-                <i class="fa fa-weixin" aria-hidden="true"></i>
-                Message
-            <%end%>
-        </div>
-        <div class="col-md-6">
-            <div class="">
+        <div class="buttons-container">
+          <div class="row">
+            <div class="col-md-6">
+                <%= button_to chats_path(sender_id: current_user.id, recipient_id: transaction.sender_id), class: 'btn btn-primary' do %>
+                    <i class="fa fa-weixin" aria-hidden="true"></i>
+                    Message
+                <%end%>
+            </div>
+            <div class="col-md-6">
+                <div class="">
 
-                 <% if transaction.invoice.url %>
-                    <div class="col-md-12">
-                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#img<%=transaction.id%>">Check invoice</button>
-                    </div>
-                <% else %>
-                    <div class="col-md-12">
-                        <span>Invoice not sent yet</span>
-                    </div>
-                <% end  %>
+                     <% if transaction.invoice.url %>
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#img<%=transaction.id%>">Check invoice</button>
+                        </div>
+                    <% else %>
+                        <div class="col-md-12">
+                            <span>Invoice not sent yet</span>
+                        </div>
+                    <% end  %>
 
+                </div>
             </div>
         </div>
          <div class="col-md-8 col-md-offset-2" style="margin-top:15px;">
@@ -85,8 +87,6 @@
 
             <%end%>
 
-            </div>
-        </div>
         </div>
     </div>
 </div>

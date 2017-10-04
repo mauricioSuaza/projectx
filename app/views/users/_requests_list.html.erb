@@ -1,8 +1,6 @@
 <%color = 'own-welltwo'%>
-<%backgr_color = 'back-welltwo'%>
 <%if request.completed%>
    <%color = 'own-well'%>
-   <%backgr_color = 'back-well'%>
 <%end%>
 
 <div class="well span8 <%=color%> offset2">
@@ -64,7 +62,7 @@
         </div>
       </div>
       <div class="transactions-container container-fluid style="padding:0px; margin:0px;"">
-        <div class="panel-transactions panel-secondary">
+        <div class="panel-transactions">
           <!-- <div class="">
             <h3 class="panel-title">Donation transactions</h3> -->
             <% request.transactions.each do |transaction| %>

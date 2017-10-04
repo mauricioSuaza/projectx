@@ -167,12 +167,10 @@
     background-color: #b60d0d;
     border-color: #b60d0d;
     color: #FFFFFF;
-} 
+}
 
 .buttons-container{
     margin: 20px 5px;
-    display: flex;
-    justify-content: space-around;
 }
 
 .left-tab{

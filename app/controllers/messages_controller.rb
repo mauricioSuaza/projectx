@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-  
+
   before_action do
     @chat = Chat.find(params[:chat_id])
   end
@@ -49,7 +49,7 @@ class MessagesController < ApplicationController
 
   def create
     #boolean if the conversation is being with an admin
-    @admin = @chat.sender.admin? || @chat.recipient.admin? 
+    @admin = @chat.sender.admin? || @chat.recipient.admin?
     #boolean if the current_user is admin
     @current_user_admin = current_user.admin?
     #contains the amount of messages on conversation
@@ -58,7 +58,7 @@ class MessagesController < ApplicationController
     @message = @chat.messages.new(message_params)
     if @admin == true
       if @current_user_admin == false
-        if @messages_count == 1 
+        if @messages_count == 1
           redirect_to chat_messages_path(@chat.id)
           flash[:notice] = "You can't send another message until an admin reply you back. Thank you for your patience"
         elsif @messages_count > 2 && !Chat.find(@chat.id).messages.last.user.admin?
@@ -69,33 +69,36 @@ class MessagesController < ApplicationController
           #passing broadcast messages_chanel
           ActionCable.server.broadcast 'messages',
             message: @message.body,
-            user: @message.user.email,
+            user: @message.user.name,
             time: @message.created_at.strftime("%m/%d/%y  %H:%M:%S"),
             admin: @chat.sender.admin? || @chat.recipient.admin? ,
             current_user_admin: current_user.admin?,
-            count: @chat.messages.count
+            count: @chat.messages.count,
+            current_is_sender: current_user.id == @chat.sender_id
         end
       else
         @message.save
         #passing broadcast messages_chanel
         ActionCable.server.broadcast 'messages',
           message: @message.body,
-          user: @message.user.email,
+          user: @message.user.name,
           time: @message.created_at.strftime("%m/%d/%y  %H:%M:%S"),
           admin: @chat.sender.admin? || @chat.recipient.admin? ,
           current_user_admin: current_user.admin?,
-          count: @chat.messages.count
+          count: @chat.messages.count,
+          current_is_sender: current_user.id == @chat.sender_id
       end
     else
       if @message.save
         #passing broadcast messages_chanel
         ActionCable.server.broadcast 'messages',
           message: @message.body,
-          user: @message.user.email,
+          user: @message.user.name,
           time: @message.created_at.strftime("%m/%d/%y  %H:%M:%S"),
           admin: @chat.sender.admin? || @chat.recipient.admin? ,
           current_user_admin: current_user.admin?,
-          count: @chat.messages.count
+          count: @chat.messages.count,
+          current_is_sender: current_user.id == @chat.sender_id
       end
     end
   end
