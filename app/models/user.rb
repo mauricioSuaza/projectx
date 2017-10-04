@@ -9,6 +9,9 @@ class User < ApplicationRecord
   has_many :chats, :foreign_key => :sender_id
   has_many :donations
   has_many :requests
+  has_many :notifications, dependent: :destroy
+
+
   before_save :set_saldo_zero
  # acts_as_tree order: "email"
   has_ancestry cache_depth: true
@@ -37,10 +40,10 @@ class User < ApplicationRecord
     self.add_role(:user) if self.roles.blank?
   end
   
+
   def send_donation (value)
 
     #Configuración de variables para inicializar la donación
-  
     request = get_oldest_request() #Tomar el request mas antiguo
 
     donation_value = value.round() #valor de la donacion ingresada  
@@ -66,7 +69,6 @@ class User < ApplicationRecord
 
   end
   
-  
   def create_transaction(request, donation, residuo)
     #repartir la donación en el request
     #Inicializar valores para calcular la transacción
@@ -91,6 +93,10 @@ class User < ApplicationRecord
     #crear la transacción
     transaction = donation.transactions.create(value: transaction_value, sender_id: donation.user_id, receiver_id: request.user_id, request_id: request.id)
     TransactionWorker.perform_in(10.seconds, transaction.id)
+
+    #Creates notification for receiver incase exist.
+    notification = create_notification(transaction)
+
     #hacer update de la donación
     #Actualizar estado de la donacion 
     if residuo==0
@@ -122,11 +128,9 @@ class User < ApplicationRecord
   end
         
   def get_oldest_request
-    
     block = Request.where.not(user_id: self.id)
     block = block.where(requested: "waiting")
     block.order('created_at DESC').last()
-
   end
 
   def request_donation(value)
@@ -144,25 +148,27 @@ class User < ApplicationRecord
     self.update(saldo: self.saldo - request_value)
     
     if donation
-
       while((request.pending > 0) && donation )
           create_transaction(request, donation, residuo) 
           #revisar si aun hay donaciones que puedan repartir
           donation =  get_pending_donation
       end
-
     end
-
   end
 
   def get_pending_donation
-  
     block = Donation.where.not(user_id: self.id)
     block = block.where(status: "pending")
     block.order('created_at DESC').last()
-
   end
 
+
+  def create_notification(data)
+    @receiver = User.find(data.receiver_id)
+    if !data.nil? 
+      @receiver.notifications.create(owner_id: data.sender_id, value: data.value, read: false)
+    end
+  end
 
 
 end

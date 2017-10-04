@@ -1,5 +1,14 @@
 class UsersController < ApplicationController
     before_action :authenticate_user!
+    before_action :is_blocked, only: [:dashboard, :my_referrals, :account_balance, :news, :notifications]
+    
+
+    def is_blocked
+      if current_user.blocked?
+        redirect_to chats_path
+        flash[:notice] = "Su cuenta a sido bloqueada, contacte al equipo de soporte."
+      end
+    end
 
     def dashboard
       @donations = current_user.donations.order('created_at DESC')
@@ -33,7 +42,6 @@ class UsersController < ApplicationController
     end
 
     def my_referrals
-      
       @hijos_1 = current_user.descendants(:at_depth => 1)
 			@hijos_2 = current_user.descendants(:at_depth => 2)
 			@hijos_3 = current_user.descendants(:at_depth => 3)
@@ -47,9 +55,7 @@ class UsersController < ApplicationController
       @amount_level_4 = current_user.level_four_amount
       @amount_level_5 = current_user.level_five_amount
       @amount_level_6 = current_user.level_six_amount
-
       render layout: "dashboard_layout"
-      
     end
 
     def account_balance
@@ -90,6 +96,12 @@ class UsersController < ApplicationController
             total += req.value
         end
         total
+    end
+    
+    def notifications
+      @notifications = current_user.notifications.order('created_at DESC')
+      current_user.notifications.order('created_at DESC').where(read: false).update(read: true)
+      render layout: "dashboard_layout"
     end
 
 private

@@ -21,6 +21,10 @@ Rails.application.routes.draw do
 
   get '/my_referrals',  to: 'users#my_referrals'
 
+  get '/notificaciones',  to: 'users#notifications'
+
+  post '/notif', to: 'users#notifications', as: 'readed'
+
   post '/send_donation',  to: 'users#donation_send'
 
   post '/request_donation', to: 'users#donation_request'
@@ -29,7 +33,7 @@ Rails.application.routes.draw do
 
   get '/confirm_transaction', to: 'transactions#confirm_transaction', as: 'transaction_confirm'
 
-  devise_for :users, controllers: { registrations: 'registrations', confirmations: 'confirmations', sessions: 'sessions' }
+  devise_for :users, controllers: { registrations: 'registrations', confirmations: 'confirmations' }
 
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
