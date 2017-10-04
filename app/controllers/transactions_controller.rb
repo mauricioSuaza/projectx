@@ -25,7 +25,7 @@ class TransactionsController < ApplicationController
     @donation = Donation.find(transaction.donation_id)
     if @donation.transactions.all? {|transc| transc.status == true}
       @donation.update(completed: true)
-      UserWorker.perform_in(10.seconds,  @donation.id)
+      UserWorker.perform_in(120.seconds,  @donation.id)
     end
     @donation
   end
@@ -44,9 +44,10 @@ class TransactionsController < ApplicationController
 
 
   def create_notification(data)
-    @receiver = User.find(data.receiver_id)
-    if !data.nil? 
-      @receiver.notifications.create(owner_id: data.sender_id, value: data.value, read: false)
+    @sender = User.find(@transaction.sender_id)
+    @receiver = User.find(@transaction.receiver_id)
+    if !data.nil?
+      @sender.notifications.create(owner_id: data.sender_id, transaction_value: data.value, read: false)
     end
   end
 

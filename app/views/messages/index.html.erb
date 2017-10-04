@@ -46,10 +46,11 @@
 
                   <% if message.body %>
                     <% user = User.find(message.user_id) %>
-                    <%if user.id === @chat.recipient_id%>
+  
+                    <%if current_user.id === message.user_id%>
                       <%align_item = 'align'%>
                       <%chat_cont = 'item-chat-cont'%>
-                    <%elsif user.id === @chat.sender_id %>
+                    <%elsif current_user.id != message.user_id%>
                       <%align_item = 'aligntwo'%>
                       <%chat_cont = 'item-chat-contwo'%>
                     <%end%>

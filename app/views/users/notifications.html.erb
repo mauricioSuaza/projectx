@@ -16,10 +16,18 @@
         <li>
           <h4 class="chat-notification" style="background: transparent; ">
             <%= button_to chats_path(sender_id: current_user.id, recipient_id: notification.owner_id), style: 'background: transparent' do %>
-              Has recibido un nuevo de mensaje de  <%=notification.user.name%>. Click aqui para ir a conversacion!
+              Has recibido un nuevo de mensaje de  <b><%=User.find(notification.owner_id).name%>.</b> Click aqui para ir a conversacion!
             <%end%>
           </h4>
         </li>
+      <%elsif !notification.transaction_value.nil?%>        
+        <li>
+          <h4 class="chat-notification" style="background: transparent; ">
+            <%= button_to chats_path(sender_id: current_user.id, recipient_id: notification.owner_id), style: 'background: transparent' do %>
+                Usuario acepto su transaccion por valor de <%=notification.transaction_value%>.
+            <%end%>
+          </h4>
+        </li>   
       <%end%>        
     <%end%>
   </ol>
@@ -30,20 +38,4 @@
     display: inline;
   }
 </style>
-
-
-
-
-<!-- 
-
-
-Cuando se completa -transaccion-
- = DECIR AL QUE LA ENVIO QU EL USUARIO A ACEPTADO SU TRANSACCOIN
- = DECIR AL QUE LA ACEPTO QUE LA TRANSACCION FUE ACEPTADA.
-
-
-
-Cuando no se completa una transaccion despues 72h tiempo
-
-1)transaction_incompleted-->  
 

@@ -6,7 +6,11 @@ class ChatsController < ApplicationController
     @users = User.all
     @chats = Chat.all
     @admin = User.where(admin: true)
-    render layout: "dashboard_layout"
+    if current_user.admin?
+      render layout: "chats_dashboard_layout"
+    else
+      render layout: "dashboard_layout" 
+    end
   end
 
   def admin_index

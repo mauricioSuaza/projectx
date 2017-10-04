@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171003215908) do
+ActiveRecord::Schema.define(version: 20171004105939) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -59,10 +59,11 @@ ActiveRecord::Schema.define(version: 20171003215908) do
     t.integer  "user_id"
     t.boolean  "read"
     t.integer  "message_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.integer  "owner_id"
     t.decimal  "value"
+    t.decimal  "transaction_value"
     t.index ["message_id"], name: "index_notifications_on_message_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
@@ -137,6 +138,7 @@ ActiveRecord::Schema.define(version: 20171003215908) do
     t.datetime "locked_at"
     t.boolean  "admin",                  default: false
     t.integer  "parent_id"
+    t.boolean  "blocked"
     t.string   "ancestry"
     t.integer  "ancestry_depth",         default: 0
     t.decimal  "level_one_amount",       default: "0.0"
@@ -145,7 +147,6 @@ ActiveRecord::Schema.define(version: 20171003215908) do
     t.decimal  "level_four_amount",      default: "0.0"
     t.decimal  "level_five_amount",      default: "0.0"
     t.decimal  "level_six_amount",       default: "0.0"
-    t.boolean  "blocked"
     t.index ["ancestry"], name: "index_users_on_ancestry"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true

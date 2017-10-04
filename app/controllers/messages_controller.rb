@@ -20,7 +20,12 @@ class MessagesController < ApplicationController
       end
     end
     @message = @chat.messages.new
-    render layout: "dashboard_layout"
+
+    if current_user.admin?
+      render layout: "chats_dashboard_layout"
+    else
+      render layout: "dashboard_layout" 
+    end
   end
 
 
@@ -108,9 +113,15 @@ class MessagesController < ApplicationController
 
   def create_notification(data)
     @receiver = User.find(data.chat.recipient_id)
-    if !data.nil? 
-      @receiver.notifications.create(owner_id: data.user_id, read: false, 
-        message_id: data.id)
+    @sender = User.find(data.chat.sender_id)
+    if !data.nil?
+      if data.user_id == data.chat.recipient_id
+        @sender = @sender.notifications.create(owner_id: data.user_id, read: false, 
+                                      message_id: data.id)
+      elsif
+        @receiver.notifications.create(owner_id: data.user_id, read: false, 
+                                      message_id: data.id)
+      end
     end
   end
 
