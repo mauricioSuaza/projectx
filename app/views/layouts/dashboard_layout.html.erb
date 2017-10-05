@@ -46,7 +46,7 @@
                     <div style="padding: 10px 20px;">
                         <% if user_signed_in? %>
                             <p>Hello: <span style="font-weight: 600;"><%= current_user.email %></span></p>
-                            <p>Balance <%= current_user.saldo %></p>
+                            <p>Balance <%= number_with_precision( current_user.saldo, precision: 3) %></p>
                         <% end%>
                     </div>
 

@@ -4,7 +4,6 @@
                         <th>Name</th>
                         <th>Id</th>
                         <th>Email</th>
-                        <th>Telefono</th>
                         <th>Saldo</th>
                         <th>Estado</th>
                         <th># Donaciones</th>
@@ -19,7 +18,7 @@
                             <td><%= user.name %></td>
                             <td><%= user.id %></td>
                             <td><%= user.phone %></td>
-                            <td><%= user.saldo %></td>
+                            <td><%= number_with_precision( user.saldo, precision: 3)  %></td>
                             <td>Activo</td>
                             <td><%= user.donations.count %></td>
                             <td><%= user.requests.count %></td>
