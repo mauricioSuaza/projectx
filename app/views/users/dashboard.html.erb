@@ -72,12 +72,3 @@
   </div>
 
 
-<%if current_user.has_role? :owner %>
-
-  <% owner_transactions = Transaction.where(request_id: nil)%>
-  <% if owner_transactions %>
-    <%  owner_transactions.each do |transaction| %>
-          <%=   render :partial => 'request_transactions_container', locals: {transaction: transaction}%>
-    <% end %>
-  <% end %>
-<%end %>

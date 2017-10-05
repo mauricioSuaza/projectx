@@ -16,7 +16,13 @@ class TransactionsController < ApplicationController
           request_check @transaction
         end
         create_notification @transaction
-        redirect_to '/my_dashboard', notice: "Transactions succesfully cofirmed"
+
+        if current_user.has_role?(:owner)
+          redirect_to '/my_transactions', notice: "Transaction succesfully cofirmed"
+        else
+          redirect_to '/my_dashboard', notice: "Transaction succesfully cofirmed"
+        end
+        
     else
         redirect_to '/my_dashboard', notice: "you don't have permission to acces this transaction"
     end

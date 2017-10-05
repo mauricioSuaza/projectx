@@ -62,6 +62,8 @@ Rails.application.routes.draw do
 
   get '/donations_admin', to: 'admin_dashboard#donations_admin'
 
+  get '/my_transactions', to: 'admin_dashboard#owner_transactions'
+
   get '/donations/:id', to: 'donations#show', as: 'donation_show'
 
   get '/requests_admin', to: 'admin_dashboard#requests_admin'
@@ -71,6 +73,8 @@ Rails.application.routes.draw do
   get '/transactions_admin', to: 'admin_dashboard#transactions_admin'
 
   get '/transactions/:id', to: 'transactions#show', as: 'transaction_show'
+
+
 
   #Support admin routes
   get  '/admin_chats',to: 'chats#admin_index' 

@@ -1,0 +1,26 @@
+
+
+    <nav class="own-navbar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#" style="font-size: 18px;color: #606060;line-height: 20px;">My Transactions</a>
+        </div>
+    </div>
+  </nav>
+
+
+  <div class="blog-area bg-light blog-page"> 
+    <div class="col-md-12">
+        <div class="pt-20 text-center">
+
+          <div class="donations-container">         
+              <%= render(partial: 'owner_transactions_list', locals: {transactions:  @owner_transactions}) %>
+              <%= will_paginate @owner_transactions %>
+          </div>
+
+        </div>       
+    </div>    
+  </div>
+
+ 
+
