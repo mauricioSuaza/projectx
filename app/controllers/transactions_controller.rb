@@ -12,7 +12,9 @@ class TransactionsController < ApplicationController
     if @transaction.receiver_id == current_user.id
         @transaction.update(status: true)
         donation_check @transaction
-        request_check @transaction
+        if @transaction.request_id
+          request_check @transaction
+        end
         create_notification @transaction
         redirect_to '/my_dashboard', notice: "Transactions succesfully cofirmed"
     else
@@ -25,7 +27,7 @@ class TransactionsController < ApplicationController
     @donation = Donation.find(transaction.donation_id)
     if @donation.transactions.all? {|transc| transc.status == true}
       @donation.update(completed: true)
-      UserWorker.perform_in(120.seconds,  @donation.id)
+      UserWorker.perform_in(20.seconds,  @donation.id)
     end
     @donation
   end

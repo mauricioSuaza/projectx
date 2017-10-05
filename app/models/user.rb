@@ -68,7 +68,7 @@ class User < ApplicationRecord
       #crear transaction al owner 
 
       #transaccion generada para el owner
-      transaction = donation.transactions.create(value: owner_tran_val, sender_id: donation.user_id, receiver_id: owner_user.id)
+      transaction = donation.transactions.create(value: owner_tran_val, sender_id: self.id, receiver_id: owner_user.id)
       TransactionWorker.perform_in(120.minutes, transaction.id)
 
 
