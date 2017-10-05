@@ -2,6 +2,7 @@
                     <thead class="blue-text text-darken-4">
                     <tr>
                         <th>Name</th>
+                        <th>Id</th>
                         <th>Email</th>
                         <th>Telefono</th>
                         <th>Saldo</th>
@@ -15,8 +16,8 @@
                     <tbody class="anchorFixcolor hoverTable">
                     <% users.each do |user| %>
                         <tr>
-                            <td>DG<%= user.name %></td>
-                            <td><%= user.email %></td>
+                            <td><%= user.name %></td>
+                            <td><%= user.id %></td>
                             <td><%= user.phone %></td>
                             <td><%= user.saldo %></td>
                             <td>Activo</td>
