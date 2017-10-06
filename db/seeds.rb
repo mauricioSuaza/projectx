@@ -13,6 +13,9 @@
     user = User.new(
       email:"test#{i}@test.com",
       password: "password#{i}",
+      name:"user#{i}",
+      phone: "#{i}666",
+      btc: "#{i*2}3231", 
       saldo: rand(100..200))
     user.skip_confirmation!
     user.save
