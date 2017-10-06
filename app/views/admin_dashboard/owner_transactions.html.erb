@@ -13,9 +13,11 @@
     <div class="col-md-12">
         <div class="pt-20 text-center">
 
-          <div class="donations-container">         
+          <div class="donations-container"> 
+            <% if @transactions%>            
               <%= render(partial: 'owner_transactions_list', locals: {transactions:  @owner_transactions}) %>
               <%= will_paginate @owner_transactions %>
+            <%= end %>
           </div>
 
         </div>       
