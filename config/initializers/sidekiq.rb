@@ -1,9 +1,9 @@
-redis_conn = proc {
-  Redis.new # do anything you want here
-}
-Sidekiq.configure_client do |config|
-  config.redis = ConnectionPool.new(size: 5, &redis_conn)
-end
 Sidekiq.configure_server do |config|
-  config.redis = ConnectionPool.new(size: 25, &redis_conn)
+  config.redis = { url: 'redis://redistogo:1bf44e595246953e504fb3c5be07c9c1@angelfish.redistogo.com:9811/
+' }
+end
+
+Sidekiq.configure_client do |config|
+  config.redis = { url: 'redis://redistogo:1bf44e595246953e504fb3c5be07c9c1@angelfish.redistogo.com:9811/
+ }
 end
