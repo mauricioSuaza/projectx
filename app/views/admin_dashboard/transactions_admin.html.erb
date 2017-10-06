@@ -12,9 +12,9 @@
         <div class="pt-20 text-center">
 
           <div class="donations-container">
-              <% if transactions%>      
-              <%= render(partial: 'transactions_list', locals: {transactions: @transactions}) %>
-              <%= will_paginate @transactions %>
+              <% if @transactions%>      
+                <%= render(partial: 'transactions_list', locals: {transactions: @transactions}) %>
+                <%= will_paginate @transactions %>
               <%= end %>
           </div>
 
