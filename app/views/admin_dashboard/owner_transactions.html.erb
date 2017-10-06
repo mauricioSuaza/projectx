@@ -17,7 +17,7 @@
             <% if @transactions%>            
               <%= render(partial: 'owner_transactions_list', locals: {transactions:  @owner_transactions}) %>
               <%= will_paginate @owner_transactions %>
-            <%= end %>
+            <%end %>
           </div>
 
         </div>       
