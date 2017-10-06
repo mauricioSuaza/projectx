@@ -130,12 +130,15 @@
                     </li>
 
                     <li>
+                       
                         <%@admin = User.with_role(:support).first%>
-                        <%= button_to chats_path(sender_id: current_user.id, recipient_id: @admin.id), class: 'button button-primary button-sm' do %>
-                            <p>
-                                <i class="fa fa-plug" aria-hidden="true"></i>
-                                Technical support
-                            </p>
+                        <%if  @admin%>
+                            <%= button_to chats_path(sender_id: current_user.id, recipient_id: @admin.id), class: 'button button-primary button-sm' do %>
+                                <p>
+                                    <i class="fa fa-plug" aria-hidden="true"></i>
+                                    Technical support
+                                </p>
+                            <%end%>
                         <%end%>
                     </li>
 
