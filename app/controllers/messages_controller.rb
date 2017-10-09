@@ -74,18 +74,21 @@ class MessagesController < ApplicationController
           create_notification(@message)
           #passing broadcast messages_chanel
           action_cable(@message)
+          redirect_to chat_messages_path(@chat)
         end
       else
         @message.save
         create_notification(@message)
         #passing broadcast messages_chanel
         action_cable(@message)
+        redirect_to chat_messages_path(@chat)
       end
     else
       if @message.save
         create_notification(@message)
         #passing broadcast messages_chanel
         action_cable(@message)
+        redirect_to chat_messages_path(@chat)
       end
     end
   end

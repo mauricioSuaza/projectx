@@ -28,9 +28,6 @@ class User < ApplicationRecord
     self.saldo ||= 0
   end
 
-  def confirmation_required?
-    false
-  end
 
   def update_test
     self.update(name: 'test')
@@ -51,13 +48,12 @@ class User < ApplicationRecord
     donation_value = value.round() #valor de la donacion ingresada  
 
     #calculo de valores generados para el owner
-    owner_user = User.with_role(:owner).first
+
+    owner_user = User.with_role(:owner).order("RANDOM()").first
 
     owner_tran_val = value*0.1;
 
     residuo = donation_value - (donation_value*0.1) #valor pendiente por entregar de la donación, campo pending de la donación
-
-
 
     donation_state = 0  #estado de la donación, si ya ha sido repartida o aun no. 
     

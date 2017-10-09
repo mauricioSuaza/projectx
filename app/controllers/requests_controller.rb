@@ -2,6 +2,15 @@ class RequestsController < ApplicationController
 
   before_action :set_request, only: [:show, :edit, :update, :destroy]
 
+  before_action :is_admin, only: [:show]
+  
+  def is_admin
+    unless current_user.has_role? :admin 
+        redirect_to '/'
+        flash[:notice] = "No tienes permiso para acceder a esta sección."
+    end
+  end
+
   def index
     @requets = Request.all
   end

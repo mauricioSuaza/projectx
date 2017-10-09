@@ -1,7 +1,14 @@
 class UsersController < ApplicationController
     before_action :authenticate_user!
     before_action :is_blocked, only: [:dashboard, :my_referrals, :account_balance, :news, :notifications]
-    
+    before_action :is_admin, only: [:show]
+
+    def is_admin
+      unless current_user.has_role? :admin 
+          redirect_to '/'
+          flash[:notice] = "No tienes permiso para acceder a esta sección."
+      end
+    end
 
     def is_blocked
       if current_user.blocked?

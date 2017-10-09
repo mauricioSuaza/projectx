@@ -46,6 +46,7 @@ gem "sinatra", github: 'sinatra/sinatra'
 # gem 'bcrypt', '~> 3.1.7'
 #use carrierwave for uploads
 gem 'carrierwave'
+gem 'fog'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'ancestry'

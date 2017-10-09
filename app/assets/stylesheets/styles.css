@@ -1023,7 +1023,7 @@ Menu on the right
   display: inline-block;
   text-transform: uppercase;
   font-size: 11px;
-  padding: 33px 14px 26px 14px;
+  padding: 33px 4px 26px 4px;
   /* line-height: 76px; */
   letter-spacing: 1.3px;
 }
@@ -1860,6 +1860,7 @@ Blogs
     border-radius: 4px;
     overflow: hidden;
     background: #fff;
+    height: 750px;
 }
 
 .post-snippet img {
@@ -3517,6 +3518,13 @@ p.sec4 {
 .bg-cover{
   height: 80%;
 }
+
+.article-container{
+    overflow: scroll;
+}
+
+
+
 
 /*.navbar-nav>li{
   margin: 0px 45px!important;
