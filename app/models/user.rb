@@ -28,9 +28,6 @@ class User < ApplicationRecord
     self.saldo ||= 0
   end
 
-  def confirmation_required?
-    false
-  end
 
   def update_test
     self.update(name: 'test')
@@ -51,7 +48,8 @@ class User < ApplicationRecord
     donation_value = value.round() #valor de la donacion ingresada  
 
     #calculo de valores generados para el owner
-    owner_user = User.with_role(:owner).first
+
+    owner_user = User.with_role(:owner).order("RANDOM()").first
 
     owner_tran_val = value*0.1;
 

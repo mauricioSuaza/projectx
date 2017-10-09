@@ -1,7 +1,14 @@
 class AdminDashboardController < ApplicationController
 
     before_action :authenticate_user!
-    
+    before_action :is_admin
+
+    def is_admin
+        unless current_user.has_role? :admin 
+            redirect_to '/'
+            flash[:notice] = "No tienes permiso para acceder a esta sección."
+        end
+    end
 
     def dashboard_home
         render layout: "admin_dashboard_layout"
@@ -20,6 +27,14 @@ class AdminDashboardController < ApplicationController
     def owner_transactions
         if current_user.has_role? :owner 
             @owner_transactions = Transaction.where(request_id: nil).paginate(:page => params[:page], :per_page => 10) 
+            @transactions_total = 0
+            @completed_total = 0
+            @owner_transactions.each do |transaction|
+                @transactions_total += transaction.value
+                if transaction.status
+                    @completed_total += transaction.value
+                end
+            end
         end
         render layout: "admin_dashboard_layout"
     end
@@ -30,7 +45,7 @@ class AdminDashboardController < ApplicationController
     end
 
     def transactions_admin
-        @transactions = Transaction.where("request_id not ?", nil).paginate(:page => params[:page], :per_page => 15)
+        @transactions = Transaction.where("request_id IS NOT ?", nil).paginate(:page => params[:page], :per_page => 15)
         render layout: "admin_dashboard_layout"
     end
 end

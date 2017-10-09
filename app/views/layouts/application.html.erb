@@ -79,7 +79,8 @@
 
                         <li>
                           <a href="/contacto" class="menu-item ">Contacto</a>
-                          <div class="pill"></li>
+                          <div class="pill">
+                        </li>
                         <!-- Menu Item -->
 
                         <!--
@@ -104,6 +105,19 @@
                             </li>
                         <% end %>
                          Menu Item -->
+
+                        <% if user_signed_in? %>
+
+                          <li><%= link_to 'Logout', destroy_user_session_path, method: :delete, :class => 'menu-item'  %></li>
+                            
+                        <% else%>
+                            <li >
+                                <%= link_to 'LOGIN', new_user_session_path,  :class => 'menu-item'  %>
+                            </li>
+                            <li >
+                                <%= link_to 'SIGNUP', new_user_registration_path,  :class => 'menu-item'%>
+                            </li>
+                        <%end%>
                       </ul>
 
                     </div>

@@ -1,5 +1,6 @@
 class TransactionsController < ApplicationController
-    
+
+
   def add_invoice
     @transaction = Transaction.find(params[:transaction_id])
     @transaction.invoice = params[:invoice]

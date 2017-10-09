@@ -2,6 +2,15 @@ class ChatsController < ApplicationController
 
   before_action :set_chat, only: [:destroy]
 
+  before_action :is_support, only: [:admin_index]
+  
+  def is_support
+      unless current_user.has_role? :support 
+          redirect_to '/'
+          flash[:notice] = "No tienes permiso para acceder a esta sección."
+      end
+  end
+
   def index
     @users = User.all
     @chats = Chat.all
