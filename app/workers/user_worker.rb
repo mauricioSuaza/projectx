@@ -74,18 +74,18 @@ class UserWorker
 		cumple = false
 		count = 0
 		
-		@padre.descendants.each do | user|
+		padre.descendants.each do |user|
 			total_hijo = 0
 			user.donations.each do |donation|
 				if donation.completed
 					total_hijo += donation.value
 				end
 			end
+
 			if total_hijo >= 500
-				count++
+				count = count +1 
 			end
 		end
-
 		if count >= 10
 		 cumple = true
 		end

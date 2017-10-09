@@ -7,7 +7,7 @@ class RegistrationsController < Devise::RegistrationsController
     	root = User.find_by_email(refferal_email)
     	if refferal_email
     		if !root.nil?
-    			@user.parent_id = root.id
+    			@user.update(parent_id:  root.id)
     		end
     	end
     end

@@ -10,7 +10,8 @@ class TransactionsController < ApplicationController
 
   def confirm_transaction
     @transaction = Transaction.find(params[:transaction_id])
-    if @transaction.receiver_id == current_user.id
+    @receiver = User.find(@transaction.receiver_id)
+    if (@transaction.receiver_id == current_user.id) || (@receiver.has_role? :owner)
         @transaction.update(status: true)
         donation_check @transaction
         if @transaction.request_id
@@ -22,8 +23,7 @@ class TransactionsController < ApplicationController
           redirect_to '/my_transactions', notice: "Transaction succesfully cofirmed"
         else
           redirect_to '/my_dashboard', notice: "Transaction succesfully cofirmed"
-        end
-        
+        end  
     else
         redirect_to '/my_dashboard', notice: "you don't have permission to acces this transaction"
     end

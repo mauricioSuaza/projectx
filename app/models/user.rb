@@ -55,8 +55,6 @@ class User < ApplicationRecord
 
     residuo = donation_value - (donation_value*0.1) #valor pendiente por entregar de la donación, campo pending de la donación
 
-
-
     donation_state = 0  #estado de la donación, si ya ha sido repartida o aun no. 
     
     donation = self.donations.new(value: donation_value, pending: residuo, status: donation_state)
