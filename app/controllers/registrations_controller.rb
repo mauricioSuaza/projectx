@@ -1,4 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
+
+  prepend_before_action :check_captcha, only: [:create] # Change this to be any actions you want to protect.
+    
   layout "dashboard_layout.html", only: [:edit]
   
   def create
@@ -28,6 +31,15 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
   private
+    def check_captcha
+      unless verify_recaptcha
+        self.resource = resource_class.new sign_up_params
+        resource.validate # Look for any other validation errors besides Recaptcha
+        respond_with_navigational(resource) { 
+          render :new
+          flash[:notice] = "Complete el captcha" }
+      end 
+    end
     def sign_up_params
       params.require(:user).permit(:name, :btc, :phone, :country, :email, :password, :password_confirmation, :refferal)
     end

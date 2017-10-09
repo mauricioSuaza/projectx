@@ -73,40 +73,19 @@ class MessagesController < ApplicationController
           @message.save
           create_notification(@message)
           #passing broadcast messages_chanel
-          ActionCable.server.broadcast 'messages',
-            message: @message.body,
-            user: @message.user.name,
-            time: @message.created_at.strftime("%m/%d/%y  %H:%M:%S"),
-            admin: @chat.sender.admin? || @chat.recipient.admin? ,
-            current_user_admin: current_user.admin?,
-            count: @chat.messages.count,
-            current_is_sender: current_user.id == @chat.sender_id
+          action_cable(@message)
         end
       else
         @message.save
         create_notification(@message)
         #passing broadcast messages_chanel
-        ActionCable.server.broadcast 'messages',
-          message: @message.body,
-          user: @message.user.name,
-          time: @message.created_at.strftime("%m/%d/%y  %H:%M:%S"),
-          admin: @chat.sender.admin? || @chat.recipient.admin? ,
-          current_user_admin: current_user.admin?,
-          count: @chat.messages.count,
-          current_is_sender: current_user.id == @chat.sender_id
+        action_cable(@message)
       end
     else
       if @message.save
         create_notification(@message)
         #passing broadcast messages_chanel
-        ActionCable.server.broadcast 'messages',
-          message: @message.body,
-          user: @message.user.name,
-          time: @message.created_at.strftime("%m/%d/%y  %H:%M:%S"),
-          admin: @chat.sender.admin? || @chat.recipient.admin? ,
-          current_user_admin: current_user.admin?,
-          count: @chat.messages.count,
-          current_is_sender: current_user.id == @chat.sender_id
+        action_cable(@message)
       end
     end
   end
@@ -123,6 +102,17 @@ class MessagesController < ApplicationController
                                       message_id: data.id)
       end
     end
+  end
+
+  def action_cable message
+    ActionCable.server.broadcast 'messages',
+      message: message.body,
+      user: message.user.name,
+      time: message.created_at.strftime("%m/%d/%y  %H:%M:%S"),
+      admin: @chat.sender.admin? || @chat.recipient.admin? ,
+      current_user_admin: current_user.admin?,
+      count: @chat.messages.count,
+      current_is_sender: current_user.id == @chat.sender_id
   end
 
 private

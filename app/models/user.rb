@@ -16,7 +16,7 @@ class User < ApplicationRecord
  # acts_as_tree order: "email"
   has_ancestry cache_depth: true
   #extend ActsAsTree::TreeView
-  attr_accessor :refferal
+  attr_accessor :refferal, :terms
 
   validates :name, presence: true
   validates :phone, presence: true

@@ -23,6 +23,9 @@ gem 'coffee-rails', '~> 4.2'
 #Authentication gem
 gem 'devise'
 
+#Captcha gem
+gem "recaptcha", require: "recaptcha/rails"
+
 #ActiveRecord model as a tree structure 
 gem 'acts_as_tree', '~> 2.4'
 
