@@ -13,6 +13,14 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
   
+  def edit
+    if current_user.blocked?
+      redirect_to chats_path
+      flash[:notice] = "Su cuenta a sido bloqueada, contacte al equipo de soporte."
+    else
+      super
+    end
+  end
   protected
   
     def after_sign_up_path_for(resource)
