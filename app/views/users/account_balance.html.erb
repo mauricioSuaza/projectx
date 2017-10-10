@@ -1,64 +1,144 @@
+
   <nav class="own-navbar">
     <div class="container-fluid">
+      <!-- menu mobile display -->
+        <button class="navbar-toggle own-btn-nav" data-target="navbar-collapse" data-toggle="collapse">
+          <span class="icon icon-bar"></span>
+          <span class="icon icon-bar"></span>
+          <span class="icon icon-bar"></span>
+        </button>
         <div class="navbar-header">
           <a class="navbar-brand" href="#" style="font-size: 18px;color: #606060;line-height: 20px;">Account Balance</a>
+        </div>
+
+        <div style="float:right; margin-right:20px;">
+          <script type="text/javascript">
+          crypt_single_base_currency = "Bitcoin (BTC)";crypt_single_target_currency = "US Dollar (USD)";crypt_single_font_family = "Verdana";crypt_single_font_size = "small";</script>
+          <script type="text/javascript" src="https://www.cryptonator.com/ui/js/widget/single_widget.js"></script>
         </div>
     </div>
   </nav>
 
 
-  <div class="blog-area bg-light blog-page"> 
-    <div class="col-md-12">
-        <div class="pt-20 text-center">
+  <div class="container-fluid">
+    <div class="">
+        <div class="text-center">
 
-        <div class="donations-container"> 
-            <h1>Donations</h1>
-            
-                <table class='table table-bordered table-striped responsive-table'>
+        <div class="donations-container" style="margin-top:0px;">
+          <div class="iconImage">
+            <img src="/images/donation2.svg" alt="" style="width: 25%;">
+          </div>
+          <h1 class="DonationsTitle">Goals Sent</h1>
+                <table class='table table-hover table-striped responsive-table' style="margin-top: 30px;">
                     <thead class="blue-text text-darken-4">
                     <tr>
                         <th>Donation</th>
-                        <th>Value</th>
+                        <th>Goal</th>
+                        <th>Pending for request</th>
                         <th>Status</th>
+                        <th>Transactions</th>
+                        <th>Done transactions</th>
+                        <th>Donation Increment</th>
+                        <th>Actual value</th>
                         <th>Date</th>
-                        <th colspan="3"></th>
+                        <!-- <th colspan="3"></th> -->
                     </tr>
                     </thead>
 
                     <tbody class="anchorFixcolor hoverTable">
                     <% @donations.each do |donation| %>
-                        <tr>
-                            <td>DG<%= donation.id %></td>
-                            <td><%= donation.value %></td>
-                            <td><%= donation.status %></td>
-                            <td><%= donation.created_at.to_date %></td>
-                        </tr>
+
+                    <%color_font = 'font_colortwo'%>
+                    <%if donation.completed &&  donation.pending==0%>
+                       <%color_font = 'font_color'%>
+                    <%end%>
+
+                    <tr>
+                        <td>
+                          <div class="cardId">
+                            DG<%= donation.id %>
+                          </div>
+                        </td>
+                        <td><%= donation.value %></td>
+                        <td><%= donation.pending %></td>
+                        <%if  donation.completed &&  donation.pending==0%>
+                          <td class="<%=color_font%>">Completed</td>
+                        <%else%>
+                          <td class="<%=color_font%>">Pending</td>
+                        <%end%>
+                        <td><%= donation.transactions.count %></td>
+                        <td><%= donation.transactions.where(status: true).count %></td>
+
+                          <%if donation.completed%>
+                            <%incremento_diario = (donation.value * 0.25)/15 %>
+                            <%incremento_actual = (((Time.parse(DateTime.now.to_s) - Time.parse(donation.created_at.to_s))/3600)/24)*incremento_diario  %>
+                            <%valor_total = donation.value+(donation.value * 0.25) %>
+                            <%incremento_total = (donation.value * 0.25) %>
+                            <%if ((Time.parse(DateTime.now.to_s) - Time.parse(donation.created_at.to_s))/3600)/24 > 15%>
+                              <td><%= number_with_precision(incremento_total, precision: 3)  %></td>
+                              <td><%= number_with_precision(valor_total, precision: 3)%></td>
+                            <%else %>
+                              <td><%=number_with_precision(incremento_actual, precision: 3)%></td>
+                              <td><%= number_with_precision(donation.value + incremento_actual)%></td>
+                            <%end%> 
+                        <%else%>
+                            <td>Pendiente</td>
+                            <td>Pendiente </td>
+                        <%end%>
+                          <td><%= donation.created_at.to_date %></td>
+                    </tr>
                     <% end %>
                     </tbody>
                 </table>
- 
+
         </div>
 
 
-        <div class="donations-container"> 
-            <h1>Requests</h1>
-            <table class='table table-bordered table-striped responsive-table'>
+        <div class="donations-container">
+          <div class="iconImage">
+            <img src="/images/hand.svg" alt="" style="width: 25%;">
+          </div>
+            <h1 class="DonationsTitle">Goals requested</h1>
+            <table class='table table-hover responsive-table'>
                     <thead class="blue-text text-darken-4">
                     <tr>
                         <th>Donation</th>
-                        <th>Value</th>
+                        <th>Goal</th>
+                        <th>Pending</th>
                         <th>Status</th>
+                        <th>Transaction</th>
+                        <th>Completed Transaction</th>
                         <th>Date</th>
-                        <th colspan="3"></th>
+                        <!-- <th colspan="3"></th> -->
                     </tr>
                     </thead>
 
                     <tbody class="anchorFixcolor hoverTable">
                     <% @requests.each do |request| %>
+
+                    <%color_fontR = 'font_colortwo'%>
+                    <%if request.status%>
+                       <%color_fontR = 'font_color'%>
+                    <%end%>
                         <tr>
-                            <td>RQ<%= request.id %></td>
+                            <td>
+                              <div class="cardId">
+                                RQ<%= request.id %>
+                              </div>
+                            </td>
                             <td><%= request.value %></td>
-                            <td><%= request.status %></td>
+                            <td><%= request.pending %></td>
+                            <%color_font = 'font_colortwo'%>
+                            <%if request.completed &&  request.pending==0%>
+                               <%color_font = 'font_color'%>
+                            <%end%>
+                            <%if  request.completed &&  request.pending==0%>
+                              <td class="<%=color_font%>">Completed</td>
+                            <%else%>
+                              <td class="<%=color_font%>">Pending</td>
+                            <%end%>
+                            <td><%= request.transactions.count %></td>
+                            <td><%= request.transactions.where(status: true).count %></td> 
                             <td><%= request.created_at.to_date %></td>
                          </tr>
                     <% end %>
@@ -67,9 +147,6 @@
 
         </div>
 
-        </div>       
-    </div>    
+        </div>
+    </div>
   </div>
-
- 
-

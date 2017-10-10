@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170927055440) do
+ActiveRecord::Schema.define(version: 20171004105939) do
+
+  create_table "articles", force: :cascade do |t|
+    t.string   "title"
+    t.string   "content"
+    t.string   "invoice"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "chats", force: :cascade do |t|
     t.integer  "sender_id"
@@ -47,6 +55,19 @@ ActiveRecord::Schema.define(version: 20170927055440) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "user_id"
+    t.boolean  "read"
+    t.integer  "message_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "owner_id"
+    t.decimal  "value"
+    t.decimal  "transaction_value"
+    t.index ["message_id"], name: "index_notifications_on_message_id"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "requests", force: :cascade do |t|
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
@@ -56,6 +77,16 @@ ActiveRecord::Schema.define(version: 20170927055440) do
     t.decimal  "pending"
     t.integer  "requested",  default: 0
     t.boolean  "completed",  default: false
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.string   "resource_type"
+    t.integer  "resource_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+    t.index ["name"], name: "index_roles_on_name"
   end
 
   create_table "transactions", force: :cascade do |t|
@@ -68,6 +99,7 @@ ActiveRecord::Schema.define(version: 20170927055440) do
     t.datetime "updated_at",                  null: false
     t.integer  "request_id"
     t.string   "invoice"
+    t.integer  "completed",   default: 0
     t.index ["donation_id"], name: "index_transactions_on_donation_id"
     t.index ["request_id"], name: "index_transactions_on_request_id"
   end
@@ -106,10 +138,26 @@ ActiveRecord::Schema.define(version: 20170927055440) do
     t.datetime "locked_at"
     t.boolean  "admin",                  default: false
     t.integer  "parent_id"
+    t.string   "ancestry"
+    t.integer  "ancestry_depth",         default: 0
+    t.decimal  "level_one_amount",       default: "0.0"
+    t.decimal  "level_two_amount",       default: "0.0"
+    t.decimal  "level_three_amount",     default: "0.0"
+    t.decimal  "level_four_amount",      default: "0.0"
+    t.decimal  "level_five_amount",      default: "0.0"
+    t.decimal  "level_six_amount",       default: "0.0"
+    t.boolean  "blocked"
+    t.index ["ancestry"], name: "index_users_on_ancestry"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
+  end
+
+  create_table "users_roles", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
   end
 
 end

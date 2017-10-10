@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  rolify
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
@@ -7,47 +9,77 @@ class User < ApplicationRecord
   has_many :chats, :foreign_key => :sender_id
   has_many :donations
   has_many :requests
+  has_many :notifications, dependent: :destroy
+
+
   before_save :set_saldo_zero
-  acts_as_tree order: "email"
-  extend ActsAsTree::TreeView
-  attr_accessor :refferal
+ # acts_as_tree order: "email"
+  has_ancestry cache_depth: true
+  #extend ActsAsTree::TreeView
+  attr_accessor :refferal, :terms
 
   validates :name, presence: true
   validates :phone, presence: true
   validates :btc, presence: true
 
+  after_create :assign_default_role
+
   def set_saldo_zero
     self.saldo ||= 0
   end
+
+
+  def update_test
+    self.update(name: 'test')
+  end
+
+  def assign_default_role
+    self.add_role(:user) if self.roles.blank?
+  end
   
+
   def send_donation (value)
 
+    
+
     #Configuración de variables para inicializar la donación
-  
     request = get_oldest_request() #Tomar el request mas antiguo
 
     donation_value = value.round() #valor de la donacion ingresada  
-    
-    residuo = donation_value #valor pendiente por entregar de la donación, campo pending de la donación
+
+    #calculo de valores generados para el owner
+
+    owner_user = User.with_role(:owner).order("RANDOM()").first
+
+    owner_tran_val = value*0.1;
+
+    residuo = donation_value - (donation_value*0.1) #valor pendiente por entregar de la donación, campo pending de la donación
 
     donation_state = 0  #estado de la donación, si ya ha sido repartida o aun no. 
     
-    donation = self.donations.create(value: donation_value, pending: residuo, status: donation_state)
+    donation = self.donations.new(value: donation_value, pending: residuo, status: donation_state)
     
     #revisar resultados del metodo mientras haya residuo y la cola se puede actualziar con transacciones pendientes volver a repartir
+    if donation.save
+      #crear transaction al owner 
 
-    while((donation.pending > 0) && request )
+      #transaccion generada para el owner
+      transaction = donation.transactions.create(value: owner_tran_val, sender_id: self.id, receiver_id: owner_user.id)
+      TransactionWorker.perform_in(72.hours, transaction.id)
 
-        create_transaction(request, donation, residuo) 
-        #Funcion para realizar el envio con las variables configuradas
-        request = get_oldest_request() #Tomar el request mas antiguo
-  
+
+      while((donation.pending > 0) && request )
+
+          create_transaction(request, donation, residuo) 
+          #Funcion para realizar el envio con las variables configuradas
+          request = get_oldest_request() #Tomar el request mas antiguo
+    
+      end
     end
 
     donation.id
 
   end
-  
   
   def create_transaction(request, donation, residuo)
     #repartir la donación en el request
@@ -72,7 +104,11 @@ class User < ApplicationRecord
     end
     #crear la transacción
     transaction = donation.transactions.create(value: transaction_value, sender_id: donation.user_id, receiver_id: request.user_id, request_id: request.id)
-   
+    TransactionWorker.perform_in(72.hours, transaction.id)
+
+    #Creates notification for receiver incase exist.
+    notification = create_notification(transaction)
+
     #hacer update de la donación
     #Actualizar estado de la donacion 
     if residuo==0
@@ -104,11 +140,9 @@ class User < ApplicationRecord
   end
         
   def get_oldest_request
-    
     block = Request.where.not(user_id: self.id)
     block = block.where(requested: "waiting")
     block.order('created_at DESC').last()
-
   end
 
   def request_donation(value)
@@ -126,24 +160,29 @@ class User < ApplicationRecord
     self.update(saldo: self.saldo - request_value)
     
     if donation
-
       while((request.pending > 0) && donation )
           create_transaction(request, donation, residuo) 
           #revisar si aun hay donaciones que puedan repartir
           donation =  get_pending_donation
       end
-
     end
-
   end
 
   def get_pending_donation
-  
     block = Donation.where.not(user_id: self.id)
     block = block.where(status: "pending")
     block.order('created_at DESC').last()
-
   end
+
+
+  def create_notification(data)
+    @receiver = User.find(data.receiver_id)
+    if !data.nil? 
+      @receiver.notifications.create(owner_id: data.sender_id, value: data.value, read: false)
+    end
+  end
+
+
 
 end
     

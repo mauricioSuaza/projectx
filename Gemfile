@@ -23,6 +23,9 @@ gem 'coffee-rails', '~> 4.2'
 #Authentication gem
 gem 'devise'
 
+#Captcha gem
+gem "recaptcha", require: "recaptcha/rails"
+
 #ActiveRecord model as a tree structure 
 gem 'acts_as_tree', '~> 2.4'
 
@@ -33,13 +36,24 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
+gem 'redis', '~> 3.0'
+
+#Backgroundjob
+gem "sidekiq"
+gem "sinatra", github: 'sinatra/sinatra'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 #use carrierwave for uploads
 gem 'carrierwave'
+gem 'fog'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'ancestry'
+gem 'will_paginate', '~> 3.1.0'
+
+gem 'cancancan'
+gem 'rolify'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

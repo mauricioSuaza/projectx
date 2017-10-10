@@ -36,25 +36,43 @@
 
   			<div class="sidebar-wrapper">
   				<div style="border-bottom: 1px solid #fff;">
-                    <a href="/" class="logo" >
-                        <i class="pe-7s-cash"></i>
-                        <p>Donating Goals</p>
-                    </a>
-                    <div style="padding: 10px 30px;">
+              <div class="logo-dash">
+                <a href="/" class="logo" >
+                    <i class="pe-7s-cash"></i>
+                    <p>Donating Goals</p>
+                </a>
+                <i id="close" class="fa fa-times-circle-o hide" aria-hidden="true" style="color:#fff;"></i>
+              </div>
+                    <div style="padding: 10px 20px;">
                         <% if user_signed_in? %>
-                            <p>Hello <%= current_user.email %></p>  
-                            <p>Balance <%= current_user.saldo %></p>  
-                        <% end%> 
+                            <p>Hello: <span style="font-weight: 600;"><%= current_user.email %></span></p>
+                            <p>Balance <%= number_with_precision( current_user.saldo, precision: 3) %></p>
+                        <% end%>
                     </div>
-                        
+
                 </div>
 
-                
 
-                
+
+
 
                 <ul class="nav own-nav">
-                        
+
+                    <li>
+                      <%= button_to readed_url, style: ' width: 58%; margin-left: 25px; background: transparent;' do%>
+                        <% notifications = current_user.notifications.order('created_at DESC').where(read: false).count%>
+                        <% if notifications > 0%>
+                          <i class="fa fa-circle" aria-hidden="true"></i>
+                          <span class="notifications-count" style=" position: relative; float: left; left: -6px; top: -10px; 
+                          margin-right: 0; margin-left: -8px; color: white; font-weight: 900; "><%= notifications %></span>
+                        <%else%>
+                          <i class="fa fa-circle-o" aria-hidden="true"></i>
+                        <%end%>
+                          <p>Notificaciones</p>
+                        </a>
+                      <%end%>
+                    </li>
+
                     <li>
                         <a href="/my_dashboard">
                             <i class="fa fa-home" aria-hidden="true"></i>
@@ -78,7 +96,7 @@
 
                     <li>
                         <a href="/chats">
-                           
+
                             <i class="fa fa-comments" aria-hidden="true"></i>
                             <p>Conversations</p>
                         </a>
@@ -87,14 +105,14 @@
 
                      <li>
                         <a href="/news">
-                           
+
                             <i class="fa fa-newspaper-o" aria-hidden="true"></i>
                             <p>News info</p>
                         </a>
                     </li>
 
-                   
-    
+
+
                     <li>
                         <% if user_signed_in? %>
                             <%= link_to edit_user_registration_path  do %>
@@ -112,12 +130,15 @@
                     </li>
 
                     <li>
-                        <%@admin = User.where(admin: true)%>
-                        <%= button_to chats_path(sender_id: current_user.id, recipient_id: @admin.ids.first), class: 'button button-primary button-sm' do %>
-                            <p>
-                                <i class="fa fa-plug" aria-hidden="true"></i>
-                                Technical support
-                            </p>
+                       
+                        <%@admin = User.with_role(:support).first%>
+                        <%if  @admin%>
+                            <%= button_to chats_path(sender_id: current_user.id, recipient_id: @admin.id), class: 'button button-primary button-sm' do %>
+                                <p>
+                                    <i class="fa fa-plug" aria-hidden="true"></i>
+                                    Technical support
+                                </p>
+                            <%end%>
                         <%end%>
                     </li>
 
@@ -132,6 +153,18 @@
       </div>
 
     </div>
+
+    <script>
+        $( ".cryptonatorwidget div:nth-child(3)" ).css( "display", "none" );
+        if($(".notifications-count").text() > 9r){
+            $(".notifications-count").text("+9")
+        }
     
+    </script>
+
+    <script>
+        $('.cryptonatorwidget div:nth-child(3)').css("display","none")
+    </script>
+
   </body>
   </html>

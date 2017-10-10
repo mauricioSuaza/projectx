@@ -1,54 +1,74 @@
   <nav class="own-navbar">
-    <div class="container-fluid">
+    <div class="container-fluid" style="padding:0px;">
+      <!-- menu mobile display -->
+        <button class="navbar-toggle own-btn-nav" data-target="navbar-collapse" data-toggle="collapse">
+          <span class="icon icon-bar fa fa-bars"></span>
+          <span class="icon icon-bar"></span>
+          <span class="icon icon-bar"></span>
+        </button>
+
         <div class="navbar-header">
           <a class="navbar-brand" href="#" style="font-size: 18px;color: #606060;line-height: 20px;">WORKSPACE</a>
+        </div>
+
+        <div style="float:right; margin-right:20px;">
+          <script type="text/javascript">
+          crypt_single_base_currency = "Bitcoin (BTC)";crypt_single_target_currency = "US Dollar (USD)";crypt_single_font_family = "Verdana";crypt_single_font_size = "small";</script>
+          <script type="text/javascript" src="https://www.cryptonator.com/ui/js/widget/single_widget.js"></script>
         </div>
     </div>
   </nav>
 
 
-  <div class="blog-area bg-light blog-page"> 
-    <div class="col-md-12">
-        <div class="pt-20 text-center">
-            <div class="col-md-6 donations-container" > 
-                <h1>Send donation</h1>
-                <div class="col-md-4 col-md-offset-4 col-sm-12 ">
-                    <div class ="send-donation-form"> 
-                        <%= form_tag("/send_donation", method: "post") do %>
-                        <%= number_field_tag(:value) %>
-                        <%= submit_tag("Send donation", class: "btn btn-primary btn-primary btn-sm") %>
-                        <% end %>
-                    </div>
+  <div class="container-fluid" style="padding:0px;">
+    <div class="">
+      <div class="">
+          <div class="pt-20 text-center">
+            <div class="">
+              <div class="col-md-5 donations-container col-xs-12" style="margin-left: 45px;">
+                <div class="container-fluid container-title">
+                  <h1 style="text-shadow: 2px 3px 5px rgba(62, 61, 61, 0.71); margin: 10px 0px;">Send Goals</h1>
+                  <div>
+                    <%= form_tag("/send_donation", method: "post") do %>
+                    <%= number_field_tag :value, nil,  class: "input-form"%>
+                    <%= submit_tag("Send donation", class: "btn btn-primary btn-primary btn-sm btn-form") %>
+                    <% end %>
+                  </div>
                 </div>
-                <div class ="donations-list col-md-12">
+
+                <div class ="donations-list col-md-12 border-list">
                     <% @donations.each do |donation| %>
-                        <div class ="donations-list" style="border: solid 1px; margin: 15px;">
-                            <%=   render :partial => 'donation_list', locals: {donation: donation}%>
+                        <div class ="donations-list" style="margin: 50px 15px 15px 15px;">
+                            <%=render :partial => 'donation_list', locals: {donation: donation}%>
                         </div>
                     <% end %>
                 </div>
-            </div>
-            <div class="col-md-6 donations-container"> 
-                <h1>Request donation</h1>
-                <div class="col-md-4 col-md-offset-4 col-sm-12 ">
-                    <div class ="request-donation-form"> 
-                        <%= form_tag("/request_donation", method: "post") do %>
-                        <%= number_field_tag(:value) %>
-                        <%= submit_tag("Request donation", class: "btn btn-primary btn-primary btn-sm") %>
-                        <% end %>
-                    </div>
+              </div>
+
+              <div class="col-md-5 col-md-offset-1 donations-container col-xs-12">
+                <div class="container-fluid container-title">
+                  <h1 style="text-shadow: 2px 3px 5px rgba(62, 61, 61, 0.71); margin: 10px 0px;">Request Goals</h1>
+                  <div>
+                      <div class ="request-donation-form">
+                          <%= form_tag("/request_donation", method: "post") do %>
+                          <%= number_field_tag :value, nil,  class: "input-form" %>
+                          <%= submit_tag("Request donation", class: "btn btn-primary btn-primary btn-sm btn-form") %>
+                          <% end %>
+                      </div>
+                  </div>
                 </div>
-                <div class ="donations-list col-md-12">
+                <div class ="donations-list col-md-12 border-list">
                     <% @requests.each do |request| %>
-                        <div class ="donations-list" style="border: solid 1px; margin: 15px;">
+                        <div class ="donations-list" style="margin: 50px 15px 15px 15px;">
                             <%=   render :partial => 'requests_list', locals: {request: request}%>
                         </div>
                     <% end %>
                 </div>
+              </div>
             </div>
-        </div>       
-    </div>    
+          </div>
+      </div>
+    </div>
   </div>
 
- 
 

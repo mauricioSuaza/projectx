@@ -1,0 +1,47 @@
+
+  <nav class="own-navbar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#" style="font-size: 18px;color: #606060;line-height: 20px;">Mostrar Articulo</a>
+        </div>
+    </div>
+  </nav>
+
+
+  <div class="blog-area bg-light blog-page"> 
+    <div class="col-md-12">
+        <div class="" style="padding-top:80px;">
+
+        <p id="notice"><%= notice %></p>
+
+        <p>
+          <strong>Titulo:</strong>
+          <br>
+          <%= @article.title %>
+        </p>
+
+        <p>
+          <strong>Contenido:</strong>
+          <br>
+          <%= @article.content %>
+        </p>
+
+        <p>
+          <strong>Imagen:</strong>
+          <% if @article.invoice.url.present? %>
+          <br>
+          <%= image_tag(@article.invoice.url, height: '128', width: '128') %>
+          <%else  %>
+          <% end %>
+        </p>
+
+        <%= link_to 'Edit', edit_article_path(@article) %> |
+        <%= link_to 'Back', articles_path %>
+        </div>       
+    </div>    
+  </div>
+
+
+
+
+

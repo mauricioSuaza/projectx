@@ -2,6 +2,15 @@ class RequestsController < ApplicationController
 
   before_action :set_request, only: [:show, :edit, :update, :destroy]
 
+  before_action :is_admin, only: [:show]
+  
+  def is_admin
+    unless current_user.has_role? :admin 
+        redirect_to '/'
+        flash[:notice] = "No tienes permiso para acceder a esta sección."
+    end
+  end
+
   def index
     @requets = Request.all
   end
@@ -9,6 +18,8 @@ class RequestsController < ApplicationController
   # GET /Donations/1
   # GET /Donations/1.json
   def show
+    @request = Request.find(params[:id])
+    render layout: "admin_dashboard_layout"
   end
 
   # GET /Donations/new
@@ -22,7 +33,6 @@ class RequestsController < ApplicationController
 
   def request_donation
     if current_user.saldo > 0
-      debugger
       @user = current_user.requests.create(requested: true,)
       respond_to do |format|
         if @user.update

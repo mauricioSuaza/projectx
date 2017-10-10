@@ -1,6 +1,15 @@
 class DonationsController < ApplicationController
 
   before_action :set_donation, only: [:show, :edit, :update, :destroy]
+
+  before_action :is_admin, only: [:show]
+  
+  def is_admin
+    unless current_user.has_role? :admin 
+        redirect_to '/'
+        flash[:notice] = "No tienes permiso para acceder a esta sección."
+    end
+  end
  
 
   def index
@@ -10,6 +19,8 @@ class DonationsController < ApplicationController
   # GET /Donations/1
   # GET /Donations/1.json
   def show
+    @donation = Donation.find(params[:id])
+    render layout: "admin_dashboard_layout"
   end
 
   # GET /Donations/new

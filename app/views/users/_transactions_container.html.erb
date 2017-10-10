@@ -1,21 +1,37 @@
-       
-<div class="transactions-container col-md-10 col-md-offset-1">
-    <div class="panel-transactions panel-secondary">
+
+<%transc_color = 'panel-headingtwo'%>
+<%transc_border = 'panel-secondaryred'%>
+<%if transaction.status%>
+   <%transc_color = 'panel-heading'%>
+   <%transc_border = 'panel-secondary'%>
+<%end%>
+
+
+
+<div class="transactions-container">
+    <div class="panel-transactions <%=transc_border%> container-fluid">
         <div class="panel-heading">
-            <h3 class="panel-title">Transaction <%= transaction.id %></h3>
+            <h3 class="panel-title" style="font-size: 30px;">Transaction <%= transaction.id %></h3>
+            <i class="fa fa-exchange" aria-hidden="true" style="color: rgba(255, 255, 255, 0.54);"></i>
         </div>
         <table class="table table-condensed table-responsive table-user-information">
             <tbody>
             <tr>
-                <td>Value:</td>
+                <td class="left-tab" style="text-align:left;">Value:</td>
                 <td><%= transaction.value %></td>
             </tr>
+            <%if transaction.status == false%>
+              <tr>
+                <%@remaining = transaction.created_at + 72.hours %>
+                <%@time_now = DateTime.now %>
+                <%@time_left = (((@remaining - @time_now)/60)/60)%>
+                <%@time_left%>
+                <td class="left-tab" style="text-align:left;">Time remaining:</td>
+                <td><%=@time_left.round(1)%> hours</td>
+              </tr>
+            <%end%>
             <tr>
-                <td>Time remaining:</td>
-                <td>23 Hours</td>
-            </tr>
-            <tr>
-                <td>Status:</td>
+                <td class="left-tab" style="text-align:left;">Status:</td>
                 <% if transaction.status%>
                     <td>Completed</td>
                 <% else  %>
@@ -23,53 +39,48 @@
                 <% end%>
             </tr>
             <tr>
-                <td>Sender name:</td>
+                <td class="left-tab" style="text-align:left;">Sender name:</td>
                 <td><%= User.find(transaction.sender_id).name %></td>
             </tr>
             <tr>
-                <td>Sender phone:</td>
+                <td class="left-tab" style="text-align:left;">Sender phone:</td>
                 <td><%= User.find(transaction.sender_id).phone %></td>
             </tr>
 
             <tr>
-                <td>Receiver email:</td>
+                <td class="left-tab" style="text-align:left;">Receiver email:</td>
                 <td><%= User.find(transaction.receiver_id).email %></td>
             </tr>
             <tr>
-                <td>Receiver wallet</td>
+                <td class="left-tab" style="text-align:left;">Receiver wallet</td>
                 <td><%= User.find(transaction.receiver_id).btc %></td>
             </tr>
-            
+
             </tbody>
         </table>
-        <div class="buttons-container col-md-12"> 
-        <div class="col-md-12">
-            <%= button_to chats_path(sender_id: current_user.id, recipient_id: transaction.receiver_id), class: 'btn btn-primary' do %>
-               
-                    <i class="fa fa-weixin" aria-hidden="true"></i>
-                    Message
-               
-            <%end%>
-            
+
+        <div class="buttons-container">
+          <div>
+              <%= button_to chats_path(sender_id: current_user.id, recipient_id: transaction.receiver_id), class: 'btn btn-primary own-btn-primary' do %>
+              <i class="fa fa-weixin i-form" aria-hidden="true"></i>
+              Message
+              <%end%>
+          </div>
+
+          <div>
+              <div class="">
+                  <% if transaction.invoice.url %>
+                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"  style="margin-top:10px;" data-target="#img<%=transaction.id%>"><i class="fa fa-file-text-o i-form" aria-hidden="true" style="margin: 0px 20px 0px 0px;"></i>Check invoice</button>
+                  <% else %>
+                      <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#m<%=transaction.id%>"  style="margin-top:10px;">
+                        <i class="fa fa-upload i-form" aria-hidden="true" style="margin: 0px 5px;"></i>Upload receipt</button>
+                  <% end  %>
+              </div>
+          </div>
         </div>
-        <div class="col-md-12" style="margin-top: 15px;">
-            <div class="">
-                <% if transaction.invoice.url %>
-                    <div class="col-md-6">
-                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#img<%=transaction.id%>">Check invoice</button>
-                    </div>
-                    <div class="col-md-6">
-                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#m<%=transaction.id%>">Reupload receipt</button>
-                    </div>
-                <% else %>
-                    <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#m<%=transaction.id%>">Upload receipt</button>
-                <% end  %>
-            </div>
-        </div>
-        </div> 
-        <p>sdasdjalskdjaklsjlk</p>
     </div>
 </div>
+
 
 <!-- Upload Image Modal -->
 <div id="m<%=transaction.id%>" class="modal fade" role="dialog">
@@ -96,6 +107,9 @@
     </div>
 </div>
 
+
+
+<!-- Show Image Modal -->
 <% if transaction.invoice.url.present? %>
     <div id="img<%=transaction.id%>" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -111,5 +125,3 @@
         </div>
     </div>
 <%end%>
-
-   

@@ -2,6 +2,13 @@
 	margin-top: 50px;
 }
 
+.chat-users-container{
+	height: 500px;
+	overflow: scroll;
+	border: 1px solid;
+
+}
+
 .messages-recived{
 	margin-top: 20px;
   background-color: #fff;
@@ -15,6 +22,7 @@
 
 .mail-icon{
 	margin-right: 10px;
+	text-shadow: none;
 }
 
 .messages-recived .tables .col-md-4 p{
@@ -38,9 +46,34 @@
 .responder{
 	width: 20%;
 	margin: 0 auto;
+	padding: 10px;
+	background: #1d5a96;
+	color: #fff;
+	box-shadow: 1px 1px 2px black;
 }
 
 .item{
 	margin-top: 5px;
 	margin-bottom: 5px;
+}
+
+.row-chats{
+	border-bottom: 1px solid rgba(128, 128, 128, 0.24);
+	padding: 15px;
+}
+
+.row-chats a{
+	color: #000;
+	font-weight: 600;
+}
+
+.titulos_chat{
+	color: #174b7d;
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.titulos_chat i{
+	color: rgba(44, 132, 218, 0.91);
+  font-size: 25px;
 }

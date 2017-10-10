@@ -1,51 +1,217 @@
   <nav class="own-navbar">
     <div class="container-fluid">
+
+        <button class="navbar-toggle own-btn-nav" data-target="navbar-collapse" data-toggle="collapse">
+          <span class="icon icon-bar fa fa-bars"></span>
+          <span class="icon icon-bar"></span>
+          <span class="icon icon-bar"></span>
+        </button>
+
         <div class="navbar-header">
           <a class="navbar-brand" href="#" style="font-size: 18px;color: #606060;line-height: 20px;">MY REFERRALS</a>
+        </div>
+
+        <div style="float:right; margin-right:20px;">
+          <script type="text/javascript">
+          crypt_single_base_currency = "Bitcoin (BTC)";crypt_single_target_currency = "US Dollar (USD)";crypt_single_font_family = "Verdana";crypt_single_font_size = "small";</script>
+          <script type="text/javascript" src="https://www.cryptonator.com/ui/js/widget/single_widget.js"></script>
         </div>
     </div>
   </nav>
 
 
-  <div class="blog-area bg-light blog-page"> 
+  <div class="container-fluid" style="margin-top: 40px;">
     <div class="col-md-12">
       <div class="pt-20 text-center">
-        <br>
-        <div class="row">
-          <br>
-          <h1>My childrens (Level 1)</h1>
-          <br>
-          <% @current_user_children.each do |children_first_level|%> 
-            <div class="col-md-4" style="margin-bottom: 29px;">
-              <h4>
-                Nombre: <%=children_first_level.name%> 
-                <br>
-                Email: <%=children_first_level.email%>
-              </h4>
-            </div>
-          <%end%>
+         <table class='table table-hover table-striped responsive-table'>
+              <thead class="blue-text text-darken-4">
+              <tr>
+                  <th>Nombre</th>
+                  <th>Correo</th>
+                  <th>Nivel</th>
+                  <th>Estado</th>
+              </tr>
+              </thead>
+
+              <tbody class="anchorFixcolor hoverTable">
+
+                <% @hijos_1.each do |user| %>
+                    <tr>
+                        <td>
+                          <div class="cardId-ref">
+                            DG<%= user.name %>
+                            </div>
+                        </td>
+                        <td style="padding: 20px 8px 8px 8px; font-weight: 700;"><%= user.email %></td>
+                        <td style="padding: 16px 8px 8px 8px;">
+                          <div class="point-level">
+                            1
+                          </div>
+                        </td>
+                        <td class="color-act">Activo</td>
+                    </tr>
+                <% end %>
+                <% @hijos_2.each do |user| %>
+                    <tr>
+                      <td>
+                        <div class="cardId-ref">
+                          DG<%= user.name %>
+                          </div>
+                      </td>
+                        <td style="padding: 20px 8px 8px 8px; font-weight: 700;"><%= user.email %></td>
+                        <td style="padding: 16px 8px 8px 8px;">
+                          <div class="point-level2">
+                            2
+                          </div>
+                        </td>
+                        <td class="color-act">Activo</td>
+                    </tr>
+                <% end %>
+                <% @hijos_3.each do |user| %>
+                    <tr>
+                      <td>
+                        <div class="cardId-ref">
+                          DG<%= user.name %>
+                          </div>
+                      </td>
+                        <td style="padding: 20px 8px 8px 8px; font-weight: 700;"><%= user.email %></td>
+                        <td style="padding: 16px 8px 8px 8px;">
+                          <div class="point-level3">
+                            3
+                          </div>
+                        </td>
+                        <td class="color-act">Activo</td>
+                    </tr>
+                <% end %>
+                <% @hijos_4.each do |user| %>
+                    <tr>
+                      <td>
+                        <div class="cardId-ref">
+                          DG<%= user.name %>
+                          </div>
+                      </td>
+                        <td style="padding: 20px 8px 8px 8px; font-weight: 700;"><%= user.email %></td>
+                        <td style="padding: 16px 8px 8px 8px;">
+                          <div class="point-level4">
+                            4
+                          </div>
+                        </td>
+                        <td class="color-act">Activo</td>
+                    </tr>
+                <% end %>
+                <% @hijos_5.each do |user| %>
+                    <tr>
+                      <td>
+                        <div class="cardId-ref">
+                          DG<%= user.name %>
+                          </div>
+                      </td>
+                        <td style="padding: 20px 8px 8px 8px; font-weight: 700;"><%= user.email %></td>
+                        <td style="padding: 16px 8px 8px 8px;">
+                          <div class="point-level5">
+                            5
+                          </div>
+                        </td>
+                        <td class="color-act">Activo</td>
+                    </tr>
+                <% end %>
+                <% @hijos_6.each do |user| %>
+                    <tr>
+                      <td>
+                        <div class="cardId-ref">
+                          DG<%= user.name %>
+                          </div>
+                      </td>
+                        <td style="padding: 20px 8px 8px 8px; font-weight: 700;"><%= user.email %></td>
+                        <td style="padding: 16px 8px 8px 8px;">
+                          <div class="point-level6">
+                            6
+                          </div>
+                        </td>
+                        <% if   user.blocked%>
+                          <td class="color-act">Activo</td>
+                        <%else%>
+                           <td style="color:rgba(185, 9, 9);font-weight:700;">Bloqueado</td>
+                        <%end%>
+                    </tr>
+                <% end %>
+              </tbody>
+          </table>
         </div>
-        <div class="row">
-          <h1>My childrens (Level 2)</h1>
-          <% @current_user_children.each do |children_first_level|%> 
-            <% children_first_level.children.each do |children_second_level|%>
-              <br>
-              <div class="col-md-4">
-                <h4>
-                  PADRE: <%=children_second_level.parent.name%> 
-                  <br>
-                  Nombre: <%=children_second_level.name%> 
-                  <br>
-                  Email: <%=children_second_level.email%>
-                  <br>
-                </h4>
-              </div>
-            <%end%>
-          <%end%>
-        </div>
-      </div>       
-    </div>    
+        <div class="pt-20 text-center">
+          <div class="" style="margin-top:40px;">
+            <table class='table table-hover table-striped responsive-table'>
+                <thead class="blue-text text-darken-4">
+                <tr>
+                    <th>Nivel</th>
+                    <th>Total donado</th>
+                    <th>Total bono</th>
+                </tr>
+                </thead>
+
+                <tbody class="anchorFixcolor hoverTable">
+
+                      <tr>
+                          <td>
+                            <div class="point-level">
+                              1
+                            </div>
+                          </td>
+                          <td><%= @amount_level_1 %></td>
+                          <td><%= number_with_precision( @amount_level_1*0.1, precision: 3)%></td>
+                      </tr>
+                      <tr>
+                          <td>
+                            <div class="point-level2">
+                              2
+                            </div>
+                          </td>
+                          <td><%= @amount_level_2 %></td>
+                          <td><%= number_with_precision( @amount_level_2*0.05, precision: 3)%></td>
+                      </tr>
+                      <tr>
+                          <td>
+                            <div class="point-level3">
+                              3
+                            </div>
+                          </td>
+                          <td><%= @amount_level_3 %></td>
+                          <td><%= number_with_precision( @amount_level_3*0.03, precision: 3)%></td>
+                      </tr>
+
+                      <tr>
+                          <td>
+                            <div class="point-level4">
+                              4
+                            </div>
+                          </td>
+                          <td><%= @amount_level_4 %></td>
+                          <td><%= number_with_precision( @amount_level_4*0.015, precision: 3)%></td>
+                      </tr>
+
+                      <tr>
+                          <td>
+                            <div class="point-level5">
+                              5
+                            </div>
+                          </td>
+                          <td><%= @amount_level_5 %></td>
+                          <td><%= number_with_precision( @amount_level_5*0.01, precision: 3)%></td>
+                      </tr>
+
+                       <tr>
+                          <td>
+                            <div class="point-level6">
+                              6
+                            </div>
+                          </td>
+                          <td><%= @amount_level_6 %></td>
+                          <td><%= number_with_precision( @amount_level_6*0.001, precision: 3)  %></td>
+                      </tr>
+
+                </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
   </div>
-
- 
-

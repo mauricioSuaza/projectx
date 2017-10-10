@@ -1,9 +1,9 @@
 development:
-  adapter: async
+  adapter: redis
 
 test:
   adapter: async
 
 production:
   adapter: redis
-  url: redis://localhost:6379/1
+  url:  redis://redistogo:1bf44e595246953e504fb3c5be07c9c1@angelfish.redistogo.com:9811/

@@ -16,6 +16,8 @@
 
     <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="favico.jpeg">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+
   </head>
 
   <body>
@@ -36,7 +38,7 @@
 
             <div class="navbar-right buttMenu" style:"width: 73%; float:right!important; margin-top:9px;!important">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" style="background-color: #fff;">
-                <i class="fa fa-bars" aria-hidden="true" style="font-size: 41px;"></i>
+                <i class="fa fa-bars fa-layout" aria-hidden="true" style="font-size: 41px;"></i>
               </button>
             </div>
 
@@ -79,7 +81,8 @@
 
                         <li>
                           <a href="/contacto" class="menu-item ">Contacto</a>
-                          <div class="pill"></li>
+                          <div class="pill">
+                        </li>
                         <!-- Menu Item -->
 
                         <!--
@@ -104,6 +107,19 @@
                             </li>
                         <% end %>
                          Menu Item -->
+
+                        <% if user_signed_in? %>
+
+                          <li><%= link_to 'Logout', destroy_user_session_path, method: :delete, :class => 'menu-item'  %></li>
+                            
+                        <% else%>
+                            <li >
+                                <%= link_to 'LOGIN', new_user_session_path,  :class => 'menu-item'  %>
+                            </li>
+                            <li >
+                                <%= link_to 'SIGNUP', new_user_registration_path,  :class => 'menu-item'%>
+                            </li>
+                        <%end%>
                       </ul>
 
                     </div>
@@ -148,7 +164,7 @@
                             <span class="caret"></span>
                           </button>
                           <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="top: 117%; left: 65px;">
-                           
+
                           </ul>
                         </div>
                       </div>

@@ -1,0 +1,33 @@
+<div class="mb40 col-md-6 col-sm-6 col-xs-12 post-container">
+
+    <div class="post-snippet">
+            
+            <div class="img-box">
+                 <% if article.invoice.url.present? %>
+                    <td> <%= image_tag(article.invoice.url, height: '400', width: '128') %></td>
+                  <% else %>
+                    <img src="assets/images/blog-imgs/blog-img-2.jpg">
+                  <% end %>
+                
+            </div>
+
+            <div class="meta">
+
+                <h4><%= article.title %></h4>                                   
+                <p><%= article.content %> </p>
+
+                <div class="post-info">
+                    <i class="pe-7s-clock"></i> <p>3 days ago</p>
+                    <div class="pull-right">
+                        <a href="#"><i class="pe-7s-share"></i></a>
+                        <a href="#"><i class="pe-7s-like"></i></a>
+                    </div>
+                </div><!-- //post-info -->
+                
+            </div><!-- //meta -->
+
+       
+
+    </div><!-- //col -->
+
+</div>
