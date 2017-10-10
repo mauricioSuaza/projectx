@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171004105939) do
+ActiveRecord::Schema.define(version: 20171010025156) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -147,6 +147,7 @@ ActiveRecord::Schema.define(version: 20171004105939) do
     t.decimal  "level_five_amount",      default: "0.0"
     t.decimal  "level_six_amount",       default: "0.0"
     t.boolean  "blocked"
+    t.string   "referral_email",         default: " "
     t.index ["ancestry"], name: "index_users_on_ancestry"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true

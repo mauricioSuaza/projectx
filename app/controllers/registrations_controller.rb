@@ -2,7 +2,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   prepend_before_action :check_captcha, only: [:create] # Change this to be any actions you want to protect.
     
-  layout "dashboard_layout.html", only: [:edit]
+  layout "dashboard_layout.html", only: [:edit, :update]
   
   def create
     super do
@@ -25,6 +25,14 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
   protected
+
+    def after_update_path_for(resource)
+      if resource.has_role? :user
+        '/my_dashboard'
+      else
+        '/'
+      end
+    end
   
     def after_sign_up_path_for(resource)
       '/' # Or :prefix_to_your_route
@@ -46,6 +54,6 @@ class RegistrationsController < Devise::RegistrationsController
 
     
     def account_update_params
-      params.require(:user).permit(:name, :btc, :phone, :country, :email, :password, :password_confirmation, :current_password)
+      params.require(:user).permit(:name, :btc, :referral_email, :phone, :country, :email, :password, :password_confirmation, :current_password)
     end
 end
