@@ -8,9 +8,10 @@ class RegistrationsController < Devise::RegistrationsController
     super do
     	refferal_email = params[:user][:refferal]
     	root = User.find_by_email(refferal_email)
-    	if refferal_email
+      if refferal_email
+        @user.update(referral_email:  refferal_email)
     		if !root.nil?
-    			@user.update(parent_id:  root.id)
+          @user.update(parent_id:  root.id)
     		end
     	end
     end
