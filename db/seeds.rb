@@ -8,7 +8,7 @@
 
 
 
-=begin
+
   for i in 0..24
     user = User.new(
       email:"test#{i}@test.com",
@@ -19,14 +19,6 @@
       saldo: rand(100..200))
     user.skip_confirmation!
     user.save
-    user.requests.create(value: rand(80..200))
   end
-=end
 
 
-
-  User.first(3).each do |user|
-
-    user.requests.create(value: rand(1..8))
-
-  end
