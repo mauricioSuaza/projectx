@@ -7,7 +7,10 @@ Rails.application.routes.draw do
   # Serve websocket cable requests in-process
   require 'sidekiq/web'
 
-  mount Sidekiq::Web => '/sidekiq'
+  authenticate :user, lambda { |u| u.has_role? :developer } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+  
   mount ActionCable.server => '/cable'
 
   root to: 'static#home'
