@@ -282,6 +282,11 @@ owner27 = User.new(name: 'Kevin José Ossa', email: 'joseossaba@gmail.com',phone
 owner27.add_role :owner
 owner27.skip_confirmation!
 owner27.save!
+
+owner28 = User.new(name: 'Joan Gonzalez', email: 'juanchitoortiz001@gmail.com',phone: '3007827302', btc: '3LaSeh5MQve5b8VdvZUeEkhvLhKZDnGVpT', password: 'asd123456')
+owner28.add_role :owner
+owner28.skip_confirmation!
+owner28.save!
    
 
 
