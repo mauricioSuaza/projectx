@@ -33,7 +33,7 @@ class TransactionsController < ApplicationController
     @donation = Donation.find(transaction.donation_id)
     if (@donation.transactions.all? {|transc| transc.status == true}) && (@donation.pending==0)
       @donation.update(completed: true)
-      UserWorker.perform_in(40.seconds,  @donation.id)
+      UserWorker.perform_in(15.days,  @donation.id)
     end
     @donation
   end
