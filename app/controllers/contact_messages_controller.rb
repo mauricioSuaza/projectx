@@ -27,6 +27,7 @@ class ContactMessagesController < ApplicationController
     @contact_message = ContactMessage.new(contact_message_params)
 
     respond_to do |format|
+
       if @contact_message.save
         ContactMailer.contact_email(@contact_message).deliver_later
         format.html { redirect_to '/', notice: 'Tu mensaje fue enviado exitosamente! pronto un miembro de nuestro equipo se comunicará contigo.' }
@@ -36,6 +37,7 @@ class ContactMessagesController < ApplicationController
         format.json { render json: @contact_message.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /contact_messages/1
