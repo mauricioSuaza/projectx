@@ -258,32 +258,32 @@ owner21.skip_confirmation!
 owner21.save!
 
 
-owner22 = User.new(name: 'Diego Osorio', email: 'd.osorio0001@gmail.com',phone: '3007827990', btc: '3JFSxNtm3sNXqKzn3qYVu1NhRnQLx2W6A6', password: 'asd123456')
+owner22 = User.new(name: 'Diego Osorio', email: 'd.osorio0001@gmail.com',phone: '+573007827990', btc: '3JFSxNtm3sNXqKzn3qYVu1NhRnQLx2W6A6', password: 'asd123456')
 owner22.add_role :owner
 owner22.skip_confirmation!
 owner22.save!
 
-owner24 = User.new(name: 'Camila Arboleda', email: 'camilitaarbole@gmail.com',phone: '3007830601', btc: '3Kge15UsZJqSHnNT82etJJQ471URdoxdQN', password: 'asd123456')
+owner24 = User.new(name: 'Camila Arboleda', email: 'camilitaarbole@gmail.com',phone: '+573007830601', btc: '3Kge15UsZJqSHnNT82etJJQ471URdoxdQN', password: 'asd123456')
 owner24.add_role :owner
 owner24.skip_confirmation!
 owner24.save!
 
-owner25 = User.new(name: 'Santiago Aguilar', email: 'santiaguilar016@gmail.com',phone: '3015645589', btc: '3MXqbn2s8Yywdatv1WcgkCxuXgNRNFqxKP', password: 'asd123456')
+owner25 = User.new(name: 'Santiago Aguilar', email: 'santiaguilar016@gmail.com',phone: '+573015645589', btc: '3MXqbn2s8Yywdatv1WcgkCxuXgNRNFqxKP', password: 'asd123456')
 owner25.add_role :owner
 owner25.skip_confirmation!
 owner25.save!
 
-owner26 = User.new(name: 'Julian Gutierrez', email: 'juliangutierrez0001@gmail.com',phone: '3015644821', btc: '34YDcEmgiLBsXw2ADcNtnsjBsmjZsrJx1d', password: 'asd123456')
+owner26 = User.new(name: 'Julian Gutierrez', email: 'juliangutierrez0001@gmail.com',phone: '+573015644821', btc: '34YDcEmgiLBsXw2ADcNtnsjBsmjZsrJx1d', password: 'asd123456')
 owner26.add_role :owner
 owner26.skip_confirmation!
 owner26.save!
 
-owner27 = User.new(name: 'Kevin José Ossa', email: 'joseossaba@gmail.com',phone: '3007829575', btc: '3N7S7s9pn3Yan44ypnvbexU2dXYJ23SNv9', password: 'asd123456')
+owner27 = User.new(name: 'Kevin José Ossa', email: 'joseossaba@gmail.com',phone: '+573007829575', btc: '3N7S7s9pn3Yan44ypnvbexU2dXYJ23SNv9', password: 'asd123456')
 owner27.add_role :owner
 owner27.skip_confirmation!
 owner27.save!
 
-owner28 = User.new(name: 'Joan Gonzalez', email: 'juanchitoortiz001@gmail.com',phone: '3007827302', btc: '3LaSeh5MQve5b8VdvZUeEkhvLhKZDnGVpT', password: 'asd123456')
+owner28 = User.new(name: 'Joan Gonzalez', email: 'juanchitoortiz001@gmail.com',phone: '+573007827302', btc: '3LaSeh5MQve5b8VdvZUeEkhvLhKZDnGVpT', password: 'asd123456')
 owner28.add_role :owner
 owner28.skip_confirmation!
 owner28.save!
