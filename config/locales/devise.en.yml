@@ -45,7 +45,13 @@ en:
       update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address."
       updated: "Your account has been updated successfully."
     sessions:
-      signed_in: "Signed in successfully."
+      signed_in: "Cordial Saludo. Queremos anunciar que hasta el 15 de octubre 
+      los usuarios preregistrados tienen la posiblidad de ingresar nuevamente su 
+      referido desde el panel ACCOUNT SETTINGS en el campo EMAIL DE QUIEN LO REFIRIO.
+       Durante las primeras semanas muchos cometieron el error de auto-referirse y en nuestra
+      bandeja de entrada hemos recibido muchos mensajes para hacer cambios en dicho campo. 
+      Por tal razon, se decidio hacer un back-up de esta informacion. Cabe resaltar que dicho cambio
+       no afectara el porcentaje de la primera donacion de sus referidos. Gracias por su atención."
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
     unlocks:

@@ -30,7 +30,7 @@
                   <h1 style="text-shadow: 2px 3px 5px rgba(62, 61, 61, 0.71); margin: 10px 0px;">Send Goals</h1>
                   <div>
                     <%= form_tag("/send_donation", method: "post") do %>
-                    <%= number_field_tag :value, nil,  class: "input-form"%>
+                    <%= number_field_tag :value, nil,  class: "input-form", placeholder: 'USD'%>
                     <%= submit_tag("Send donation", class: "btn btn-primary btn-primary btn-sm btn-form") %>
                     <% end %>
                   </div>
@@ -51,7 +51,7 @@
                   <div>
                       <div class ="request-donation-form">
                           <%= form_tag("/request_donation", method: "post") do %>
-                          <%= number_field_tag :value, nil,  class: "input-form" %>
+                          <%= number_field_tag :value, nil,  class: "input-form",  placeholder: 'USD' %>
                           <%= submit_tag("Request donation", class: "btn btn-primary btn-primary btn-sm btn-form") %>
                           <% end %>
                       </div>
@@ -70,5 +70,3 @@
       </div>
     </div>
   </div>
-
-
