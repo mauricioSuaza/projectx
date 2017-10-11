@@ -25,17 +25,17 @@ class AdminDashboardController < ApplicationController
     end
 
     def owner_transactions
-        if current_user.has_role? :owner 
-            @owner_transactions = Transaction.where(request_id: nil).paginate(:page => params[:page], :per_page => 10) 
-            @transactions_total = 0
-            @completed_total = 0
-            @owner_transactions.each do |transaction|
-                @transactions_total += transaction.value
-                if transaction.status
-                    @completed_total += transaction.value
-                end
+        
+        @owner_transactions = Transaction.where(request_id: nil).paginate(:page => params[:page], :per_page => 10) 
+        @transactions_total = 0
+        @completed_total = 0
+        @owner_transactions.each do |transaction|
+            @transactions_total += transaction.value
+            if transaction.status
+                @completed_total += transaction.value
             end
         end
+        
         render layout: "admin_dashboard_layout"
     end
 
