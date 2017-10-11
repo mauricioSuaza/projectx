@@ -18,7 +18,7 @@ class TransactionsController < ApplicationController
         end
         create_notification @transaction
 
-        if current_user.has_role?(:owner)
+        if current_user.has_role?(:admin)
           redirect_to '/my_transactions', notice: "Transaction succesfully cofirmed"
         else
           redirect_to '/my_dashboard', notice: "Transaction succesfully cofirmed"
