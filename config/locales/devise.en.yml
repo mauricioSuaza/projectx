@@ -48,10 +48,9 @@ en:
       signed_in: "Cordial Saludo. Queremos anunciar que hasta el 15 de octubre 
       los usuarios preregistrados tienen la posiblidad de ingresar nuevamente su 
       referido desde el panel ACCOUNT SETTINGS en el campo EMAIL DE QUIEN LO REFIRIO.
-       Durante las primeras semanas muchos cometieron el error de auto-referirse y en nuestra
-      bandeja de entrada hemos recibido muchos mensajes para hacer cambios en dicho campo. 
-      Por tal razon, se decidio hacer un back-up de esta informacion. Cabe resaltar que dicho cambio
-       no afectara el porcentaje de la primera donacion de sus referidos. Gracias por su atención."
+      Durante las primeras semanas muchos cometieron el error de auto-referirse y en nuestra
+      bandeja de entrada hemos recibido  mensajes para hacer cambios en dicho campo. Cabe resaltar que dicho cambio
+       no afectara el porcentaje recibido por sus referidos de las donaciones que realizen durante estos días. Gracias por su atención."
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
     unlocks:
