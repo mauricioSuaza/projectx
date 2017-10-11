@@ -20,7 +20,8 @@
                 <td class="left-tab" style="text-align:left;">Value:</td>
                 <td><%= transaction.value %></td>
             </tr>
-            <%if transaction.status == false%>
+
+            <%if transaction.status == false && transaction.completed === "pending"%>
               <tr>
                 <%@remaining = transaction.created_at + 72.hours %>
                 <%@time_now = DateTime.now %>
@@ -31,12 +32,14 @@
               </tr>
             <%end%>
             <tr>
-                <td class="left-tab" style="text-align:left;">Status:</td>
-                <% if transaction.status%>
-                    <td>Completed</td>
-                <% else  %>
-                    <td>Pending </td>
-                <% end%>
+              <td class="left-tab" style="text-align:left;">Status:</td>
+              <% if transaction.status%>
+                <td>Completada</td>
+              <% elsif transaction.status == false && transaction.completed == "pending"  %>
+                <td>Pendiente </td>
+              <% elsif transaction.status == false && transaction.completed == "canceled"  %>
+                <td>Cancelada </td>
+              <% end%>
             </tr>
             <tr>
                 <td class="left-tab" style="text-align:left;">Receiver name:</td>
