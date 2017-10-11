@@ -10,7 +10,7 @@ class TransactionsController < ApplicationController
   def confirm_transaction
     @transaction = Transaction.find(params[:transaction_id])
     @receiver = User.find(@transaction.receiver_id)
-    if (@transaction.receiver_id == current_user.id) || (@receiver.has_role? :owner)
+    if (@transaction.receiver_id == current_user.id) || (@receiver.has_role? :admin)
         @transaction.update(status: true)
         donation_check @transaction
         if @transaction.request_id
