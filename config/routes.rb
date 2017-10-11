@@ -34,7 +34,7 @@ Rails.application.routes.draw do
 
   get '/confirm_transaction', to: 'transactions#confirm_transaction', as: 'transaction_confirm'
 
-  devise_for :users, controllers: { registrations: 'registrations', confirmations: 'confirmations' }
+  devise_for :users, controllers: { registrations: 'registrations', confirmations: 'confirmations', sessions: "sessions" }
 
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'

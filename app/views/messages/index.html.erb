@@ -76,14 +76,13 @@
           <div>
             <%=form_for [@chat, @message], html: { id: "message-form-chat", data: {admin: @admin, current_user_admin: @current_user_admin, messages_count: @messages_count }} do |f|%>
 
-              <div class="field" style="width:70%;margin: auto!important;">
-                <%= f.text_area :body, class: "form-control body-input", data: {textarea: "message"} %>
+              <div class="text-area-message" style="width:70%;margin: auto!important;">
+                <%= f.text_field :body %>
               </div>
 
-                <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
+              <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
               <div class="text-center" style="margin: 30px;">
                 <%= f.button :submit, class: "ui blue labeled submit icon button responder text-center enviar-chat", data: {send: "message"} %>
-
               </div>
             <% end %>
           </div>

@@ -27,12 +27,17 @@
                       <%= f.label :remember_me %>
                     </div>
                   <% end -%>
-
+                  <div class="col-md-4 col-md-offset-2">
+                    <%= recaptcha_tags %>
+                  </div>
+                  
                   <div class="actions">
                     <%= f.submit "Log in", class: 'button button-md btn-block button-primary' %>
                   </div>     
                 <% end %>
             </div>
+            <br>
+            <br>
 
         </div><!-- //row -->
 
