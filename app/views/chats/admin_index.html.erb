@@ -42,7 +42,8 @@
                    <div class="col-md-4">
                     <p class="text-center">
                       <%if !chat.messages.empty?%>
-                        <%= link_to chat.messages.last.body, chat_messages_path(chat)%>
+                        <%= link_to chat.messages.last.body[0,20].html_safe, chat_messages_path(chat)%>...
+
                       <%else%>
                         No tienes mensajes
                       <%end%>
