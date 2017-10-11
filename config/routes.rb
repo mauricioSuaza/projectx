@@ -34,6 +34,8 @@ Rails.application.routes.draw do
 
   get '/confirm_transaction', to: 'transactions#confirm_transaction', as: 'transaction_confirm'
 
+  get '/terminos', to: 'static#terminos', as: 'terminos'
+
   devise_for :users, controllers: { registrations: 'registrations', confirmations: 'confirmations', sessions: "sessions" }
 
   devise_scope :user do

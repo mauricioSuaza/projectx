@@ -29,4 +29,7 @@ class StaticController < ApplicationController
     render layout: "blank_two"
   end
 
+  def terminos
+  end
+
 end
