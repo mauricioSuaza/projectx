@@ -8,7 +8,7 @@
         </button>
 
         <div class="navbar-header">
-          <a class="navbar-brand" href="#" style="font-size: 18px;color: #606060;line-height: 20px;">WORKSPACE</a>
+          <a class="navbar-brand" href="#" style="font-size: 18px;color: #606060;line-height: 20px;">Zona De Trabajo</a>
         </div>
 
         <div style="float:right; margin-right:20px;">
@@ -27,11 +27,11 @@
             <div class="">
               <div class="col-md-5 donations-container col-xs-12" style="margin-left: 45px;">
                 <div class="container-fluid container-title">
-                  <h1 style="text-shadow: 2px 3px 5px rgba(62, 61, 61, 0.71); margin: 10px 0px;">Send Goals</h1>
+                  <h1 style="text-shadow: 2px 3px 5px rgba(62, 61, 61, 0.71); margin: 10px 0px;">Enviar</h1>
                   <div>
                     <%= form_tag("/send_donation", method: "post") do %>
                     <%= number_field_tag :value, nil,  class: "input-form", placeholder: 'USD'%>
-                    <%= submit_tag("Send donation", class: "btn btn-primary btn-primary btn-sm btn-form") %>
+                    <%= submit_tag("Enviar donación", class: "btn btn-primary btn-primary btn-sm btn-form") %>
                     <% end %>
                   </div>
                 </div>
@@ -47,12 +47,12 @@
 
               <div class="col-md-5 col-md-offset-1 donations-container col-xs-12">
                 <div class="container-fluid container-title">
-                  <h1 style="text-shadow: 2px 3px 5px rgba(62, 61, 61, 0.71); margin: 10px 0px;">Request Goals</h1>
+                  <h1 style="text-shadow: 2px 3px 5px rgba(62, 61, 61, 0.71); margin: 10px 0px;">Requerir</h1>
                   <div>
                       <div class ="request-donation-form">
                           <%= form_tag("/request_donation", method: "post") do %>
                           <%= number_field_tag :value, nil,  class: "input-form",  placeholder: 'USD' %>
-                          <%= submit_tag("Request donation", class: "btn btn-primary btn-primary btn-sm btn-form") %>
+                          <%= submit_tag("Requerir donación", class: "btn btn-primary btn-primary btn-sm btn-form") %>
                           <% end %>
                       </div>
                   </div>

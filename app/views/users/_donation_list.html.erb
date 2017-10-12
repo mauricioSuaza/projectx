@@ -11,8 +11,8 @@
           <div class="span10">
             <i class="fa fa-paper-plane" aria-hidden="true" style="font-size: 60px; color: rgb(29, 90, 150);"></i>
             <div style="font-size: 20px; color: #202223;">
-              <strong>Code: DGDN<%= donation.id %></strong><br>
-              <strong >Value: <%= donation.value %></strong>
+              <strong>Código: DGDN<%= donation.id %></strong><br>
+              <strong >Goal: <%= donation.value %></strong>
             </div>
           </div>
           <div class="span1 dropdown-user" data-for=".<%= donation.id%>">
@@ -22,7 +22,7 @@
       <div class="row-fluid user-infos <%= donation.id%>">
           <div class="panel panel-primary">
               <div class="panel-heading">
-                  <h3 class="panel-title">Donation information</h3>
+                  <h3 class="panel-title">Información Donación</h3>
                   <i class="fa fa-info-circle" aria-hidden="true" style="color: rgba(255, 255, 255, 0.54);"></i>
               </div>
               <div class="panel-body">
@@ -31,33 +31,33 @@
                           <table class="table table-condensed table-responsive table-user-information">
                               <tbody>
                               <tr>
-                                  <td class="left-tab" style="text-align:left;">Value:</td>
+                                  <td class="left-tab" style="text-align:left;">Goal:</td>
                                   <td><%= donation.value %></td>
                               </tr>
                               <tr>
-                                  <td class="left-tab" style="text-align:left;">Date:</td>
+                                  <td class="left-tab" style="text-align:left;">Dia:</td>
                                   <td><%= donation.created_at.to_date %></td>
                               </tr>
                               <tr>
-                                  <td class="left-tab" style="text-align:left;">Status:</td>
+                                  <td class="left-tab" style="text-align:left;">Estado:</td>
                                   <% if donation.completed %>
                                       <td>Completed</td>
                                   <% elsif donation.status == "pending"  %>
-                                      <td>Pending for requests</td>
+                                      <td>Pendiente por ser requerida </td>
                                   <% else donation.status == "completed"  %>
-                                      <td>Pending for transactions completion</td>
+                                      <td>Transación pendiente por completar</td>
                                   <% end %>
                               </tr>
                               <tr>
-                                  <td class="left-tab" style="text-align:left;">Value pending to be requested</td>
+                                  <td class="left-tab" style="text-align:left;">Valor pendiente por ser requerido</td>
                                   <td><%= donation.pending %></td>
                               </tr>
                               <tr>
-                                  <td class="left-tab" style="text-align:left;">Total transactions</td>
+                                  <td class="left-tab" style="text-align:left;">Total de transaciones</td>
                                   <td><%= donation.transactions.count %></td>
                               </tr>
                               <tr>
-                                  <td class="left-tab" style="text-align:left;">Completed transactions</td>
+                                  <td class="left-tab" style="text-align:left;"> Transaciones completas</td>
                                   <td><%= donation.transactions.where(status: true).count %></td>
                               </tr>
                               </tbody>

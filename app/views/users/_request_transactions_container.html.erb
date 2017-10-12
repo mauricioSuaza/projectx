@@ -8,13 +8,13 @@
 <div class="transactions-container">
     <div class="panel-transactions <%=transc_border%> container-fluid">
         <div class="panel-heading">
-            <h3 class="panel-title" style="font-size: 30px;">Transaction <%= transaction.id %></h3>
+            <h3 class="panel-title" style="font-size: 30px;">Transacción <%= transaction.id %></h3>
             <i class="fa fa-exchange" aria-hidden="true" style="color: rgba(255, 255, 255, 0.54);"></i>
         </div>
         <table class="table table-condensed table-responsive table-user-information">
             <tbody>
                 <tr>
-                    <td style="text-align:left;">Value:</td>
+                    <td style="text-align:left;">Goal:</td>
                     <td><%= transaction.value %></td>
                 </tr>
             
@@ -24,12 +24,12 @@
                     <%@time_now = DateTime.now %>
                     <%@time_left = (((@remaining - @time_now)/60)/60)%>
                     <%@time_left%>
-                    <td style="text-align:left;">Time remaining:</td>
-                    <td><%=@time_left.round(1)%> hours</td>
+                    <td style="text-align:left;">Tiempo Restante:</td>
+                    <td><%=@time_left.round(1)%> horas</td>
                 </tr>
                 <%end%>
                 <tr>
-                  <td class="left-tab" style="text-align:left;">Status:</td>
+                  <td class="left-tab" style="text-align:left;">Estado:</td>
                   <% if transaction.status%>
                     <td>Completada</td>
                   <% elsif transaction.status == false && transaction.completed == "pending"  %>
@@ -39,21 +39,21 @@
                   <% end%>
                 </tr>
                 <tr>
-                    <td style="text-align:left;">Sender name:</td>
+                    <td style="text-align:left;">Nombre donante:</td>
                     <td><%= User.find(transaction.sender_id).name %></td>
                 </tr>
 
                 <tr>
-                    <td style="text-align:left;">Sender phone:</td>
+                    <td style="text-align:left;">Telefono donante:</td>
                     <td><%= User.find(transaction.sender_id).phone %></td>
                 </tr>
 
                 <tr>
-                    <td style="text-align:left;">Sender email:</td>
+                    <td style="text-align:left;">Email donante:</td>
                     <td><%= User.find(transaction.sender_id).email %></td>
                 </tr>
                 <tr>
-                    <td style="text-align:left;">Sender wallet</td>
+                    <td style="text-align:left;">Monedero donante</td>
                     <td style="font-size:11px"><%= User.find(transaction.sender_id).btc %></td>
                 </tr>
             </tbody>
@@ -63,7 +63,7 @@
                 <div class="col-md-6">
                     <%= button_to chats_path(sender_id: current_user.id, recipient_id: transaction.sender_id), class: 'btn btn-primary' do %>
                         <i class="fa fa-weixin" aria-hidden="true"></i>
-                        Message
+                        Mensaje
                     <%end%>
                 </div>
                 <div class="col-md-6">
@@ -74,7 +74,7 @@
                             </div>
                         <% else %>
                             <div>
-                                <span style="color:red; font-style:italic; font-size:12px;">"Invoice not sent yet"</span>
+                                <span style="color:red; font-style:italic; font-size:12px;">"Recibo no a sido envido"</span>
                             </div>
                         <% end  %>
                     </div>

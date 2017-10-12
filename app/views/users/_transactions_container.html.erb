@@ -11,13 +11,13 @@
 <div class="transactions-container">
     <div class="panel-transactions <%=transc_border%> container-fluid">
         <div class="panel-heading">
-            <h3 class="panel-title" style="font-size: 30px;">Transaction <%= transaction.id %></h3>
+            <h3 class="panel-title" style="font-size: 30px;">Transacción <%= transaction.id %></h3>
             <i class="fa fa-exchange" aria-hidden="true" style="color: rgba(255, 255, 255, 0.54);"></i>
         </div>
         <table class="table table-condensed table-responsive table-user-information">
             <tbody>
             <tr>
-                <td class="left-tab" style="text-align:left;">Value:</td>
+                <td class="left-tab" style="text-align:left;">Goal:</td>
                 <td><%= transaction.value %></td>
             </tr>
 
@@ -27,12 +27,12 @@
                 <%@time_now = DateTime.now %>
                 <%@time_left = (((@remaining - @time_now)/60)/60)%>
                 <%@time_left%>
-                <td class="left-tab" style="text-align:left;">Time remaining:</td>
-                <td><%=@time_left.round(1)%> hours</td>
+                <td class="left-tab" style="text-align:left;">Tiempo Restante:</td>
+                <td><%=@time_left.round(1)%> horas</td>
               </tr>
             <%end%>
             <tr>
-              <td class="left-tab" style="text-align:left;">Status:</td>
+              <td class="left-tab" style="text-align:left;">Estado:</td>
               <% if transaction.status%>
                 <td>Completada</td>
               <% elsif transaction.status == false && transaction.completed == "pending"  %>
@@ -42,20 +42,20 @@
               <% end%>
             </tr>
             <tr>
-                <td class="left-tab" style="text-align:left;">Receiver name:</td>
+                <td class="left-tab" style="text-align:left;">Nombre Receptor:</td>
                 <td><%= User.find(transaction.receiver_id).name %></td>
             </tr>
             <tr>
-                <td class="left-tab" style="text-align:left;">Receiver phone:</td>
+                <td class="left-tab" style="text-align:left;">Telefono Receptor:</td>
                 <td><%= User.find(transaction.receiver_id).phone %></td>
             </tr>
 
             <tr>
-                <td class="left-tab" style="text-align:left;">Receiver email:</td>
+                <td class="left-tab" style="text-align:left;">Email Receptor:</td>
                 <td><%= User.find(transaction.receiver_id).email %></td>
             </tr>
             <tr>
-                <td class="left-tab" style="text-align:left;">Receiver wallet</td>
+                <td class="left-tab" style="text-align:left;">Monedero Receptor</td>
                 <td style="font-size:11px"><%= User.find(transaction.receiver_id).btc %></td>
             </tr>
 
@@ -66,17 +66,17 @@
           <div>
               <%= button_to chats_path(sender_id: current_user.id, recipient_id: transaction.receiver_id), class: 'btn btn-primary own-btn-primary' do %>
               <i class="fa fa-weixin i-form" aria-hidden="true"></i>
-              Message
+              Mensaje
               <%end%>
           </div>
 
           <div>
               <div class="">
                   <% if transaction.invoice.url %>
-                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"  style="margin-top:10px;" data-target="#img<%=transaction.id%>"><i class="fa fa-file-text-o i-form" aria-hidden="true" style="margin: 0px 20px 0px 0px;"></i>Check invoice</button>
+                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"  style="margin-top:10px;" data-target="#img<%=transaction.id%>"><i class="fa fa-file-text-o i-form" aria-hidden="true" style="margin: 0px 20px 0px 0px;"></i>Ver recibo</button>
                   <% else %>
                       <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#m<%=transaction.id%>"  style="margin-top:10px;">
-                        <i class="fa fa-upload i-form" aria-hidden="true" style="margin: 0px 5px;"></i>Upload receipt</button>
+                        <i class="fa fa-upload i-form" aria-hidden="true" style="margin: 0px 5px;"></i>Subir recibo</button>
                   <% end  %>
               </div>
           </div>
