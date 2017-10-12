@@ -36,13 +36,13 @@
                   <% end %>
                   <div class="col-md-4">
                     <p class="text-center">
-                      <%= link_to recipient.name, chat_messages_path(chat)%>
+                      <%= link_to recipient.name[0,15].html_safe, chat_messages_path(chat)%>
                     </p>
                   </div>
                    <div class="col-md-4">
                     <p class="text-center">
                       <%if !chat.messages.empty?%>
-                        <%= link_to chat.messages.last.body[0,20].html_safe, chat_messages_path(chat)%>...
+                        <%= link_to chat.messages.last.body[0,15].html_safe, chat_messages_path(chat)%>...
 
                       <%else%>
                         No tienes mensajes

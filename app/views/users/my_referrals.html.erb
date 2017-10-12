@@ -20,9 +20,13 @@
   </nav>
 
 
-  <div class="container-fluid" style="margin-top: 40px;">
+  <div class="container-fluid" style="margin-top: 40px; ">
     <div class="col-md-12">
-      <div class="pt-20 text-center">
+      <div class="text-center" >
+        <h1  >Lista de referidos </h1>
+      </div>
+
+      <div class="pt-20 text-center" style="margin-top:40px; ">
          <table class='table table-hover table-striped responsive-table'>
               <thead class="blue-text text-darken-4">
               <tr>
@@ -34,12 +38,12 @@
               </thead>
 
               <tbody class="anchorFixcolor hoverTable">
-
+               
                 <% @hijos_1.each do |user| %>
                     <tr>
                         <td>
                           <div class="cardId-ref">
-                            DG<%= user.name %>
+                            <%= user.name %>
                             </div>
                         </td>
                         <td style="padding: 20px 8px 8px 8px; font-weight: 700;"><%= user.email %></td>
@@ -128,7 +132,7 @@
                             6
                           </div>
                         </td>
-                        <% if   user.blocked%>
+                        <% if  user.blocked%>
                           <td class="color-act">Activo</td>
                         <%else%>
                            <td style="color:rgba(185, 9, 9);font-weight:700;">Bloqueado</td>
@@ -138,7 +142,11 @@
               </tbody>
           </table>
         </div>
-        <div class="pt-20 text-center">
+
+        <div class="pt-20 text-center" style="margin-top:40px;">
+          <div class="text-center">
+            <h1>Bonos recibidos por nivel </h1>
+          </div>
           <div class="" style="margin-top:40px;">
             <table class='table table-hover table-striped responsive-table'>
                 <thead class="blue-text text-darken-4">
@@ -148,7 +156,6 @@
                     <th>Total bono</th>
                 </tr>
                 </thead>
-
                 <tbody class="anchorFixcolor hoverTable">
 
                       <tr>
@@ -212,6 +219,63 @@
                 </tbody>
             </table>
           </div>
-      </div>
+        </div>
+    </div>
+  </div>
+
+
+
+  <div class="pt-20 text-center" style="margin-top:40px; margin-bottom:40px;">
+    <div class="text-center">
+      <h1>Donaciones  de mis referidos </h1>
+    </div>
+    <div class="" style="margin-top:40px;">
+      <table class='table table-hover  responsive-table'>
+          <thead class="blue-text text-darken-4">
+          <tr>
+              
+              <th>Nombre</th>
+              <th>Correo</th>
+              <th>Valor Donado</th>
+              <th>Estado</th> 
+              <th>Completed date</th>
+              <th>Claim date</th>
+
+          </tr>
+          </thead>
+          <tbody class="anchorFixcolor hoverTable">
+                <% @descendants.each do |user| %>
+                  <%user.donations.each do |donation|%>
+
+                    <%color_font = 'font_colortwo'%>
+                    <%if donation.completed &&  donation.pending==0%>
+                       <%color_font = 'font_color'%>
+                    <%end%>
+
+                    <tr>
+                      <td>
+                        <div >
+                          DG<%= user.name %>
+                        </div>
+                      </td>
+                      <td style="padding: 20px 8px 8px 8px;"><%= user.email %></td>
+                      <td><%= donation.value %></td>
+                      <%if  donation.completed &&  donation.pending==0%>
+                          <td class="<%=color_font%>">Completed</td>
+                      <%else%>
+                          <td class="<%=color_font%>">Pending</td>
+                      <%end%>
+                      <%if donation.completed%>
+                          <td><%= (donation.confirmed_at).to_date %></td>
+                          <td><%= (donation.created_at + 15.days).to_date %></td>
+                      <%else%>
+                          <td>No completada</td>
+                          <td>No completada </td>
+                      <%end%>
+                    </tr>
+                  <% end %>
+                <% end %>
+          </tbody>
+      </table>
     </div>
   </div>

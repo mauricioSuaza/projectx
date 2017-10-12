@@ -63,7 +63,7 @@ class UsersController < ApplicationController
 			@hijos_4 = current_user.descendants(:at_depth => 4)
 			@hijos_5 = current_user.descendants(:at_depth => 5)
       @hijos_6 = current_user.descendants(:at_depth => 6)
-
+      @descendants = current_user.descendants
       @amount_level_1 = current_user.level_one_amount
       @amount_level_2 = current_user.level_two_amount
       @amount_level_3 = current_user.level_three_amount

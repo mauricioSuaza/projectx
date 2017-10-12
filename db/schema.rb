@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171010025156) do
+ActiveRecord::Schema.define(version: 20171012050110) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -36,13 +36,14 @@ ActiveRecord::Schema.define(version: 20171010025156) do
   end
 
   create_table "donations", force: :cascade do |t|
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.float    "value"
     t.integer  "user_id"
     t.decimal  "pending"
-    t.integer  "status",     default: 0
-    t.boolean  "completed",  default: false
+    t.integer  "status",       default: 0
+    t.boolean  "completed",    default: false
+    t.datetime "confirmed_at", default: '2017-10-12 05:04:38'
   end
 
   create_table "messages", force: :cascade do |t|

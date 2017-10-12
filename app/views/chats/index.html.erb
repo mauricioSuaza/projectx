@@ -60,7 +60,7 @@
                   <div class="col-md-4 col-xs-6" style="padding: 5px;">
                     <p class="text-center col-chat" style="border-bottom: 1px solid rgba(0, 0, 0, 0.18);">
                       <span class="chat-title">
-                        <%= link_to recipient.name, chat_messages_path(chat)%>
+                        <%= link_to recipient.name[0,15].html_safe, chat_messages_path(chat)%>
                       </span>
                     </p>
                   </div>
@@ -68,7 +68,7 @@
                     <p class="text-center col-chat" style="border-bottom: 1px solid rgba(0, 0, 0, 0.18);">
                       <%if !chat.messages.empty?%>
                         <span class="chat-title">
-                          <%=link_to chat.messages.last.body, chat_messages_path(chat)%>
+                          <%=link_to chat.messages.last.body[0,15].html_safe, chat_messages_path(chat)%>
                         </span>
                       <%else%>
                         <span>No tienes mensajes</span>
