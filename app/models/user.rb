@@ -7,8 +7,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :lockable
 
   has_many :chats, :foreign_key => :sender_id
-  has_many :donations
-  has_many :requests
+  has_many :donations, dependent: :destroy
+  has_many :requests, dependent: :destroy
   has_many :notifications, dependent: :destroy
 
 
