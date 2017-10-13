@@ -45,8 +45,8 @@
               </div>
                     <div style="padding: 10px 20px;">
                         <% if user_signed_in? %>
-                            <p>Hello: <span style="font-weight: 600;"><%= current_user.email %></span></p>
-                            <p>Balance <%= number_with_precision( current_user.saldo, precision: 3) %></p>
+                            <p>Hola: <span style="font-weight: 600;"><%= current_user.email %></span></p>
+                            <p>Balance: <%= number_with_precision( current_user.saldo, precision: 3) %></p>
                         <% end%>
                     </div>
 
@@ -76,21 +76,21 @@
                     <li>
                         <a href="/my_dashboard">
                             <i class="fa fa-home" aria-hidden="true"></i>
-                            <p>Workspace</p>
+                            <p>Zona de Trabajo</p>
                         </a>
                     </li>
 
                     <li>
                         <a href="/account_balance">
                             <i class="fa fa-folder-o" aria-hidden="true"></i>
-                            <p>Account Balance </p>
+                            <p> Balance </p>
                         </a>
                     </li>
 
                     <li>
                         <a href="/my_referrals">
                             <i class="fa fa-users" aria-hidden="true"></i>
-                            <p>Referrals</p>
+                            <p>Referidos</p>
                         </a>
                     </li>
 
@@ -98,7 +98,7 @@
                         <a href="/chats">
 
                             <i class="fa fa-comments" aria-hidden="true"></i>
-                            <p>Conversations</p>
+                            <p>Conversaciones</p>
                         </a>
                     </li>
 
@@ -107,7 +107,7 @@
                         <a href="/news">
 
                             <i class="fa fa-newspaper-o" aria-hidden="true"></i>
-                            <p>News info</p>
+                            <p>Noticias</p>
                         </a>
                     </li>
 
@@ -117,7 +117,7 @@
                         <% if user_signed_in? %>
                             <%= link_to edit_user_registration_path  do %>
                                 <i class="fa fa-cogs" aria-hidden="true"></i>
-                                <p>Account settings</p>
+                                <p>Editar Cuenta </p>
                             <%end%>
                         <%end%>
                     </li>
@@ -125,7 +125,7 @@
                     <li>
                         <%= link_to  destroy_user_session_path, method: :delete do%>
                             <i class="fa fa-sign-out" aria-hidden="true"></i>
-                            <p>Log out</p>
+                            <p>Salir </p>
                         <%end%>
                     </li>
 
@@ -136,7 +136,7 @@
                             <%= button_to chats_path(sender_id: current_user.id, recipient_id: @admin.id), class: 'button button-primary button-sm' do %>
                                 <p>
                                     <i class="fa fa-plug" aria-hidden="true"></i>
-                                    Technical support
+                                    Soporte Técnico 
                                 </p>
                             <%end%>
                         <%end%>

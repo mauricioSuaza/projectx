@@ -8,8 +8,8 @@
     <div class="span10">
       <i class="fa fa-hand-pointer-o" aria-hidden="true" style="font-size: 60px; color: rgb(29, 90, 150);"></i>
       <div class="" style="font-size: 20px; color: #202223;">
-        <strong>Code: DGRQ<%= request.id %></strong><br>
-        <strong>Value:<%= request.value %></strong>
+        <strong>Código: DGRQ<%= request.id %></strong><br>
+        <strong>Goal:<%= request.value %></strong>
       </div>
     </div>
     <div class="span1 dropdown-user" data-for=".r<%= request.id%>">
@@ -19,7 +19,7 @@
   <div class="row-fluid user-infos r<%= request.id%>">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title">Request information</h3>
+        <h3 class="panel-title">Información Requerida</h3>
       </div>
       <div class="panel-body">
         <div class="row-fluid">
@@ -27,33 +27,33 @@
             <table class="table table-condensed table-responsive table-user-information">
               <tbody>
                 <tr>
-                  <td style="text-align:left;">Value:</td>
+                  <td style="text-align:left;">Goal:</td>
                   <td><%= request.value %></td>
                 </tr>
                 <tr>
-                  <td style="text-align:left;">Date:</td>
+                  <td style="text-align:left;">Dia:</td>
                   <td><%= request.created_at.to_date %></td>
                 </tr>
                 <tr>
-                  <td style="text-align:left;">Status:</td>
+                  <td style="text-align:left;">Estado:</td>
                   <% if request.completed %>
                   <td>Completed</td>
                   <% elsif request.status == "pending"  %>
-                  <td>Pending for donations</td>
+                  <td>Pendiente por donación</td>
                 <% else request.status == "completed"  %>
-                  <td>Pending for transactions completion</td>
+                  <td>Pendiente por completar transacción</td>
                   <% end %>
                 </tr>
                 <tr>
-                  <td style="text-align:left;">Value pending for donations</td>
+                  <td style="text-align:left;">Valor pendiente por donación</td>
                   <td><%= request.pending %></td>
                 </tr>
                 <tr>
-                  <td style="text-align:left;">Total transactions</td>
+                  <td style="text-align:left;">Total Transacciónes</td>
                   <td><%= request.transactions.count %></td>
                 </tr>
                 <tr>
-                  <td style="text-align:left;">Completed transactions</td>
+                  <td style="text-align:left;">Transacciónes completas</td>
                   <td><%= request.transactions.where(status: true).count %></td>
                 </tr>
               </tbody>
