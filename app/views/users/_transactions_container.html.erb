@@ -18,7 +18,7 @@
             <tbody>
             <tr>
                 <td class="left-tab" style="text-align:left;">Goal:</td>
-                <td><%= transaction.value %></td>
+                <td><%= transaction.value %> US$</td>
             </tr>
 
             <%if transaction.status == false && transaction.completed === "pending"%>
@@ -91,7 +91,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Upload Screenshot</h4>
+                <h4 class="modal-title">Subir recibo</h4>
             </div>
             <div class ="request-donation-form">
                 <%= form_tag("/add_invoice", method: "post", multipart: true) do %> 

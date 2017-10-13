@@ -34,12 +34,12 @@ class UsersController < ApplicationController
     def donation_send
       if params[:value]
         if current_user.send_donation(donation_params[:value].to_i)
-          redirect_to '/my_dashboard',  :notice => "Donation sucessfully sent" 
+          redirect_to '/my_dashboard',  :notice => "Donación enviada exitosamente" 
         else
-          redirect_to '/my_dashboard', :notice => "Invalid donation value" 
+          redirect_to '/my_dashboard', :notice => "Valor inválido " 
         end
       else
-        redirect_to '/my_dashboard', :notice => "No donation value specified" 
+        redirect_to '/my_dashboard', :notice => "Valor de donación invalido" 
       end
     end
 
@@ -47,12 +47,12 @@ class UsersController < ApplicationController
       if params[:value].to_f > 0
         if current_user.saldo > params[:value].to_f
           current_user.request_donation(donation_params[:value].to_i)
-          redirect_to '/my_dashboard', :notice => "Request succesfully sent" 
+          redirect_to '/my_dashboard', :notice => "Solicitud enviada exitosamente" 
         else
           redirect_to '/my_dashboard', :notice => "Saldo insuficiente" 
         end
       else
-        redirect_to '/my_dashboard', :notice => "No donation value specified" 
+        redirect_to '/my_dashboard', :notice => "Valor inválido" 
       end
     end
 

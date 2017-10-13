@@ -41,7 +41,7 @@
                         <th>Increment</th>
                         <th>Valor actual</th>
                         <th>Fecha completada</th>
-                        <th>Fecha requerida </th>
+                        <th>Fecha de entrega </th>
                         <!-- <th colspan="3"></th> -->
                     </tr>
                     </thead>
@@ -63,9 +63,9 @@
                         <td><%= donation.value %></td>
                         <td><%= donation.pending %></td>
                         <%if  donation.completed &&  donation.pending==0%>
-                          <td class="<%=color_font%>">Completed</td>
+                          <td class="<%=color_font%>">Completada</td>
                         <%else%>
-                          <td class="<%=color_font%>">Pending</td>
+                          <td class="<%=color_font%>">Pendiente</td>
                         <%end%>
                         <td><%= donation.transactions.count %></td>
                         <td><%= donation.transactions.where(status: true).count %></td>
@@ -140,9 +140,9 @@
                                <%color_font = 'font_color'%>
                             <%end%>
                             <%if  request.completed &&  request.pending==0%>
-                              <td class="<%=color_font%>">Completed</td>
+                              <td class="<%=color_font%>">Completada</td>
                             <%else%>
-                              <td class="<%=color_font%>">Pending</td>
+                              <td class="<%=color_font%>">Pendiente</td>
                             <%end%>
                             <td><%= request.transactions.count %></td>
                             <td><%= request.transactions.where(status: true).count %></td> 

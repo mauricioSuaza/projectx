@@ -4,7 +4,7 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.find(params[:transaction_id])
     @transaction.invoice = params[:invoice]
     @transaction.save!
-    redirect_to '/my_dashboard', notice: "image succesfully saved"
+    redirect_to '/my_dashboard', notice: "Imagen enviada exitosamente"
   end
 
   def confirm_transaction
@@ -19,12 +19,12 @@ class TransactionsController < ApplicationController
         create_notification @transaction
 
         if current_user.has_role?(:admin)
-          redirect_to '/my_transactions', notice: "Transaction succesfully cofirmed"
+          redirect_to '/my_transactions', notice: "Transacción confirmada exitósamente"
         else
-          redirect_to '/my_dashboard', notice: "Transaction succesfully cofirmed"
+          redirect_to '/my_dashboard', notice: "Transacción confirmada exitósamente"
         end  
     else
-        redirect_to '/my_dashboard', notice: "you don't have permission to acces this transaction"
+        redirect_to '/my_dashboard', notice: "No tienes permiso para acceder a esta transacción"
     end
 
   end
