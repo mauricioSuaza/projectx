@@ -45,7 +45,8 @@ en:
       update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address."
       updated: "Your account has been updated successfully."
     sessions:
-      signed_in: "Bienvenido de vuelta!"
+      signed_in: "Anuncio importante! Ya se reasignaron los referidos de los pre inscritos, para los usuarios que aún no vean a las personas que han referido en su panel de referidos, es probable que estos hayan escrito mal su correo al momento del registro
+      ,en caso de ser así los invitamos a contactarse con nosotros por medio  del panel de soporte para realizar una reasignación, de nuevo gracias por contar con Donating Goals, tus sueños son nuestro compromiso."
       already_signed_out: "Signed out successfully."
     unlocks:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
