@@ -15,18 +15,18 @@ class AdminDashboardController < ApplicationController
     end
 
     def users_admin
-        @users = User.paginate(:page => params[:page], :per_page => 15)
+        @users = User.paginate(:page => params[:page], :per_page => 80)
         render layout: "admin_dashboard_layout"
     end
 
     def donations_admin
-        @donations = Donation.paginate(:page => params[:page], :per_page => 15)
+        @donations = Donation.paginate(:page => params[:page], :per_page => 80)
         render layout: "admin_dashboard_layout"
     end
 
     def owner_transactions
         
-        @owner_transactions = Transaction.where(request_id: nil).paginate(:page => params[:page], :per_page => 10) 
+        @owner_transactions = Transaction.where(request_id: nil).paginate(:page => params[:page], :per_page => 80) 
         @transactions_total = 0
         @completed_total = 0
         @owner_transactions.each do |transaction|
@@ -40,12 +40,12 @@ class AdminDashboardController < ApplicationController
     end
 
     def requests_admin
-        @requests = Request.paginate(:page => params[:page], :per_page => 15)
+        @requests = Request.paginate(:page => params[:page], :per_page => 80)
         render layout: "admin_dashboard_layout"
     end
 
     def transactions_admin
-        @transactions = Transaction.where("request_id IS NOT ?", nil).paginate(:page => params[:page], :per_page => 15)
+        @transactions = Transaction.where("request_id IS NOT ?", nil).paginate(:page => params[:page], :per_page => 80)
         render layout: "admin_dashboard_layout"
     end
 end

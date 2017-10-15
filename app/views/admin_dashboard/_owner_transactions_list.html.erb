@@ -53,7 +53,7 @@
                                 <% if trans.status %>
                                     <td>Esta transaccion ya se confirmo</td>
                                 <%elsif trans.completed ==  "canceled"%>
-                                    <td>Esta transaccion fue cancelada</td> 
+                                    <td> <%= link_to "Confirmar asi este cancelada", transaction_confirm_path(transaction_id: trans.id), method: :get,  data: { confirm: 'Are you sure?' } %></td>
                                 <%else%>
                                    <td> <%= link_to "Confirm transaction", transaction_confirm_path(transaction_id: trans.id), method: :get,  data: { confirm: 'Are you sure?' } %></td>
                                 <%end%>
