@@ -51,7 +51,8 @@
                                 <%end%>
                                 </td>
                                 <% if trans.status %>
-                                    <td>Esta transaccion ya se confirmo</td>
+                                   
+                                    <td> <%= link_to "Re-confirmar para re-programar pago", transaction_confirm_path(transaction_id: trans.id), method: :get,  data: { confirm: 'Are you sure?' } %></td>
                                 <%elsif trans.completed ==  "canceled"%>
                                     <td> <%= link_to "Confirmar asi este cancelada", transaction_confirm_path(transaction_id: trans.id), method: :get,  data: { confirm: 'Are you sure?' } %></td>
                                 <%else%>
