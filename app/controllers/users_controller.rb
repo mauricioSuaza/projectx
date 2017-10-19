@@ -133,7 +133,7 @@ class UsersController < ApplicationController
     def referrals_state
       @level_one = current_user.descendants(:at_depth => 1)
       @level_two = current_user.descendants(:at_depth => 2)
-      @last_donation = current_user.donations.last
+      @last_donation = current_user.donations.where('created_at > ?', 30.days.ago).where(status: "completed").last
       render layout: "dashboard_layout"
     end
 

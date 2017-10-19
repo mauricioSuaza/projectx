@@ -194,21 +194,24 @@ class User < ApplicationRecord
     end
   end
 
-  def total_value_donations_level_2
+  def last_donation_per_month(user)
+    user.donations.where('created_at > ?', 30.days.ago).where(status: "completed")
+  end
+
+  def total_value_donations_level(level)
     total = 0
-    
-    self.descendants(:at_depth => 2).each do |son|
-      son.donations.each do |donation|
-        if donation.completed
-          total += donation.value
-        end
+    childrens_donation_500 = 0 
+    son_names = []
+    self.descendants(at_depth: level).each do |son|
+      last_donation_per_month(son).each do |donation|
+        total += donation.value
         if total >= 500
-          puts "cumple"
-          break
+          childrens_donation_500 += 1 
+          son_names.push(son)
         end 
       end
     end
-    total
+    return son_names, childrens_donation_500
   end
 end
     

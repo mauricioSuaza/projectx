@@ -23,27 +23,23 @@
         <thead class="blue-text text-darken-4">
           <tr>
             <th>Ultima Donación</th>
-            <th>Estado Ultima Donación</th>
+            <th>Estado Ultima Donación del mes</th>
             <th>Total Referidos Primer Nivel</th>
           </tr>
         </thead>
 
         <tbody class="anchorFixcolor hoverTable">
-          <%if !@last_donation.nil?%>
-            <tr>
-              <th class="text-center"> 
-                <%= @last_donation.created_at.strftime("%m/%d/%y  %H:%M:%S")%>               
-              </th>
-              <th class="text-center"><%= @last_donation.status %></th>
-              <th class="text-center"><%=@level_one.count %></th>
-            </tr>
-          <%else%>
-            <tr>
-              <th class="text-center"></th>
-              <th class="text-center"></th>
-              <th class="text-center"><%=@level_one.count %></th>
-            </tr>
+          <tr>
+          <%unless @last_donation.nil?%>
+            <th class="text-center"> 
+              <%= @last_donation.created_at.strftime("%m/%d/%y  %H:%M:%S")%>               
+            </th>
+            <th class="text-center"><%= @last_donation.status %></th>
           <%end%>
+          <%unless @last_donation.nil?%>
+            <th class="text-center"><%=@level_one.count %></th>
+          <%end%>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -61,24 +57,30 @@
       <table class='table table-hover table-striped responsive-table' style="margin-top: 30px;">
         <thead class="blue-text text-darken-4">
           <tr>
-            <th>Total Referidos</th>
-            <th>Total Donado Por Referidos</th>
+            <th>Total Referidos nivel dos</th>
+            <th>Total Referidos con donaciones mayor a 500</th>
+            <th>Nombre Referidos con donaciones mayor a 500</th>
           </tr>
         </thead>
 
-        <tbody class="anchorFixcolor hoverTable">
-        <%if !@last_donation.nil?%>
+        <tbody class="anchorFixcolor hoverTable">+
           <tr>
-            <th class="text-center"><%= @level_two.count %>/10</th>
-            <th class="text-center">                
-              $<%= current_user.total_value_donations_level_2%>USD / 500usd
-            </th>
+            
+              <th class="text-center"><%= @level_two.count %></th>
+              <th class="text-center"><%= current_user.total_value_donations_level(2)[1]%>/<%= @level_two.count %></th>
+              <th class="text-center">                
+                <% current_user.total_value_donations_level(2)[0].each do |son|%>
+                  <%=son.email%>,
+                <%end%>
+              </th>
+          
           </tr>
-        <%end%>
         </tbody>
       </table>
     </div>
   </div>
 </div>
+
+
 
 
