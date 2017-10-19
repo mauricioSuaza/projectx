@@ -36,6 +36,8 @@ Rails.application.routes.draw do
 
   get '/terminos', to: 'static#terminos', as: 'terminos'
 
+  get '/estado_referidos', to: 'users#referrals_state', as: 'referral_state'
+
   devise_for :users, controllers: { registrations: 'registrations', confirmations: 'confirmations', sessions: "sessions" }
 
   devise_scope :user do
@@ -73,11 +75,15 @@ Rails.application.routes.draw do
 
   get '/requests_admin', to: 'admin_dashboard#requests_admin'
 
+  get '/blocked_users', to: 'admin_dashboard#blocked_users'
+  
   get '/requests/:id', to: 'requests#show', as: 'request_show'
 
   get '/transactions_admin', to: 'admin_dashboard#transactions_admin'
 
   get '/transactions/:id', to: 'transactions#show', as: 'transaction_show'
+
+  post '/unblock_user/:id', to: 'admin_dashboard#unblock_user', as: 'unblock_user'
 
 
 

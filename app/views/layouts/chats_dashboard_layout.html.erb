@@ -51,10 +51,18 @@
                 <ul class="nav own-nav">
                         
                     <li>
-                        <a href="/admin_chats">
-                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                            <p>Messages</p>
-                        </a>
+                      <%= button_to readed_url, params:{ admin: true}, style: 'width: 58%; 
+                        margin-left: 25px; background: transparent;' do%>
+                        <i class="fa fa-envelope-o" aria-hidden="true" style="margin-right: 0"></i>
+                        
+                        <span style=" display: inline-block; margin-left: -30px; position: relative; top: -20px;
+                          left: 2px; font-weight: 900; color: white">
+                          <%if current_user.unseen_notifications  > 0%>
+                            <%= current_user.unseen_notifications%>
+                          <%end%>
+                        </span> 
+                        <p style="display: inline-block;">Messages</p>
+                      <%end%>
                     </li>
 
                     

@@ -24,3 +24,11 @@
  *= require chat
  *= require intlTelInput
  */
+
+.bold{
+  font-weight: 900;
+}
+
+.normal{
+  font-weight: 100;
+}

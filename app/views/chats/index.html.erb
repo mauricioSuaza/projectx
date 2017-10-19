@@ -51,20 +51,25 @@
           <div class="row" style="margin:40px!important;">
             <% @chats.each do |chat| %>
               <%unless chat.messages.empty?%>
+                <%if chat.messages.last.user == current_user%>
+                  <%bold= "normal"%>
+                <%else%>
+                  <%bold = "bold"%>
+                <%end%>
                 <% if chat.sender_id == current_user.id || chat.recipient_id == current_user.id %>
                   <% if chat.sender_id == current_user.id %>
                     <% recipient = User.find(chat.recipient_id) %>
                   <% else %>
                     <% recipient = User.find(chat.sender_id) %>
                   <% end %>
-                  <div class="col-md-4 col-xs-6" style="padding: 5px;">
+                  <div class="col-md-4 col-xs-6 <%=bold%>" style="padding: 5px;">
                     <p class="text-center col-chat" style="border-bottom: 1px solid rgba(0, 0, 0, 0.18);">
                       <span class="chat-title">
                         <%= link_to recipient.name[0,15].html_safe, chat_messages_path(chat)%>
                       </span>
                     </p>
                   </div>
-                   <div class="col-md-4 hidden-xs" style="padding: 5px;">
+                   <div class="col-md-4 hidden-xs <%=bold%>" style="padding: 5px;">
                     <p class="text-center col-chat" style="border-bottom: 1px solid rgba(0, 0, 0, 0.18);">
                       <%if !chat.messages.empty?%>
                         <span class="chat-title">
@@ -75,7 +80,7 @@
                       <%end%>
                     </p>
                   </div>
-                   <div class="col-md-4 col-xs-6" style="padding: 5px;">
+                   <div class="col-md-4 col-xs-6 <%=bold%>" style="padding: 5px;">
                     <p class="text-center col-chat" style="border-bottom: 1px solid rgba(0, 0, 0, 0.18);">
                       <%if !chat.messages.empty?%>
                       <span class="chat-title">

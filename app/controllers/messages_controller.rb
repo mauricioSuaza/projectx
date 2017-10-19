@@ -20,9 +20,10 @@ class MessagesController < ApplicationController
       end
     end
     @message = @chat.messages.new
-
+    #@notifications_count = @current_user.notifications.where("message_id IS NOT NULL").where(read: false).count
     if current_user.admin?
       render layout: "chats_dashboard_layout"
+
     else
       render layout: "dashboard_layout" 
     end

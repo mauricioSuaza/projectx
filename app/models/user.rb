@@ -36,6 +36,10 @@ class User < ApplicationRecord
   def assign_default_role
     self.add_role(:user) if self.roles.blank?
   end
+
+  def unseen_notifications
+    self.notifications.where("message_id IS NOT NULL").where(read: false).count
+  end
   
 
   def send_donation (value)
@@ -168,6 +172,14 @@ class User < ApplicationRecord
     end
   end
 
+  def get_notificaations
+    self.notifications.order('created_at DESC').where(read: false).where("message_id is NULL").count
+  end
+
+  def messages_notifications
+    self.notifications.order('created_at DESC').where(read: false).where("message_id is NOT NULL").count
+  end
+
   def get_pending_donation
     block = Donation.where.not(user_id: self.id)
     block = block.where(status: "pending")
@@ -182,8 +194,21 @@ class User < ApplicationRecord
     end
   end
 
-
-
+  def donations_children_total
+    total = 0
+    
+    father.descendants.each do |son|
+      son.donations.each do |donation|
+        if donation.completed
+          total += donation.value
+        end
+        if total >= 500
+          puts "cumple"
+          break
+        end 
+      end
+    end
+  end
 end
     
 
