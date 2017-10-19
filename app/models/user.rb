@@ -194,10 +194,10 @@ class User < ApplicationRecord
     end
   end
 
-  def donations_children_total
+  def total_value_donations_level_2
     total = 0
     
-    father.descendants.each do |son|
+    self.descendants(:at_depth => 2).each do |son|
       son.donations.each do |donation|
         if donation.completed
           total += donation.value
@@ -208,6 +208,7 @@ class User < ApplicationRecord
         end 
       end
     end
+    total
   end
 end
     

@@ -29,13 +29,21 @@
         </thead>
 
         <tbody class="anchorFixcolor hoverTable">
-          <tr>
-            <th class="text-center">                
-              <%= @last_donation.created_at.strftime("%m/%d/%y  %H:%M:%S")%>
-            </th>
-            <th class="text-center"><%= @last_donation.status %></th>
-            <th class="text-center"><%=@level_one.count %></th>
-          </tr>
+          <%if !@last_donation.nil?%>
+            <tr>
+              <th class="text-center"> 
+                <%= @last_donation.created_at.strftime("%m/%d/%y  %H:%M:%S")%>               
+              </th>
+              <th class="text-center"><%= @last_donation.status %></th>
+              <th class="text-center"><%=@level_one.count %></th>
+            </tr>
+          <%else%>
+            <tr>
+              <th class="text-center"></th>
+              <th class="text-center"></th>
+              <th class="text-center"><%=@level_one.count %></th>
+            </tr>
+          <%end%>
         </tbody>
       </table>
     </div>
@@ -59,12 +67,14 @@
         </thead>
 
         <tbody class="anchorFixcolor hoverTable">
+        <%if !@last_donation.nil?%>
           <tr>
-            <th class="text-center"><%= @level_two.count %></th>
+            <th class="text-center"><%= @level_two.count %>/10</th>
             <th class="text-center">                
-              <%= @last_donation.created_at.strftime("%m/%d/%y  %H:%M:%S")%>
+              $<%= current_user.total_value_donations_level_2%>USD / 500usd
             </th>
           </tr>
+        <%end%>
         </tbody>
       </table>
     </div>

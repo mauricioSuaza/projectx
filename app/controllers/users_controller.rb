@@ -137,28 +137,6 @@ class UsersController < ApplicationController
       render layout: "dashboard_layout"
     end
 
-    def calcular_total_cumplen(padre)
-      cumple = false
-      count = 0
-      
-      padre.descendants.each do |user|
-        total_hijo = 0
-        user.donations.each do |donation|
-          if donation.completed
-            total_hijo += donation.value
-          end
-        end
-
-        if total_hijo >= 500
-          count = count +1 
-        end
-      end
-      if count >= 10
-       cumple = true
-      end
-      cumple
-    end
-
 private
     def donation_params
       params.permit(:value)
