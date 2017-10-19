@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20171012050110) do
     t.decimal  "pending"
     t.integer  "status",       default: 0
     t.boolean  "completed",    default: false
-    t.datetime "confirmed_at", default: '2017-10-12 05:04:38'
+    t.datetime "confirmed_at", default: '2017-10-19 05:01:03'
   end
 
   create_table "messages", force: :cascade do |t|
@@ -141,13 +141,13 @@ ActiveRecord::Schema.define(version: 20171012050110) do
     t.integer  "parent_id"
     t.string   "ancestry"
     t.integer  "ancestry_depth",         default: 0
+    t.boolean  "blocked"
     t.decimal  "level_one_amount",       default: "0.0"
     t.decimal  "level_two_amount",       default: "0.0"
     t.decimal  "level_three_amount",     default: "0.0"
     t.decimal  "level_four_amount",      default: "0.0"
     t.decimal  "level_five_amount",      default: "0.0"
     t.decimal  "level_six_amount",       default: "0.0"
-    t.boolean  "blocked"
     t.string   "referral_email",         default: " "
     t.index ["ancestry"], name: "index_users_on_ancestry"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
