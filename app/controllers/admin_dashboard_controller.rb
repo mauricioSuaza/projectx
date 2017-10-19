@@ -36,7 +36,19 @@ class AdminDashboardController < ApplicationController
             end
         end
         
-        render layout: "admin_dashboard_layout"
+      render layout: "admin_dashboard_layout"
+    end
+
+    def blocked_users
+      @blocked = User.where(blocked: true)
+      render layout: "admin_dashboard_layout"
+    end
+
+    def unblock_user
+      @user = User.find(params[:id])
+      @user.update(blocked: false)
+      redirect_to blocked_users_url
+      flash[:notice] = "Usuario fue desbloqueado exitosamente"
     end
 
     def requests_admin

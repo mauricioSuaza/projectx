@@ -26,7 +26,6 @@ class TransactionsController < ApplicationController
     else
         redirect_to '/my_dashboard', notice: "you don't have permission to acces this transaction"
     end
-
   end
 
   def donation_check (transaction)
@@ -34,7 +33,7 @@ class TransactionsController < ApplicationController
     if (@donation.transactions.all? {|transc| transc.status == true}) && (@donation.pending==0)
       @donation.update(completed: true)
       @donation.update(confirmed_at: DateTime.now)
-      UserWorker.perform_in(15.days,  @donation.id)
+      UserWorker.perform_in(15.days - @donation.days_passed_since_created,  @donation.id)
     end
     @donation
   end

@@ -26,6 +26,7 @@ class ChatsController < ApplicationController
     @users = User.all
     @chats = Chat.all
     @admin = User.where(admin: true)
+    #@notifications_count = @current_user.notifications.where("message_id IS NOT NULL").where(read: false).count
     render layout: "chats_dashboard_layout"
   end
 

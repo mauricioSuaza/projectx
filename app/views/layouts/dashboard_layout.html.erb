@@ -59,12 +59,12 @@
                 <ul class="nav own-nav">
 
                     <li>
-                      <%= button_to readed_url, style: ' width: 58%; margin-left: 25px; background: transparent;' do%>
-                        <% notifications = current_user.notifications.order('created_at DESC').where(read: false).count%>
-                        <% if notifications > 0%>
+                      <%= button_to readed_url, params:{ notifications: true}, style: 'width: 58%; 
+                        margin-left: 25px; background: transparent;' do%>
+                        <% if current_user.get_notificaations > 0%>
                           <i class="fa fa-circle" aria-hidden="true"></i>
                           <span class="notifications-count" style=" position: relative; float: left; left: -6px; top: -10px; 
-                          margin-right: 0; margin-left: -8px; color: white; font-weight: 900; "><%= notifications %></span>
+                          margin-right: 0; margin-left: -8px; color: white; font-weight: 900; "><%= current_user.get_notificaations %></span>
                         <%else%>
                           <i class="fa fa-circle-o" aria-hidden="true"></i>
                         <%end%>
@@ -95,11 +95,23 @@
                     </li>
 
                     <li>
-                        <a href="/chats">
-
-                            <i class="fa fa-comments" aria-hidden="true"></i>
-                            <p>Conversaciones</p>
+                        <a href="/estado_referidos">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            <p>Estado Referidos</p>
                         </a>
+                    </li>
+                    <li>
+                      <%= button_to readed_url, params:{ messages: true}, style: ' width: 62%; margin-left: 25px; background: transparent;' do%>
+                        <% if current_user.messages_notifications > 0%>
+                          <i class="fa fa-comments" aria-hidden="true"></i>
+                          <span class="notifications-count" style=" position: relative; float: left; left: -6px; top: -10px; 
+                          margin-right: 0; margin-left: -8px; color: white; font-weight: 900; "><%= current_user.messages_notifications %></span>
+                        <%else%>
+                          <i class="fa fa-comments" aria-hidden="true"></i>
+                        <%end%>
+                          <p>Conversaciones</p>
+                        </a>
+                      <%end%>
                     </li>
 
 

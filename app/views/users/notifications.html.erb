@@ -20,34 +20,19 @@
             El usuario <b><%=user.name%></b> a realizado una transaccion por el valor de <b>$<%=notification.value%></b>, recuerda confirmar la transaccion para terminar el proceso.</h4>
           </li>
         </div>
-     <!-- Cuando me envian mensaje -->
-      <%elsif !notification.message_id.nil?%>
-      <div class="not-value">
+      <!-- Cuando el usuario acepta la transaccion -->
+      <%elsif !notification.transaction_value.nil?%>
+        <div class="not-value">
           <li style="display:flex; padding:0px;">
             <div class="not-disp">
-              <i class="fa fa-envelope-o icon-not" aria-hidden="true"></i>
+              <i class="fa fa-check icon-not" aria-hidden="true"></i>
             </div>
 
-            <h4 style="font-size:12px;">
-              <%= button_to chats_path(sender_id: current_user.id, recipient_id: notification.owner_id), style: 'background: transparent' do %>
-                Has recibido un nuevo de mensaje de  <b><%=User.find(notification.owner_id).name%>.</b> Click aqui para ir a conversacion.
-              <%end%>
+            <h4 style="font-size:12px; ">
+              Usuario aceptó su transacción por un valor de <b><%=notification.transaction_value%></b>.
             </h4>
           </li>
         </div>
-     <!-- Cuando el usuario acepta la transaccion -->
-      <%elsif !notification.transaction_value.nil?%>
-      <div class="not-value">
-        <li style="display:flex; padding:0px;">
-          <div class="not-disp">
-            <i class="fa fa-check icon-not" aria-hidden="true"></i>
-          </div>
-
-          <h4 style="font-size:12px; ">
-              Usuario aceptó su transacción por un valor de <b><%=notification.transaction_value%></b>.
-          </h4>
-        </li>
-      </div>
       <%end%>
     <%end%>
   </ul>

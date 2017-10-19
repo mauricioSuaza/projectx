@@ -1,0 +1,36 @@
+<nav class="own-navbar">
+  <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#" 
+          style="font-size: 18px;color: #606060;line-height: 20px;">
+          Usuarios blockeados
+        </a>
+      </div>
+  </div>
+</nav>
+
+<br>
+<br>
+<div >
+  <table class='table table-bordered table-striped responsive-table' style="width: 80%; margin: 0 auto">
+    <thead class="blue-text text-darken-4">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Desbloquear Usuario</th>
+    </tr>
+    </thead>
+    <tbody class="anchorFixcolor hoverTable">
+      <% @blocked.each do |user| %>
+        <tr class="text-center">
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td>
+            <%= button_to "Desbloquear Usuario", :controller => :admin_dashboard, 
+              :action => :unblock_user, :id => user.id%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

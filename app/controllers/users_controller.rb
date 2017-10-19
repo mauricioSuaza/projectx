@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     before_action :authenticate_user!
     before_action :is_blocked, only: [:dashboard, :my_referrals, :account_balance, :news, :notifications]
-    before_action :is_user, only: [:dashboard, :my_referrals, :account_balance, :news, :notifications]
+    before_action :is_user, only: [:dashboard, :my_referrals, :account_balance, :news]
     before_action :is_admin, only: [:show]
 
     def is_admin
@@ -115,8 +115,48 @@ class UsersController < ApplicationController
     
     def notifications
       @notifications = current_user.notifications.order('created_at DESC')
-      current_user.notifications.order('created_at DESC').where(read: false).update(read: true)
+      if params["messages"] == "true"
+        @notifications = @notifications.where("message_id is NOT NULL")
+        current_user.notifications.order('created_at DESC').where(read: false).update(read: true)
+        redirect_to chats_url
+      elsif params["notifications"] == "true"
+        @notifications = @notifications.where("message_id is NULL")
+        @notifications.where(read: false).update(read: true)
+        render layout: "dashboard_layout"
+      elsif params["admin"] == "true"
+        @notifications = @notifications.where("message_id is NOT NULL")
+        @notifications.where(read: false).update(read: true)
+        redirect_to admin_chats_url
+      end
+    end
+
+    def referrals_state
+      @level_one = current_user.descendants(:at_depth => 1)
+      @level_two = current_user.descendants(:at_depth => 2)
+      @last_donation = current_user.donations.last
       render layout: "dashboard_layout"
+    end
+
+    def calcular_total_cumplen(padre)
+      cumple = false
+      count = 0
+      
+      padre.descendants.each do |user|
+        total_hijo = 0
+        user.donations.each do |donation|
+          if donation.completed
+            total_hijo += donation.value
+          end
+        end
+
+        if total_hijo >= 500
+          count = count +1 
+        end
+      end
+      if count >= 10
+       cumple = true
+      end
+      cumple
     end
 
 private

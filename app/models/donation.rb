@@ -7,4 +7,9 @@ class Donation < ApplicationRecord
   enum status: { pending: 0, completed: 1 }
   validates :value, presence: true, numericality: { greater_than: 9, less_than: 10001}
 
+  def days_passed_since_created
+    time_now = DateTime.now.to_i
+    created_donation = self.created_at.to_i
+    days_left = (time_now - created_donation)/86400
+  end
 end

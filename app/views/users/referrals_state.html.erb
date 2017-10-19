@@ -1,0 +1,74 @@
+<nav class="own-navbar">
+  <div class="container-fluid" style="padding:0px;">
+    <!-- menu mobile display -->
+    <button class="navbar-toggle own-btn-nav" data-target="navbar-collapse" data-toggle="collapse">
+      <span class="icon icon-bar fa fa-bars"></span>
+      <span class="icon icon-bar"></span>
+      <span class="icon icon-bar"></span>
+    </button>
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#" style="font-size: 18px;color: #606060;line-height: 20px;">Estado Referidos</a>
+    </div>
+  </div>
+</nav>
+
+
+<div class="row">
+  <div>
+    <h3 class="text-center" style=" margin-top: 30px; font-weight: 500; font-style: italic;">Recuerda haber 
+        realizado una donación durante el ultimo mes para disfrutar del bono de referidos de <b>PRIMER NIVEL.</b>
+    </h3>
+    <div>
+      <table class='table table-hover table-striped responsive-table' style="margin-top: 30px;">
+        <thead class="blue-text text-darken-4">
+          <tr>
+            <th>Ultima Donación</th>
+            <th>Estado Ultima Donación</th>
+            <th>Total Referidos Primer Nivel</th>
+          </tr>
+        </thead>
+
+        <tbody class="anchorFixcolor hoverTable">
+          <tr>
+            <th class="text-center">                
+              <%= @last_donation.created_at.strftime("%m/%d/%y  %H:%M:%S")%>
+            </th>
+            <th class="text-center"><%= @last_donation.status %></th>
+            <th class="text-center"><%=@level_one.count %></th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<br>
+<br>
+<div class="row">
+  <div>
+    <h3 class="text-center" style=" margin-top: 30px; font-weight: 500; font-style: italic;">Para disfrutar del 
+    bono de referidos <b>NIVEL DOS</b> debes tener <b>+10</b> referidos los cuales hayan donado un total mayor o igual a 500usd. 
+    </h3>
+    <div>
+      <table class='table table-hover table-striped responsive-table' style="margin-top: 30px;">
+        <thead class="blue-text text-darken-4">
+          <tr>
+            <th>Total Referidos</th>
+            <th>Total Donado Por Referidos</th>
+          </tr>
+        </thead>
+
+        <tbody class="anchorFixcolor hoverTable">
+          <tr>
+            <th class="text-center"><%= @level_two.count %></th>
+            <th class="text-center">                
+              <%= @last_donation.created_at.strftime("%m/%d/%y  %H:%M:%S")%>
+            </th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
