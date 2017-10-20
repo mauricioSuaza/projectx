@@ -69,7 +69,7 @@ class MessagesController < ApplicationController
     if @admin == true
       if @current_user_admin == false
         if @messages_count == 1
-          #redirect_to chat_messages_path(@chat.id)
+          redirect_to chat_messages_path(@chat.id)
           flash[:notice] = "You can't send another message until an admin reply you back. Thank you for your patience"
         elsif @messages_count > 2 && !Chat.find(@chat.id).messages.last.user.admin?
           redirect_to chat_messages_path(@chat.id)
@@ -79,21 +79,21 @@ class MessagesController < ApplicationController
           create_notification(@message)
           #passing broadcast messages_chanel
           action_cable(@message)
-          #redirect_to chat_messages_path(@chat)
+          redirect_to chat_messages_path(@chat)
         end
       else
         @message.save
         create_notification(@message)
         #passing broadcast messages_chanel
         action_cable(@message)
-        #redirect_to chat_messages_path(@chat)
+        redirect_to chat_messages_path(@chat)
       end
     else
       if @message.save
         create_notification(@message)
         #passing broadcast messages_chanel
         action_cable(@message)
-        #redirect_to chat_messages_path(@chat)
+        redirect_to chat_messages_path(@chat)
       end
     end
   end
