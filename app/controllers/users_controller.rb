@@ -117,7 +117,7 @@ class UsersController < ApplicationController
       @notifications = current_user.notifications.order('created_at DESC')
       if params["messages"] == "true"
         @notifications = @notifications.where("message_id is NOT NULL")
-        current_user.notifications.order('created_at DESC').where(read: false).update(read: true)
+        @notifications.where(read: false).update(read: true)
         redirect_to chats_url
       elsif params["notifications"] == "true"
         @notifications = @notifications.where("message_id is NULL")
