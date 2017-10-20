@@ -30,8 +30,8 @@
                             <% end %>
                             <td><%= link_to @sender.name, user_show_path(@sender.id) %></td>
                             <td><%= link_to @receiver.name, user_show_path(@receiver.id) %></td>
-                            <td><%= link_to @donation.id, user_show_path(@donation.id) %></td>
-                            <td><%= link_to @request.id, user_show_path(@request.id) %></td>
+                            <td><%= link_to @donation.id, donation_path(@donation.id) %></td>
+                            <td><%= link_to @request.id, request_show_path(@request.id) %></td>
                             <% if trans.invoice.url.present? %>
                                 <td><%= link_to 'invoice', trans.invoice.url %></td>
                             <%else%>

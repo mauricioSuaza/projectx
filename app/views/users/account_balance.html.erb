@@ -72,10 +72,10 @@
 
                         <%if donation.completed%>
                             <%incremento_diario = (donation.value * 0.25)/15 %>
-                            <%incremento_actual = (((Time.parse(DateTime.now.to_s) - Time.parse(donation.confirmed_at.to_s))/3600)/24)*incremento_diario  %>
+                            <%incremento_actual = (((Time.parse(DateTime.now.to_s) - Time.parse(donation.created_at.to_s))/3600)/24)*incremento_diario  %>
                             <%valor_total = donation.value+(donation.value * 0.25) %>
                             <%incremento_total = (donation.value * 0.25) %>
-                            <%if ((Time.parse(DateTime.now.to_s) - Time.parse(donation.confirmed_at.to_s))/3600)/24 > 15%>
+                            <%if ((Time.parse(DateTime.now.to_s) - Time.parse(donation.created_at.to_s))/3600)/24 > 15%>
                               <td><%= number_with_precision(incremento_total, precision: 3)  %></td>
                               <td><%= number_with_precision(valor_total, precision: 3)%></td>
                             <%else %>
