@@ -2,7 +2,7 @@ class InvoiceUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
 
   # Override the directory where uploaded files will be stored.
@@ -22,6 +22,8 @@ class InvoiceUploader < CarrierWave::Uploader::Base
   # Process files as they are uploaded:
   # process scale: [200, 300]
   #
+
+  process resize_to_fit: [550, 300]
   # def scale(width, height)
   #   # do something
   # end
