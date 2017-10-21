@@ -52,7 +52,11 @@
                             1
                           </div>
                         </td>
-                        <td class="color-act">Activo</td>
+                        <% if  user.blocked%>
+                          <td class="color-act">Bloqueado</td>
+                        <%else%>
+                           <td style="color:rgba(185, 9, 9);font-weight:700;">Activo</td>
+                        <%end%>
                     </tr>
                 <% end %>
                 <% @hijos_2.each do |user| %>
@@ -68,7 +72,11 @@
                             2
                           </div>
                         </td>
-                        <td class="color-act">Activo</td>
+                        <% if  user.blocked%>
+                          <td class="color-act">Bloqueado</td>
+                        <%else%>
+                           <td style="color:rgba(185, 9, 9);font-weight:700;">Activo</td>
+                        <%end%>
                     </tr>
                 <% end %>
                 <% @hijos_3.each do |user| %>
@@ -84,7 +92,11 @@
                             3
                           </div>
                         </td>
-                        <td class="color-act">Activo</td>
+                        <% if  user.blocked%>
+                          <td class="color-act">Bloqueado</td>
+                        <%else%>
+                           <td style="color:rgba(185, 9, 9);font-weight:700;">Activo</td>
+                        <%end%>
                     </tr>
                 <% end %>
                 <% @hijos_4.each do |user| %>
@@ -100,7 +112,11 @@
                             4
                           </div>
                         </td>
-                        <td class="color-act">Activo</td>
+                        <% if  user.blocked%>
+                          <td class="color-act">Bloqueado</td>
+                        <%else%>
+                           <td style="color:rgba(185, 9, 9);font-weight:700;">Activo</td>
+                        <%end%>
                     </tr>
                 <% end %>
                 <% @hijos_5.each do |user| %>
@@ -116,7 +132,11 @@
                             5
                           </div>
                         </td>
-                        <td class="color-act">Activo</td>
+                        <% if  user.blocked%>
+                          <td class="color-act">Bloqueado</td>
+                        <%else%>
+                           <td style="color:rgba(185, 9, 9);font-weight:700;">Activo</td>
+                        <%end%>
                     </tr>
                 <% end %>
                 <% @hijos_6.each do |user| %>
@@ -133,9 +153,9 @@
                           </div>
                         </td>
                         <% if  user.blocked%>
-                          <td class="color-act">Activo</td>
+                          <td class="color-act">Bloqueado</td>
                         <%else%>
-                           <td style="color:rgba(185, 9, 9);font-weight:700;">Bloqueado</td>
+                           <td style="color:rgba(185, 9, 9);font-weight:700;">Activo</td>
                         <%end%>
                     </tr>
                 <% end %>
