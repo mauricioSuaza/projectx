@@ -8,6 +8,10 @@ class MessagesController < ApplicationController
     #contains the id of the chat
     @chatroom = @chat
     @messages = @chat.messages
+
+    #Mark last message as readed
+    mark_message_as_readed(@messages.last, @chatroom)
+
     if @messages.length > 10
       @over_ten = true
       @messages = @messages[-10..-1]
@@ -28,6 +32,16 @@ class MessagesController < ApplicationController
 
     else
       render layout: "dashboard_layout" 
+    end
+  end
+
+  def mark_message_as_readed(message, chatroom)
+    unless message.nil?
+      if current_user.id == chatroom.sender_id
+        message.update(sender_readed: true)
+      else
+        message.update(receiver_readed: true)
+      end
     end
   end
 

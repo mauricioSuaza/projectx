@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171012050110) do
+ActiveRecord::Schema.define(version: 20171020204514) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -43,16 +43,18 @@ ActiveRecord::Schema.define(version: 20171012050110) do
     t.decimal  "pending"
     t.integer  "status",       default: 0
     t.boolean  "completed",    default: false
-    t.datetime "confirmed_at", default: '2017-10-12 05:04:38'
+    t.datetime "confirmed_at", default: '2017-10-20 16:16:09'
   end
 
   create_table "messages", force: :cascade do |t|
     t.text     "body"
     t.integer  "user_id"
-    t.boolean  "read",       default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "read",            default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "chat_id"
+    t.boolean  "sender_readed",   default: false
+    t.boolean  "receiver_readed", default: false
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -141,13 +143,13 @@ ActiveRecord::Schema.define(version: 20171012050110) do
     t.integer  "parent_id"
     t.string   "ancestry"
     t.integer  "ancestry_depth",         default: 0
+    t.boolean  "blocked"
     t.decimal  "level_one_amount",       default: "0.0"
     t.decimal  "level_two_amount",       default: "0.0"
     t.decimal  "level_three_amount",     default: "0.0"
     t.decimal  "level_four_amount",      default: "0.0"
     t.decimal  "level_five_amount",      default: "0.0"
     t.decimal  "level_six_amount",       default: "0.0"
-    t.boolean  "blocked"
     t.string   "referral_email",         default: " "
     t.index ["ancestry"], name: "index_users_on_ancestry"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

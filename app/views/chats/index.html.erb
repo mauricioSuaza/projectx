@@ -51,10 +51,18 @@
           <div class="row" style="margin:40px!important;">
             <% @chats.each do |chat| %>
               <%unless chat.messages.empty?%>
-                <%if chat.messages.last.user == current_user%>
-                  <%bold= "normal"%>
-                <%else%>
-                  <%bold = "bold"%>
+                <%if current_user.id == chat.sender_id%>
+                  <%if chat.messages.last.sender_readed%>
+                    <%bold= "normal"%>
+                  <%elsif chat.messages.last.sender_readed == false%>
+                    <%bold= "bold"%>
+                  <%end%>
+                <%elsif current_user.id == chat.recipient_id%>
+                  <%if chat.messages.last.receiver_readed%>
+                    <%bold= "normal"%>
+                  <%elsif chat.messages.last.receiver_readed == false%>
+                    <%bold= "bold"%>
+                  <%end%>
                 <%end%>
                 <% if chat.sender_id == current_user.id || chat.recipient_id == current_user.id %>
                   <% if chat.sender_id == current_user.id %>
