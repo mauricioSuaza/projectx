@@ -279,3 +279,24 @@
       </table>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-6 text-right" style="margin-top:30px;">
+      <a class="btn btn-primary btn-link-referido">Generar link referido</a>
+    </div>
+    <div class="col-md-6 link-referido" style="margin-top:30px;">
+      <p>
+        <b>
+          <%= @url_refferal%>
+        </b>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    jQuery(document).ready(function($) {
+      $(".link-referido").hide();
+      $(".btn-link-referido").click(function() {
+        $(".link-referido").toggle("slow");
+      });
+    });
+  </script>

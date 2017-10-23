@@ -28,37 +28,13 @@
           <div class="row">
             <% @chats.each do |chat| %>
               <%unless chat.messages.empty?%>
-               
-                <%if current_user.id == chat.sender_id%>
-                  <%if chat.messages.last.sender_readed%>
-                    <%bold= "normal"%>
-                  <%elsif chat.messages.last.sender_readed == false%>
-                    <%bold= "bold"%>
-                  <%end%>
-                <%elsif current_user.id == chat.recipient_id%>
-                  <%if chat.messages.last.receiver_readed%>
-                    <%bold= "normal"%>
-                  <%elsif chat.messages.last.receiver_readed == false%>
-                    <%bold= "bold"%>
-                  <%end%>
-                <%end%>
-                <%if chat.messages.last.user == current_user%>
-                  <%bold= "normal"%>
-                <%else%>
-                  <%bold = "bold"%>
-                <%end%>
                 <% if chat.sender_id == current_user.id || chat.recipient_id == current_user.id %>
-                  <% if chat.sender_id == current_user.id %>
-                    <% recipient = User.find(chat.recipient_id) %>
-                  <% else %>
-                    <% recipient = User.find(chat.sender_id) %>
-                  <% end %>
-                  <div class="col-md-4 <%=bold%>">
+                  <div class="col-md-4 <%=set_bold_if_not_readed(chat)%>">
                     <p class="text-center">
-                      <%= link_to recipient.name[0,15].html_safe, chat_messages_path(chat)%>
+                      <%= link_to gets_name_current_user_chatting(chat), chat_messages_path(chat)%>
                     </p>
                   </div>
-                   <div class="col-md-4 <%=bold%>">
+                   <div class="col-md-4 <%=set_bold_if_not_readed(chat)%>">
                     <p class="text-center">
                       <%if !chat.messages.empty?%>
                         <%= link_to chat.messages.last.body[0,15].html_safe, chat_messages_path(chat)%>...
@@ -67,7 +43,7 @@
                       <%end%>
                     </p>
                   </div>
-                   <div class="col-md-4 <%=bold%>">
+                   <div class="col-md-4 <%=set_bold_if_not_readed(chat)%>">
                     <p class="text-center">
                       <%if !chat.messages.empty?%>
                         <%= link_to chat.messages.last.created_at.strftime("%m/%d/%y  %H:%M:%S"), chat_messages_path(chat)%>

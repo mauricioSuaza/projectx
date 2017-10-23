@@ -22,7 +22,9 @@ Rails.application.routes.draw do
 
   get '/my_dashboard',  to: 'users#dashboard', as: 'user_dashboard'
 
-  get '/my_referrals',  to: 'users#my_referrals'
+  get '/my_referrals',  to: 'users#my_referrals', as: 'my_referrals'
+
+  get '/refferal_url', to: 'users#refferal_url', as: 'generate_link'
 
   post '/notifications', to: 'users#notifications', as: 'readed'
 

@@ -35,7 +35,7 @@
               
               <div class="col-md-6">
                 <div class="field">
-                <%= f.email_field :refferal, placeholder: "Email del referido"  %>
+                <%= f.email_field :refferal, placeholder: "Email del referido", class: "refferal-mail"  %>
                 </div>
                 <div class="field">
                   <%@password_min = ""%>
@@ -330,7 +330,6 @@
         Si cualquier disposición de estas Condiciones se considerara ilegal, nula o inexigible, ya sea en su totalidad o en parte, de conformidad con cualquier legislación, dicha disposición o parte de esta se considerará que no forma parte de estas Condiciones, aunque la legalidad, validez y exigibilidad del resto de las disposiciones de estas Condiciones no se verá afectada. En ese caso, las partes deberán reemplazar dicha disposición ilegal, nula o inexigible, en todo o en parte por una disposición legal, válida y exigible que tenga, en la medida de lo posible, un efecto similar al que tenía la disposición ilegal, nula o inexigible, dados los contenidos y el propósito de estas Condiciones. Estas Condiciones constituyen el acuerdo íntegro y el entendimiento entre las partes en relación con el objeto y sustituye y reemplaza a todos los acuerdos anteriores o contemporáneos en relación con dicho objeto. En estas Condiciones, las palabras “incluido/a/os/as” e “incluye/n” significan “incluido, de forma meramente enunciativa”.
         <br>
         <br>
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -373,6 +372,10 @@
      else  {
      $(".button.button-md.btn-block.button-primary").attr("disabled", true);  
     }
+  }
+
+  if (decodeURIComponent(window.location.hash.substring(1))) {
+    $(".refferal-mail").val(decodeURIComponent(window.location.hash.substring(1)));
   }
 
   
