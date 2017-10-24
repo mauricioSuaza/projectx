@@ -199,19 +199,17 @@ class User < ApplicationRecord
   end
 
   def total_value_donations_level(level)
-    total = 0
     childrens_donation_500 = 0 
-    son_names = []
     self.descendants(at_depth: level).each do |son|
+      total = 0
       last_donation_per_month(son).each do |donation|
-        total += donation.value
-        if total >= 500
-          childrens_donation_500 += 1 
-          son_names.push(son)
-        end 
+        total = total + donation.value
       end
+      if total >= 500
+        childrens_donation_500 =  childrens_donation_500 + 1 
+      end 
     end
-    return son_names, childrens_donation_500
+    return childrens_donation_500
   end
 end
     
