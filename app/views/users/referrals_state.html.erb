@@ -16,7 +16,7 @@
 <div class="row">
   <div>
     <h3 class="text-center" style=" margin-top: 30px; font-weight: 500; font-style: italic;">Recuerda haber 
-        realizado una donación durante el ultimo mes para disfrutar del bono de referidos de <b>PRIMER NIVEL.</b>
+        realizado una donación durante el ultimo mes para disfrutar del bono de tus referidos de <b>PRIMER NIVEL.</b>
     </h3>
     <div>
       <table class='table table-hover table-striped responsive-table' style="margin-top: 30px;">
@@ -24,7 +24,7 @@
           <tr>
             <th>Ultima Donación</th>
             <th>Estado Ultima Donación del mes</th>
-            <th>Total Referidos Primer Nivel</th>
+          
           </tr>
         </thead>
 
@@ -36,9 +36,7 @@
             </th>
             <th class="text-center"><%= @last_donation.status %></th>
           <%end%>
-          <%unless @last_donation.nil?%>
-            <th class="text-center"><%=@level_one.count %></th>
-          <%end%>
+          
           </tr>
         </tbody>
       </table>
@@ -50,28 +48,25 @@
 <br>
 <div class="row">
   <div>
-    <h3 class="text-center" style=" margin-top: 30px; font-weight: 500; font-style: italic;">Para disfrutar del 
-    bono de referidos <b>NIVEL DOS</b> debes tener <b>+10</b> referidos los cuales hayan donado un total mayor o igual a 500usd. 
+    <h3 class="text-center" style=" margin-top: 30px; font-weight: 500; font-style: italic;">Para disfrutar de los bonos de tus referidos de  niveles inferiores
+   debes tener <b>10 o más</b> referidos de primer nivel que hayan donado <b>500Usd o más</b>. 
     </h3>
     <div>
       <table class='table table-hover table-striped responsive-table' style="margin-top: 30px;">
         <thead class="blue-text text-darken-4">
           <tr>
-            <th>Total Referidos nivel dos</th>
-            <th>Total Referidos con donaciones mayor a 500</th>
-            <th>Nombre Referidos con donaciones mayor a 500</th>
+            <th>Total Referidos primer nivel</th>
+            <th>Referidos con donaciones mayor a 500</th>
+            
           </tr>
         </thead>
 
         <tbody class="anchorFixcolor hoverTable">+
           <tr>
             
-              <th class="text-center"><%= @level_two.count %></th>
-              <th class="text-center"><%= current_user.total_value_donations_level(2)[1]%>/<%= @level_two.count %></th>
+              <th class="text-center"><%= @level_one.count %></th>
               <th class="text-center">                
-                <% current_user.total_value_donations_level(2)[0].each do |son|%>
-                  <%=son.email%>,
-                <%end%>
+                <%=current_user.total_value_donations_level(1)%>
               </th>
           
           </tr>
