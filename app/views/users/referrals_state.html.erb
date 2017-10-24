@@ -15,14 +15,20 @@
 
 <div class="row">
   <div>
-    <h3 class="text-center" style=" margin-top: 30px; font-weight: 500; font-style: italic;">Recuerda haber 
-        realizado una donación durante el ultimo mes para disfrutar del bono de tus referidos de <b>PRIMER NIVEL.</b>
-    </h3>
+    <div style=" background: rgba(40, 128, 214, 0.68);">
+      <h3 class="text-center" style=" margin-top: 30px; font-weight: 500; font-style: normal; padding: 32px 180px; color: white">Recuerda haber 
+          realizado una donación durante el ultimo mes para disfrutar del bono de tus referidos de <b style="color: black">PRIMER NIVEL.</b>
+      </h3>
+    </div>
     <div>
-      <table class='table table-hover table-striped responsive-table' style="margin-top: 30px;">
+    <br>
+      <table class='table table-hover table-striped responsive-table' style="margin-top: 30px; width: 50%; margin: 0 auto; ">
         <thead class="blue-text text-darken-4">
           <tr>
-            <th>Ultima Donación</th>
+            <th>
+              Ultima Donación
+                <i class="fa fa-hand-o-up" aria-hidden="true"></i>
+            </th>
             <th>Estado Ultima Donación del mes</th>
           
           </tr>
@@ -34,7 +40,13 @@
             <th class="text-center"> 
               <%= @last_donation.created_at.strftime("%m/%d/%y  %H:%M:%S")%>               
             </th>
-            <th class="text-center"><%= @last_donation.status %></th>
+            <th class="text-center">
+              <%if @last_donation.status %>
+                <i class="fa fa-check" aria-hidden="true"></i>
+              <%else%>
+              <p>Incompleta.</p> 
+              <%end%>
+            </th>
           <%end%>
           
           </tr>
@@ -48,27 +60,28 @@
 <br>
 <div class="row">
   <div>
-    <h3 class="text-center" style=" margin-top: 30px; font-weight: 500; font-style: italic;">Para disfrutar de los bonos de tus referidos de  niveles inferiores
-   debes tener <b>10 o más</b> referidos de primer nivel que hayan donado <b>500Usd o más</b>. 
+   <div style=" background: rgba(40, 128, 214, 0.68);">
+      <h3 class="text-center" style="margin-top: 30px; font-weight: 500; font-style: normal; padding: 32px 180px; color: white">Para disfrutar de los bonos de tus referidos de  niveles inferiores
+      debes tener <b style="color: black">10 o más</b> referidos de primer nivel que hayan donado <b  style="color: black">500Usd o más</b>. 
+      </h3>
+    </div>
+    
     </h3>
     <div>
-      <table class='table table-hover table-striped responsive-table' style="margin-top: 30px;">
+      <table class='table table-hover table-striped responsive-table' style="margin-top: 30px; width: 50%; margin: 0 auto;">
         <thead class="blue-text text-darken-4">
           <tr>
             <th>Total Referidos primer nivel</th>
-            <th>Referidos con donaciones mayor a 500</th>
-            
+            <th>Referidos con donaciones mayor a 500</th>   
           </tr>
         </thead>
 
         <tbody class="anchorFixcolor hoverTable">+
           <tr>
-            
-              <th class="text-center"><%= @level_one.count %></th>
-              <th class="text-center">                
-                <%=current_user.total_value_donations_level(1)%>
-              </th>
-          
+            <th class="text-center"><%= @level_one.count %></th>
+            <th class="text-center">                
+              <%=current_user.total_value_donations_level(1)%>
+            </th>
           </tr>
         </tbody>
       </table>
