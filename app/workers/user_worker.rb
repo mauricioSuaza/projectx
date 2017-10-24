@@ -12,8 +12,8 @@ class UserWorker
 		@user.update(saldo: @user.saldo + (@donation.value + (@donation.value*0.25)))
 		#Update all my parents
 		@padre_1 = @user.ancestors(:at_depth => -1).first
-		@referral_number = 3
-		
+		@referral_number = 10
+
 		if (@user.last_donation_per_month(@padre_1).size > 0)
 			@padre_1.update(saldo: @padre_1.saldo + (@donation.value*0.1))
 			@padre_1.update(level_one_amount: @padre_1.level_one_amount + @donation.value)    
@@ -61,10 +61,7 @@ class UserWorker
 					@padre_6.update(saldo: @padre_6.saldo + (@donation.value*0.001))
 					@padre_6.update(level_six_amount: @padre_6.level_six_amount + @donation.value) 
 				end    
-			end   
-
-		
-			
+			end   	
 			                  
 	end
 
