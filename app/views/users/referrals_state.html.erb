@@ -41,10 +41,10 @@
               <%= @last_donation.created_at.strftime("%m/%d/%y  %H:%M:%S")%>               
             </th>
             <th class="text-center">
-              <%if @last_donation.status %>
+              <%if @last_donation.status == "completed" %>
                 <i class="fa fa-check" aria-hidden="true"></i>
               <%else%>
-              <p>Incompleta.</p> 
+                <i class="fa fa-times" aria-hidden="true"></i>
               <%end%>
             </th>
           <%end%>
