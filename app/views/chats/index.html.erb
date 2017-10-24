@@ -51,25 +51,15 @@
           <div class="row" style="margin:40px!important;">
             <% @chats.each do |chat| %>
               <%unless chat.messages.empty?%>
-                <%if chat.messages.last.user == current_user%>
-                  <%bold= "normal"%>
-                <%else%>
-                  <%bold = "bold"%>
-                <%end%>
                 <% if chat.sender_id == current_user.id || chat.recipient_id == current_user.id %>
-                  <% if chat.sender_id == current_user.id %>
-                    <% recipient = User.find(chat.recipient_id) %>
-                  <% else %>
-                    <% recipient = User.find(chat.sender_id) %>
-                  <% end %>
-                  <div class="col-md-4 col-xs-6 <%=bold%>" style="padding: 5px;">
+                  <div class="col-md-4 col-xs-6 <%=set_bold_if_not_readed(chat)%>" style="padding: 5px;">
                     <p class="text-center col-chat" style="border-bottom: 1px solid rgba(0, 0, 0, 0.18);">
                       <span class="chat-title">
-                        <%= link_to recipient.name[0,15].html_safe, chat_messages_path(chat)%>
+                        <%= link_to gets_name_current_user_chatting(chat), chat_messages_path(chat)%>
                       </span>
                     </p>
                   </div>
-                   <div class="col-md-4 hidden-xs <%=bold%>" style="padding: 5px;">
+                   <div class="col-md-4 hidden-xs <%=set_bold_if_not_readed(chat)%>" style="padding: 5px;">
                     <p class="text-center col-chat" style="border-bottom: 1px solid rgba(0, 0, 0, 0.18);">
                       <%if !chat.messages.empty?%>
                         <span class="chat-title">
@@ -80,14 +70,13 @@
                       <%end%>
                     </p>
                   </div>
-                   <div class="col-md-4 col-xs-6 <%=bold%>" style="padding: 5px;">
+                   <div class="col-md-4 col-xs-6 <%=set_bold_if_not_readed(chat)%>" style="padding: 5px;">
                     <p class="text-center col-chat" style="border-bottom: 1px solid rgba(0, 0, 0, 0.18);">
                       <%if !chat.messages.empty?%>
-                      <span class="chat-title">
-                        <%= link_to chat.messages.last.created_at.strftime("%m/%d/%y  %H:%M:%S"), chat_messages_path(chat)%>
-                      </span>
-
-                       <%else%>
+                        <span class="chat-title">
+                          <%= link_to chat.messages.last.created_at.strftime("%m/%d/%y  %H:%M:%S"), chat_messages_path(chat)%>
+                        </span>
+                      <%else%>
                         <span> No tienes mensajes</span>
                       <%end%>
                     </p>
@@ -98,37 +87,6 @@
           </div>
         </div>
       </div>
-      <!-- <div class="col-md-4">
-         <div class="ui segment">
-            <h3><i class="fa fa-user-secret" aria-hidden="true"></i> Usuarios disponibles</h3>
-            <br>
-            <div class="text-center">
-              <% @users.first(5).each do |user| %>
-                <% if user.id != current_user.id %>
-                <div class="item">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <%= button_to chats_path(sender_id: current_user.id, recipient_id: user.id), class: 'chat-button' do %>
-                        <p class="iniciar-chat">
-                          <i class="fa fa-weixin" aria-hidden="true"></i>
-                           <%= user.email %>
-                        </p>
-                      <%end%>
-                    </div>
-                  </div>
-                </div>
-                <% end %>
-              <% end %>
-            </div>
-            <br>
-            <%= button_to chats_path(sender_id: current_user.id, recipient_id: @admin.ids.first), class: 'button button-primary button-sm' do %>
-              <p>
-                <i class="fa fa-plug" aria-hidden="true"></i>
-                Soporte técnico
-              </p>
-            <%end%>
-          </div>
-      </div> -->
     </div>
   </div>
 </div>

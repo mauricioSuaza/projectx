@@ -1,7 +1,11 @@
 App.messages = App.cable.subscriptions.create('MessagesChannel', {
   received: function(data) {
     $("#messages").removeClass('hidden');
-		return $('#messages').append(this.renderMessage(data));
+    messages = $('#messages');
+    chat_room_id = messages.data('chat-room-id');
+    if (data.chatroom_id == chat_room_id) {
+      return $('#messages').append(this.renderMessage(data));
+    };
 	},
 
   renderMessage: function(data) {
@@ -34,7 +38,6 @@ App.messages = App.cable.subscriptions.create('MessagesChannel', {
                             +
                             "</div> </div>  </div>  </div>  </div> </div>" ;
       }
-
   	}
   }
 });

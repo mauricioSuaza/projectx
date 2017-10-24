@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171012050110) do
+ActiveRecord::Schema.define(version: 20171020204514) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -49,10 +49,12 @@ ActiveRecord::Schema.define(version: 20171012050110) do
   create_table "messages", force: :cascade do |t|
     t.text     "body"
     t.integer  "user_id"
-    t.boolean  "read",       default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "read",            default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "chat_id"
+    t.boolean  "sender_readed",   default: false
+    t.boolean  "receiver_readed", default: false
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 

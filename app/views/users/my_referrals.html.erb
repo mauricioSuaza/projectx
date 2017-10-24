@@ -7,8 +7,12 @@
           <span class="icon icon-bar"></span>
         </button>
 
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#" style="font-size: 18px;color: #606060;line-height: 20px;">MY REFERRALS</a>
+        <div class="navbar-header row">
+          <a class="navbar-brand" href="/my_referrals" style="font-size: 18px;color: #606060;line-height: 20px;">MIS REFERIDOS</a>
+
+           <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" style="margin-top: 8px;">Generar link referido</button>
+          
+        
         </div>
 
         <div style="float:right; margin-right:20px;">
@@ -300,3 +304,37 @@
       </table>
     </div>
   </div>
+
+
+  <script>
+    jQuery(document).ready(function($) {
+      $(".link-referido").hide();
+      $(".btn-link-referido").click(function() {
+        $(".link-referido").toggle("slow");
+      });
+    });
+  </script>
+
+
+  <!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h5 class="modal-title">Puedes compartir el siguiente link con tus contactos para que se inscriban como tus referidos</h5>
+      </div>
+      <div class="modal-body">
+        <p><%= @url_refferal%>.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
