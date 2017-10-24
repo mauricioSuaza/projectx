@@ -18,7 +18,7 @@ class UserWorker
 
 		#Update all my parents
 		@padre_1 = @user.ancestors(:at_depth => -1).first
-		@referral_number = 10
+		@referral_number = 3
 
 		if (@user.last_donation_per_month(@padre_1).size > 0)
 			@padre_1.update(saldo: @padre_1.saldo + (@donation.value*0.1))
