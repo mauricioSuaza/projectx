@@ -70,6 +70,7 @@ class UsersController < ApplicationController
       @amount_level_4 = current_user.level_four_amount
       @amount_level_5 = current_user.level_five_amount
       @amount_level_6 = current_user.level_six_amount
+      @url_refferal = refferal_url
       render layout: "dashboard_layout"
     end
 
@@ -117,7 +118,7 @@ class UsersController < ApplicationController
       @notifications = current_user.notifications.order('created_at DESC')
       if params["messages"] == "true"
         @notifications = @notifications.where("message_id is NOT NULL")
-        current_user.notifications.order('created_at DESC').where(read: false).update(read: true)
+        @notifications.where(read: false).update(read: true)
         redirect_to chats_url
       elsif params["notifications"] == "true"
         @notifications = @notifications.where("message_id is NULL")
@@ -134,6 +135,10 @@ class UsersController < ApplicationController
       @level_one = current_user.descendants(:at_depth => 1)
       @last_donation = current_user.donations.where('created_at > ?', 30.days.ago).where(status: "completed").last
       render layout: "dashboard_layout"
+    end
+
+    def refferal_url
+      @url_refferal = request.base_url + "/users/sign_up?refferal=##{current_user.email}"
     end
 
 private

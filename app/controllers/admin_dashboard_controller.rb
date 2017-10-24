@@ -27,6 +27,7 @@ class AdminDashboardController < ApplicationController
     def owner_transactions
         
         @owner_transactions = Transaction.where(request_id: nil).paginate(:page => params[:page], :per_page => 80) 
+        @owner_transactions = @owner_transactions.order("created_at DESC")
         @transactions_total = 0
         @completed_total = 0
         @owner_transactions.each do |transaction|

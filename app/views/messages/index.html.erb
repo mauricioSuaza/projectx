@@ -40,7 +40,7 @@
                 <%end %>
               <%end%>
             </h4>
-            <div class="row" id="messages">
+            <div class="row" id="messages" data-chat-room-id="<%= @chatroom.id %>">
               <div class="ui segment" style="display: flex; flex-direction: column;height: 52vh;overflow: scroll;" >
                 <% @messages.each do |message| %>
 
