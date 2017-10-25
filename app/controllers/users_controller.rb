@@ -47,7 +47,7 @@ class UsersController < ApplicationController
       if params[:value].to_f > 0
         if current_user.saldo >= params[:value].to_f
           current_user.request_donation(donation_params[:value].to_i)
-          redirect_to '/my_dashboard', :notice => "Ayudamos a cumplir tus metas, si deseas puedes donarnos a la siguiente dirección para ayudarnos a continuar funcionando asjkdajklsdkn3802830" 
+          redirect_to '/my_dashboard', :notice => "Ayudamos a cumplir tus metas, si deseas puedes donarnos cualquier valor a la siguiente dirección para ayudarnos a continuar funcionando 31ir7FqvgF3caXcaXoJZ2juaSaHdqaRomL" 
         else
           redirect_to '/my_dashboard', :notice => "Saldo insuficiente" 
         end
