@@ -20,11 +20,12 @@ class UserWorker
 		@padre_1 = @user.ancestors(:at_depth => -1).first
 		@referral_number = 10
 
-		if (@user.last_donation_per_month(@padre_1).size > 0)
-			@padre_1.update(saldo: @padre_1.saldo + (@donation.value*0.1))
-			@padre_1.update(level_one_amount: @padre_1.level_one_amount + @donation.value)    
+		if @padre_1
+			if (@user.last_donation_per_month(@padre_1).size > 0)
+				@padre_1.update(saldo: @padre_1.saldo + (@donation.value*0.1))
+				@padre_1.update(level_one_amount: @padre_1.level_one_amount + @donation.value)    
+			end
 		end
-
 			@padre_2 = @user.ancestors(:at_depth => -2).first
 			@padre_3 = @user.ancestors(:at_depth => -3).first
 			@padre_4 = @user.ancestors(:at_depth => -4).first
