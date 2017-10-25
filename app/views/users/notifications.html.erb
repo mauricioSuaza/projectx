@@ -17,7 +17,7 @@
             </div>
             <%user = User.find(notification.owner_id)%>
             <h4 style="font-size:12px;">
-            El usuario <b><%=user.name%></b> a realizado una transaccion por el valor de <b>$<%=notification.value%></b>, recuerda confirmar la transaccion para terminar el proceso.</h4>
+            Su solicitud ya fue aprobada, se te ha asignado una donación por el valor de <b>$<%=notification.value%></b> por parte del usuario <b><%=user.name%></b>, recuerda estar atento al proceso y confirmar la transacción.</h4>
           </li>
         </div>
       <!-- Cuando el usuario acepta la transaccion -->
