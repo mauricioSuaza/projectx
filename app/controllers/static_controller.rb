@@ -17,6 +17,14 @@ class StaticController < ApplicationController
   def testimonios
   end
 
+  def panel_donacion
+    render layout: "dashboard_layout"
+  end
+
+  def faq
+    render layout: "dashboard_layout"
+  end
+
   def contacto
     @contact_message = ContactMessage.new
   end
