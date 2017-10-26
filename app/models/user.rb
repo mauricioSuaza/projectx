@@ -53,7 +53,7 @@ class User < ApplicationRecord
 
     #calculo de valores generados para el owner
 
-    owner_user = User.with_role(:owner).order("RANDOM()").first
+    owner_user = User.with_role(:owner).order("RANDOM()").last
 
     owner_tran_val = (donation_value*0.1).ceil;
 

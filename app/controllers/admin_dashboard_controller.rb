@@ -16,11 +16,13 @@ class AdminDashboardController < ApplicationController
 
     def users_admin
         @users = User.paginate(:page => params[:page], :per_page => 80)
+        @users = @users.order("created_at DESC")
         render layout: "admin_dashboard_layout"
     end
 
     def donations_admin
         @donations = Donation.paginate(:page => params[:page], :per_page => 80)
+        @donations = @donations.order("created_at DESC")
         render layout: "admin_dashboard_layout"
     end
 
@@ -54,11 +56,13 @@ class AdminDashboardController < ApplicationController
 
     def requests_admin
         @requests = Request.paginate(:page => params[:page], :per_page => 80)
+        @requests = @requests.order("created_at DESC")
         render layout: "admin_dashboard_layout"
     end
 
     def transactions_admin
         @transactions = Transaction.where("request_id IS NOT ?", nil).paginate(:page => params[:page], :per_page => 80)
+        @transactions = @transactions.order("created_at DESC")
         render layout: "admin_dashboard_layout"
     end
 end

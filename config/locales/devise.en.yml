@@ -45,7 +45,7 @@ en:
       update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address."
       updated: "Your account has been updated successfully."
     sessions:
-      signed_in: "Bienvenido! Te recordamos revisar tu panel de estado de referidos, así, estarás informado de si además del bono universal por ser donador, tienes acceso a los beneficios de los bonos otorgados por tus referidos, gracias por participar en Donatingoals."
+      signed_in: "Bienvenido! Te recordamos revisar tu panel de estado de referidos, así, estarás informado de si además del bono universal por ser donador, tienes acceso a los beneficios de los bonos otorgados por tus referidos, también al donar o al solicitar recuerda que el sistema pueda tardar entre 1 y 2 dias en asignar las transacciones."
       already_signed_out: "Signed out successfully."
     unlocks:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
