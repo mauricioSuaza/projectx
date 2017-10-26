@@ -10,7 +10,6 @@
     </script>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.4.3/sweetalert2.min.css' rel='stylesheet'>
     <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-
   </head>
 
   <body>
@@ -59,11 +58,11 @@
                 <ul class="nav own-nav">
 
                     <li>
-                      <%= button_to readed_url, params:{ notifications: true}, style: 'width: 58%; 
+                      <%= button_to readed_url, params:{ notifications: true}, style: 'width: 58%;
                         margin-left: 25px; background: transparent;' do%>
                         <% if current_user.get_notificaations > 0%>
                           <i class="fa fa-circle" aria-hidden="true"></i>
-                          <span class="notifications-count" style=" position: relative; float: left; left: -6px; top: -10px; 
+                          <span class="notifications-count" style=" position: relative; float: left; left: -6px; top: -10px;
                           margin-right: 0; margin-left: -8px; color: white; font-weight: 900; "><%= current_user.get_notificaations %></span>
                         <%else%>
                           <i class="fa fa-circle-o" aria-hidden="true"></i>
@@ -93,19 +92,19 @@
                             <p>Referidos</p>
                         </a>
                     </li>
-                    
+
                     <li>
                         <a href="/estado_referidos">
                             <i class="fa fa-users" aria-hidden="true"></i>
                             <p>Estado Referidos</p>
                         </a>
                     </li>
-                    
+
                     <li>
                       <%= button_to readed_url, params:{ messages: true}, style: ' width: 62%; margin-left: 25px; background: transparent;' do%>
                         <% if current_user.messages_notifications > 0%>
                           <i class="fa fa-comments" aria-hidden="true"></i>
-                          <span class="notifications-count" style=" position: relative; float: left; left: -6px; top: -10px; 
+                          <span class="notifications-count" style=" position: relative; float: left; left: -6px; top: -10px;
                           margin-right: 0; margin-left: -8px; color: white; font-weight: 900; "><%= current_user.messages_notifications %></span>
                         <%else%>
                           <i class="fa fa-comments" aria-hidden="true"></i>
@@ -123,6 +122,30 @@
                             <p>Noticias</p>
                         </a>
                     </li>
+
+                    <li>
+                       <a href="/how">
+
+                           <i class="fa fa-list" aria-hidden="true"></i>
+                           <p>Como Funciona</p>
+                       </a>
+                   </li>
+
+
+                   <li>
+                      <a href="/panel_donacion">
+                          <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                          <p>Ayudanos</p>
+                      </a>
+                  </li>
+
+                  <li>
+                     <a href="/faq">
+
+                         <i class="fa fa-question" aria-hidden="true"></i>
+                         <p>Preguntas Frecuentes</p>
+                     </a>
+                 </li>
 
 
 
@@ -143,13 +166,13 @@
                     </li>
 
                     <li>
-                       
+
                         <%@admin = User.with_role(:support).first%>
                         <%if  @admin%>
                             <%= button_to chats_path(sender_id: current_user.id, recipient_id: @admin.id), class: 'button button-primary button-sm' do %>
                                 <p>
                                     <i class="fa fa-plug" aria-hidden="true"></i>
-                                    Soporte Técnico 
+                                    Soporte Técnico
                                 </p>
                             <%end%>
                         <%end%>
@@ -172,7 +195,7 @@
         if($(".notifications-count").text() > 9r){
             $(".notifications-count").text("+9")
         }
-    
+
     </script>
 
     <script>

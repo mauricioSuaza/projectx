@@ -95,5 +95,9 @@ Rails.application.routes.draw do
   post  '/admin_messages',to: 'chats#create', as: 'support_messages'
 
   get  '/support_chats/:chat_id',to: 'messages#admin_index' , as: 'support_chat'
+
+  get '/how', to: 'static#how', as: 'how'
+  get '/faq', to: 'static#faq', as: 'faq'
+  get '/panel_donacion', to: 'static#panel_donacion', as: 'panel_donation'
   
 end
