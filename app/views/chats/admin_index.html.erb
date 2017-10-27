@@ -37,15 +37,6 @@
                    <div class="col-md-4 <%=set_bold_if_not_readed(chat)%>">
                     <p class="text-center">
                       <%if !chat.messages.empty?%>
-                        <%= link_to chat.messages.last.body[0,15].html_safe, chat_messages_path(chat)%>...
-                      <%else%>
-                        No tienes mensajes
-                      <%end%>
-                    </p>
-                  </div>
-                   <div class="col-md-4 <%=set_bold_if_not_readed(chat)%>">
-                    <p class="text-center">
-                      <%if !chat.messages.empty?%>
                         <%if !chat.messages.last.body.nil?%>
                           <%=link_to chat.messages.last.body[0,15].html_safe, chat_messages_path(chat) %>
                         <%else%>
@@ -53,6 +44,15 @@
                         <%end%>
                       <%else%>
                         <span>No tienes mensajes</span>
+                      <%end%>
+                    </p>
+                  </div>
+                   <div class="col-md-4 <%=set_bold_if_not_readed(chat)%>">
+                    <p class="text-center">
+                      <%if !chat.messages.empty?%>
+                        <%= link_to chat.messages.last.created_at.strftime("%m/%d/%y  %H:%M:%S"), chat_messages_path(chat)%>
+                       <%else%>
+                        No tienes mensajes
                       <%end%>
                     </p>
                   </div>
