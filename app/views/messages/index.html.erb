@@ -1,52 +1,49 @@
+<nav class="own-navbar">
+  <div class="container-fluid">
+    <button class="navbar-toggle own-btn-nav" data-target="navbar-collapse" data-toggle="collapse" style="float:right;">
+      <span class="icon icon-bar"></span>
+      <span class="icon icon-bar"></span>
+      <span class="icon icon-bar"></span>
+    </button>
 
-  <nav class="own-navbar">
-    <div class="container-fluid">
-     
-          <button class="navbar-toggle own-btn-nav" data-target="navbar-collapse" data-toggle="collapse" style="float:right;">
-            <span class="icon icon-bar"></span>
-            <span class="icon icon-bar"></span>
-            <span class="icon icon-bar"></span>
-          </button>
-
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#" style="font-size: 18px;color: #606060;line-height: 20px;">Chat</a>
-          </div>
-
-          <div style="float:right; margin-right:20px;">
-          <script type="text/javascript">
-          crypt_single_base_currency = "Bitcoin (BTC)";crypt_single_target_currency = "US Dollar (USD)";crypt_single_font_family = "Verdana";crypt_single_font_size = "small";</script>
-          <script type="text/javascript" src="https://www.cryptonator.com/ui/js/widget/single_widget.js"></script>
-        </div>
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#" style="font-size: 18px;color: #606060;line-height: 20px;">Chat</a>
     </div>
-  </nav>
+
+    <div style="float:right; margin-right:20px;">
+      <script type="text/javascript">
+        crypt_single_base_currency = "Bitcoin (BTC)";crypt_single_target_currency = "US Dollar (USD)";crypt_single_font_family = "Verdana";crypt_single_font_size = "small";</script>
+      <script type="text/javascript" src="https://www.cryptonator.com/ui/js/widget/single_widget.js"></script>
+    </div>
+  </div>
+</nav>
 
 
-  <div class="container-fluid" style="padding:0px; margin:30px 0px;">
-    <div class="col-xs-12">
-        <div class="message-cont">
-          <div class="cont-mensaje">
-            <h4 class="title-chat-int">
-              <%if current_user.email == @chat.sender.email%>
-                <%if @chat.recipient.name%> 
-                  <i class="fa fa-user-o" aria-hidden="true"></i> <%=@chat.recipient.name.capitalize%> 
-                <%else%>
-                  <i class="fa fa-user-o" aria-hidden="true"></i> <%=@chat.recipient.email%> 
-                <%end%>
-              <%else%>
-                <%if @chat.sender.name%> 
-                  <i class="fa fa-user-o" aria-hidden="true"></i> <%=@chat.sender.name.capitalize%>
-                <%else%>
-                  <i class="fa fa-user-o" aria-hidden="true"></i> <%=@chat.sender.name.capitalize%>
-                <%end %>
-              <%end%>
-            </h4>
-            <div class="row" id="messages" data-chat-room-id="<%= @chatroom.id %>">
+<div class="container-fluid" style="padding:0px; margin:30px 0px;">
+  <div class="col-xs-12">
+    <div class="message-cont">
+      <div class="cont-mensaje">
+        <h4 class="title-chat-int">
+          <%if current_user.email == @chat.sender.email%>
+            <%if @chat.recipient.name%> 
+              <i class="fa fa-user-o" aria-hidden="true"></i> <%=@chat.recipient.name.capitalize%> 
+            <%else%>
+              <i class="fa fa-user-o" aria-hidden="true"></i> <%=@chat.recipient.email%> 
+            <%end%>
+          <%else%>
+            <%if @chat.sender.name%> 
+              <i class="fa fa-user-o" aria-hidden="true"></i> <%=@chat.sender.name.capitalize%>
+            <%else%>
+              <i class="fa fa-user-o" aria-hidden="true"></i> <%=@chat.sender.name.capitalize%>
+            <%end%>
+          <%end%>
+        </h4>
+        <div class="row" id="messages" data-chat-room-id="<%= @chatroom.id %>">
               <div class="ui segment" style="display: flex; flex-direction: column;height: 52vh;overflow: scroll;" >
                 <% @messages.each do |message| %>
 
-                  <% if message.body %>
+                  <% if !message.body.nil? %>
                     <% user = User.find(message.user_id) %>
-  
                     <%if current_user.id === message.user_id%>
                       <%align_item = 'align'%>
                       <%chat_cont = 'item-chat-cont'%>
@@ -67,31 +64,73 @@
                         </div>
                       </div>
                     </div>
-                  <% end %>
+                  <%else%>  
+                    <%if current_user.id === message.user_id%>
+                      <%align_item = 'align'%>
+                      <%chat_cont = 'item-chat-cont'%>
+                    <%elsif current_user.id != message.user_id%>
+                      <%align_item = 'aligntwo'%>
+                      <%chat_cont = 'item-chat-contwo'%>
+                    <%end%>
+                    <% if message.invoice.url.present? %>
+                      <div class="item <%=align_item%>" style="padding: 20px;">
+                        <div class="content">
+                          <div class="list">
+                            <div class="item <%=chat_cont%>">
+                              <%= image_tag(message.invoice.url)%>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <%end%>
+                   <% end %>
                 <% end %>
               </div>
-            </div>
-          </div>
-
-          <div>
-            <%=form_for [@chat, @message], html: { id: "message-form-chat", data: {admin: @admin, current_user_admin: @current_user_admin, messages_count: @messages_count }} do |f|%>
-
-              <div class="text-area-message" style="width:70%;margin: auto!important;">
-                <%= f.text_field :body %>
-              </div>
-
-              <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
-              <div class="text-center" style="margin: 30px;">
-                <%= f.button :submit, class: "ui blue labeled submit icon button responder text-center enviar-chat", data: {send: "message"} %>
-              </div>
-            <% end %>
-          </div>
         </div>
+      </div>
+
+      <div>
+        <%=form_for [@chat, @message], html: { id: "message-form-chat", data: {admin: @admin, current_user_admin: @current_user_admin, messages_count: @messages_count }} do |f|%>
+
+          <div class="text-area-message" style="width:70%;margin: auto!important;">
+            <%= f.text_field :body %>
+          </div>
+
+          <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
+          <div class="text-center" style="margin: 30px;">
+            <%= f.button :submit, class: "ui blue labeled submit icon button responder text-center enviar-chat", data: {send: "message"} %>
+            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#upload-modal" style="margin-top: 0px; margin-left: 13px">
+              <i class="fa fa-upload" aria-hidden="true"></i>
+            </button>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
+</div>
+
+
+<!-- Modal -->
+<div id="upload-modal" class="modal fade" role="dialog">
+  <div class="modal-dialog" style="background: white">
+    <%= form_tag("/add_invoice_messages", method: "post", multipart: true) do %> 
+      <div class="modal-body">
+        <%= file_field_tag :invoice %>
+        <%= hidden_field_tag :chat_id, @chat.id %>
+      </div>
+      <div class="modal-footer">
+        <div class="col-md-4 col-md-offset-4">
+          <%= submit_tag("Upload", class: "btn btn-primary") %>  
+        </div> 
+      </div>  
+    <% end %>    
+  </div>
+</div>
+
 
  <style>
    .text-area-message input{
     border-color: grey;
     }
  </style>
+

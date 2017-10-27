@@ -21,9 +21,7 @@ class TransactionWorker
   def block_sender_with_admin transaction
     transaction.donation.user.update(blocked: true)
     transaction.update(completed: 1)
-    #@user = User.find(transaction.receiver_id)
-    #@user.update(saldo: @user.saldo + transaction.value)
-    #create notificacion fallida.
+    transaction.save(validate: false)
   end
 
   def block_sender_and_receiver transaction

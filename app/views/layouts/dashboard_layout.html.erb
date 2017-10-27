@@ -16,13 +16,13 @@
 
         <% if notice %>
             <script>
-                swal("<%= notice %>");
+                swal("<%= raw(notice) %>");
             </script>
         <% end %>
 
         <% if alert%>
             <script>
-                swal("<%= alert %>");
+                swal("<%= raw(alert) %>");
             </script>
         <% end %>
 

@@ -38,11 +38,18 @@ class MessagesController < ApplicationController
   def mark_message_as_readed(message, chatroom)
     unless message.nil?
       if current_user.id == chatroom.sender_id
-        message.update(sender_readed: true)
+        message.sender_readed = true
       else
-        message.update(receiver_readed: true)
+        message.receiver_readed = true
       end
+      message.save(validate: false)
     end
+  end
+
+  def add_invoice
+    invoice = @chat.messages.new(invoice: params[:invoice], body: nil, user_id: current_user.id)
+    invoice.save(validate: false)
+    redirect_to chat_messages_path(@chat) 
   end
 
 

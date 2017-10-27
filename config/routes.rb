@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :contact_messages
- 
+
   resources :articles
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
@@ -10,16 +10,19 @@ Rails.application.routes.draw do
   authenticate :user, lambda { |u| u.has_role? :developer } do
     mount Sidekiq::Web => '/sidekiq'
   end
-  
+
   mount ActionCable.server => '/cable'
 
   root to: 'static#home'
+
+  get '/faq', to: 'static#faq', as: 'faq'
+  get '/panel_donacion', to: 'static#panel_donacion', as: 'panel_donation'
   get '/coming_soon', to: 'static#coming_soon'
   get '/que_es', to: 'static#que_es'
   get '/como_funciona', to: 'static#como_funciona'
   get '/testimonios', to: 'static#testimonios'
   get '/contacto', to: 'static#contacto'
-
+  get '/how', to: 'static#how', as: 'how'
   get '/my_dashboard',  to: 'users#dashboard', as: 'user_dashboard'
 
   get '/my_referrals',  to: 'users#my_referrals', as: 'my_referrals'
@@ -33,6 +36,8 @@ Rails.application.routes.draw do
   post '/request_donation', to: 'users#donation_request'
 
   post '/add_invoice', to: 'transactions#add_invoice'
+
+  post '/add_invoice_messages', to: 'messages#add_invoice'
 
   get '/confirm_transaction', to: 'transactions#confirm_transaction', as: 'transaction_confirm'
 
@@ -78,7 +83,7 @@ Rails.application.routes.draw do
   get '/requests_admin', to: 'admin_dashboard#requests_admin'
 
   get '/blocked_users', to: 'admin_dashboard#blocked_users'
-  
+
   get '/requests/:id', to: 'requests#show', as: 'request_show'
 
   get '/transactions_admin', to: 'admin_dashboard#transactions_admin'
@@ -90,14 +95,10 @@ Rails.application.routes.draw do
 
 
   #Support admin routes
-  get  '/admin_chats',to: 'chats#admin_index' 
+  get  '/admin_chats',to: 'chats#admin_index'
 
   post  '/admin_messages',to: 'chats#create', as: 'support_messages'
 
   get  '/support_chats/:chat_id',to: 'messages#admin_index' , as: 'support_chat'
 
-  get '/how', to: 'static#how', as: 'how'
-  get '/faq', to: 'static#faq', as: 'faq'
-  get '/panel_donacion', to: 'static#panel_donacion', as: 'panel_donation'
-  
 end

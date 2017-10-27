@@ -63,7 +63,11 @@
                     <p class="text-center col-chat" style="border-bottom: 1px solid rgba(0, 0, 0, 0.18);">
                       <%if !chat.messages.empty?%>
                         <span class="chat-title">
-                          <%=link_to chat.messages.last.body[0,15].html_safe, chat_messages_path(chat)%>
+                          <%if !chat.messages.last.body.nil?%>
+                            <%=link_to chat.messages.last.body[0,15].html_safe, chat_messages_path(chat) %>
+                          <%else%>
+                            <%=link_to "imagen", chat_messages_path(chat)%>
+                          <%end%>
                         </span>
                       <%else%>
                         <span>No tienes mensajes</span>
