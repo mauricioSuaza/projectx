@@ -37,6 +37,8 @@ Rails.application.routes.draw do
 
   post '/add_invoice', to: 'transactions#add_invoice'
 
+  post '/add_invoice_messages', to: 'messages#add_invoice'
+
   get '/confirm_transaction', to: 'transactions#confirm_transaction', as: 'transaction_confirm'
 
   get '/terminos', to: 'static#terminos', as: 'terminos'

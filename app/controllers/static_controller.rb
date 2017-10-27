@@ -40,4 +40,16 @@ class StaticController < ApplicationController
   def terminos
   end
 
+  def panel_donacion
+    render layout: "dashboard_layout"
+  end
+ 
+  def faq
+    render layout: "dashboard_layout"
+  end
+ 
+  def how
+    render layout: "dashboard_layout"
+  end
+
 end

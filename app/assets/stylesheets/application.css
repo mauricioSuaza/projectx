@@ -23,8 +23,9 @@
  *= require_self
  *= require chat
  *= require intlTelInput
- *= require panel_donacion
+ *= require how
  *= require faq
+ *= require panel_donacion
  */
 
 .bold{

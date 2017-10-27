@@ -1,0 +1,25 @@
+.step{
+  width: 80%;
+  margin: auto;
+}
+
+.dim{
+  width: 450px;
+  margin: auto;
+  height: 173px;
+}
+
+
+.step-img{
+  width:auto;
+ 	max-height: 100%;
+  max-width: 100%;
+	margin:0 auto;
+	position:relative;
+}
+
+.step-text{
+  font-size: 15px;
+  color: #000;
+  text-align: justify;
+}

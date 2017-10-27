@@ -72,11 +72,18 @@
 
           <div>
               <div class="">
-                  <% if transaction.invoice.url %>
-                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"  style="margin-top:10px;" data-target="#img<%=transaction.id%>"><i class="fa fa-file-text-o i-form" aria-hidden="true" style="margin: 0px 20px 0px 0px;"></i>Ver recibo</button>
-                  <% else %>
+                  <% if transaction.invoice.url && transaction.status == false%>
+                    <% if transaction.completed == "pending"%>
+                      <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"  style="margin-top:10px;" data-target="#img<%=transaction.id%>"><i class="fa fa-file-text-o i-form" aria-hidden="true" style="margin: 0px 20px 0px 0px;"></i>Ver recibo</button>
                       <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#m<%=transaction.id%>"  style="margin-top:10px;">
-                        <i class="fa fa-upload i-form" aria-hidden="true" style="margin: 0px 5px;"></i>Subir recibo</button>
+                          <i class="fa fa-upload i-form" aria-hidden="true" style="margin: 0px 5px;"></i>Editar Recibo</button>
+                    <%end%>
+                  <% else %>
+                    <%if transaction.status == false && transaction.completed == "pending"%>
+                      <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#m<%=transaction.id%>"  style="margin-top:10px;">
+                        <i class="fa fa-upload i-form" aria-hidden="true" style="margin: 0px 5px;"></i>Subir recibo
+                      </button>
+                    <%end%>
                   <% end  %>
               </div>
           </div>
