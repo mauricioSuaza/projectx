@@ -45,7 +45,7 @@ en:
       update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address."
       updated: "Your account has been updated successfully."
     sessions:
-      signed_in: "Bienvenido! Te invitamos a revisar el panel de como funciona, en el cual encontraras un video tutorial y un instruccional paso paso sobre el funcionamiento de la plataforma."
+      signed_in: " Por petición de varios usuarios, una de las  condiciones iniciales de donating goals cambian. La donacion  minima sera de 100 usd  debido a las altas  comisiones que se cobran en cada transacción. Por ejemplo: Diana Martinez dono 100Usd . A Diana se le asignan mas de 6 personas para cumplir la donacion por la cantidad de personas que estan donando montos inferiores a 100 usd y esto hace que paguen mucho mas en comisiones."
       already_signed_out: "Signed out successfully."
     unlocks:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."

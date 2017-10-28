@@ -5,7 +5,7 @@ class Donation < ApplicationRecord
   belongs_to :user
   has_many :transactions, dependent: :destroy
   enum status: { pending: 0, completed: 1 }
-  validates :value, presence: true, numericality: { greater_than: 9, less_than: 10001}
+  validates :value, presence: true, numericality: { greater_than: 99, less_than: 10001}
 
   def days_passed_since_created
     time_now = DateTime.now.to_i

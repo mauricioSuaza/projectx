@@ -35,25 +35,20 @@
 
   			<div class="sidebar-wrapper">
   				<div style="border-bottom: 1px solid #fff;">
-              <div class="logo-dash">
-                <a href="/" class="logo" >
-                    <i class="pe-7s-cash"></i>
-                    <p>Donating Goals</p>
-                </a>
-                <i id="close" class="fa fa-times-circle-o hide" aria-hidden="true" style="color:#fff;"></i>
-              </div>
+                    <div class="logo-dash">
+                        <a href="/" class="logo" >
+                            <i class="pe-7s-cash"></i>
+                            <p>Donating Goals</p>
+                        </a>
+                        <i id="close" class="fa fa-times-circle-o hide" aria-hidden="true" style="color:#fff;"></i>
+                    </div>
                     <div style="padding: 10px 20px;">
                         <% if user_signed_in? %>
                             <p>Hola: <span style="font-weight: 600;"><%= current_user.email %></span></p>
-                            <p>Balance: <%= number_with_precision( current_user.saldo, precision: 3) %></p>
+                            <p>Balance: <%= number_with_precision( current_user.saldo, precision: 1) %></p>
                         <% end%>
                     </div>
-
                 </div>
-
-
-
-
 
                 <ul class="nav own-nav">
 
