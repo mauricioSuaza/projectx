@@ -31,7 +31,7 @@ class TransactionsController < ApplicationController
   def donation_check (transaction)
     @donation = Donation.find(transaction.donation_id)
     if (@donation.transactions.all? {|transc| transc.status == true}) && (@donation.pending==0)
-      @donation.update(completed: true)
+      @donation.update_attribute('completed', true)
       @donation.update(confirmed_at: DateTime.now)
       UserWorker.perform_in(15.days - (@donation.days_passed_since_created).days,  @donation.id)
     end
