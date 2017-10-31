@@ -6,18 +6,13 @@
     </div>
   </nav>
 
-
   <div class="blog-area bg-light blog-page"> 
     <div class="col-md-12">
         <div class="pt-20 text-center">
-
           <div class="donations-container">
-                
-                <%= render(partial: 'transactions_list', locals: {transactions: @transactions}) %>
-                <%= will_paginate @transactions %>
-              
+              <%= render(partial: 'transactions_list', locals: {transactions: @transactions}) %>
+              <%= will_paginate @transactions %>
           </div>
-
         </div>       
     </div>    
   </div>
