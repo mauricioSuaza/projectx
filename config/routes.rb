@@ -86,13 +86,17 @@ Rails.application.routes.draw do
 
   get '/requests/:id', to: 'requests#show', as: 'request_show'
 
-  get '/transactions_admin', to: 'admin_dashboard#transactions_admin'
+  get '/transactions_admin', to: 'admin_dashboard#transactions_admin', as: 'transactions_admin'
 
   get '/transactions/:id', to: 'transactions#show', as: 'transaction_show'
 
   post '/unblock_user/:id', to: 'admin_dashboard#unblock_user', as: 'unblock_user'
 
+  post '/restore_balance', to: 'admin_dashboard#restore_receiver_balance', as: 'restore_balance'
 
+  post '/set_as_pending', to: 'admin_dashboard#set_transaction_as_pending', as: 'set_as_pending'
+
+  post '/cancel_transaction', to: 'admin_dashboard#cancel_transaction', as: 'cancel_transaction'
 
   #Support admin routes
   get  '/admin_chats',to: 'chats#admin_index'

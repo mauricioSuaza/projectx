@@ -5,6 +5,7 @@
                         <th>Id</th>
                         <th>Email</th>
                         <th>Saldo</th>
+                        <th>Padre</th>
                         <th>Estado</th>
                         <th># Donaciones</th>
                         <th># Solicitudes</th>
@@ -17,13 +18,15 @@
                         <tr>
                             <td><%= user.name %></td>
                             <td><%= user.id %></td>
-                            <td><%= user.phone %></td>
+                            <td><%= user.email %></td>
                             <td><%= number_with_precision( user.saldo, precision: 3)  %></td>
+                            <td><%= user.referral_email  %></td>
                             <td>Activo</td>
                             <td><%= user.donations.count %></td>
                             <td><%= user.requests.count %></td>
                             <td><%= user.created_at.to_date %></td>
                             <td><%= link_to 'Details', user_show_path(user) %></td>
+                            <td><%= link_to 'Editar usuario', edit_user_registration_path(user) %></td>
                         </tr>
                     <% end %>
                     </tbody>
