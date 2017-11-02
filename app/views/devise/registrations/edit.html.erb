@@ -35,12 +35,6 @@
             <%= f.text_field :btc, autofocus: true %>
           </div>
 
-          <div class="field own-field">
-            <%= f.label :email %>
-            <%= f.email_field :email, autofocus: true %>
-          </div>
-
-
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
             <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
           <% end %>
