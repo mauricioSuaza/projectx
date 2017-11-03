@@ -36,7 +36,7 @@ class RegistrationsController < Devise::RegistrationsController
       user = User.find(params[:user][:id])
       referral = User.find_by(email: params[:user][:referral_email])
       
-      if referral.nil
+      if referral
         id = referral.id
       else
         id = nil
