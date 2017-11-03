@@ -34,17 +34,9 @@ class RegistrationsController < Devise::RegistrationsController
   def update
     if current_user.has_role? :admin
       user = User.find(params[:user][:id])
-      referral = User.find_by(email: params[:user][:referral_email])
       
-      if referral
-        id = referral.id
-      else
-        id = nil
-      end
-
-      if user.update(saldo: params[:user][:saldo], 
-                    referral_email: params[:user][:referral_email],
-                    name: params[:user][:name], parent_id: id)
+      if user.update(saldo: params[:user][:saldo]
+                    name: params[:user][:name])
         redirect_to '/users_admin'
         flash[:notice] = "Usuario actualizado exitosamente."
       else
