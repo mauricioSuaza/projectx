@@ -19,7 +19,7 @@ class TransactionsController < ApplicationController
         create_notification @transaction
 
         if current_user.has_role?(:admin)
-          redirect_to '/my_transactions', notice: "Transacción confirmada exitósamente"
+          redirect_to :back, notice: "Transacción confirmada exitósamente"
         else
           redirect_to '/my_dashboard', notice: "Transacción confirmada exitósamente"
         end  

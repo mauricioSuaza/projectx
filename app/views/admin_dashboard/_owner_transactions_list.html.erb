@@ -53,15 +53,23 @@
                                 <%end%>
                                 </td>
                                 <% if trans.status %>
-                                   
                                     <td> <%= link_to "Re-confirmar para re-programar pago", transaction_confirm_path(transaction_id: trans.id), method: :get,  data: { confirm: 'Are you sure?' } %></td>
                                 <%elsif trans.completed ==  "canceled"%>
-                                    <td> <%= link_to "Confirmar asi este cancelada", transaction_confirm_path(transaction_id: trans.id), method: :get,  data: { confirm: 'Are you sure?' } %></td>
+                                    <td> <%= link_to "Confirmar asi este cancelada", transaction_confirm_path(transaction_id: trans.id), method: :get,  data: { confirm: 'Are you sure?' }%></td>
                                 <%else%>
                                    <td> <%= link_to "Confirm transaction", transaction_confirm_path(transaction_id: trans.id), method: :get,  data: { confirm: 'Are you sure?' } %></td>
                                 <%end%>
+                                <td>
+                                <%= link_to "Devolver saldo", restore_balance_path(transaction_id: trans.id), method: :post,  data: { confirm: 'Estas seguro de devolver el saldo?' } %></td>
+                                </td>
+                                <td>
+                                    <%= link_to "Cancelar transacción", cancel_transaction_path(transaction_id: trans.id), method: :post,  data: { confirm: 'Estas seguro de cancelar la transacción' } %></td>
+                                </td>
+                                <td>
+                                    <%= link_to "Descancelar transacción", set_as_pending_path(transaction_id: trans.id), method: :post,  data: { confirm: 'Estas seguro de convertir en pendiente la transacción' } %></td>
+                                </td>
                                 
-                                <td><%= link_to 'Details', transaction_show_path(trans) %></td>
+                                
                             </tr>
                         <% end %>
                    
