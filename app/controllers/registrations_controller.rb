@@ -34,7 +34,6 @@ class RegistrationsController < Devise::RegistrationsController
   def update
     if current_user.has_role? :admin
       user = User.find(params[:user][:id])
-      
       if user.update(saldo: params[:user][:saldo],
                     name: params[:user][:name])
         redirect_to '/users_admin'
