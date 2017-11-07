@@ -8,6 +8,7 @@
                         <th>Donation</th>
                         <th>Receipt</th>
                         <th>Status</th>
+                        <th>Sender wallet</th>
                         <th>Receiver wallet</th>
                         <th>Date</th>
                         <th colspan="3"></th>
@@ -45,6 +46,7 @@
                                 <%else%>
                                     <td>Pending</td> 
                                 <%end%>
+                                <td><%= @sender.btc %></td>
                                 <td><%= @receiver.btc %></td>
                                 <td><%= trans.created_at.to_date %></td>
                                 <td><%= button_to chats_path(sender_id: current_user.id, recipient_id: trans.sender_id), class: 'btn btn-primary' do %>

@@ -9,6 +9,8 @@
                         <th>Donation</th>
                         <th>Request</th>
                         <th>Receipt</th>
+                        <th>Sender Wallet</th>
+                        <th>Receiver Wallet</th>
                         <th colspan="3"></th>
                     </tr>
                     </thead>
@@ -27,15 +29,18 @@
                             <% else %>
                                 <td>incomplete</td>
                             <% end %>
-                            <td><%= link_to @sender.name, user_show_path(@sender.id) %></td>
-                            <td><%= link_to @receiver.name, user_show_path(@receiver.id) %></td>
+                            <td><%= link_to @sender.email, user_show_path(@sender.id) %></td>
+                            <td><%= link_to @receiver.email, user_show_path(@receiver.id) %></td>
                             <td><%= link_to @donation.id, donation_path(@donation.id) %></td>
                             <td><%= link_to @request.id, request_show_path(@request.id) %></td>
+                           
                             <% if trans.invoice.url.present? %>
                                 <td><%= link_to 'invoice', trans.invoice.url %></td>
                             <%else%>
                                 <td></td>
                             <%end%>
+                            <td><%= @sender.btc%></td>
+                            <td><%= @receiver.btc%></td>
 
                             <% if trans.status %>
                                 <td> <%= link_to "Re-confirmar para re-programar pago", transaction_confirm_path(transaction_id: trans.id), method: :get,  data: { confirm: 'Are you sure?' } %></td>

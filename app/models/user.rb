@@ -172,6 +172,7 @@ class User < ApplicationRecord
     end
   end
 
+
   def get_notificaations
     self.notifications.order('created_at DESC').where(read: false).where("message_id is NULL").count
   end
