@@ -30,8 +30,8 @@
                   <h1 style="text-shadow: 2px 3px 5px rgba(62, 61, 61, 0.71); margin: 10px 0px;">Enviar</h1>
                   <div>
                     <%= form_tag("/send_donation", method: "post") do %>
-                    <%= number_field_tag :value, nil,  class: "input-form", placeholder: 'USD'%>
-                    <%= submit_tag("Enviar donación", class: "btn btn-primary btn-primary btn-sm btn-form") %>
+                    <%= number_field_tag :value, nil,  class: "input-form", id: "valor-donation", placeholder: 'USD'%>
+                    <%= submit_tag("Enviar donación", class: "btn btn-primary btn-primary btn-sm btn-form send-donation")%>
                     <% end %>
                   </div>
                 </div>
@@ -51,8 +51,8 @@
                   <div>
                       <div class ="request-donation-form">
                           <%= form_tag("/request_donation", method: "post") do %>
-                          <%= number_field_tag :value, nil,  class: "input-form",  placeholder: 'USD' %>
-                          <%= submit_tag("Requerir donación", class: "btn btn-primary btn-primary btn-sm btn-form") %>
+                          <%= number_field_tag :value, nil,  class: "input-form", id: "valor-request",  placeholder: 'USD' %>
+                          <%= submit_tag("Requerir donación", class: "btn btn-primary btn-primary btn-sm btn-form request-donation") %>
                           <% end %>
                       </div>
                   </div>
@@ -70,3 +70,17 @@
       </div>
     </div>
   </div>
+
+<script>
+  $(document).ready(function(){
+    $(".send-donation").click(function(event) {
+      var valueDonation=document.getElementById("valor-donation").value;
+      $('.send-donation').data('confirm', "Estas seguro de enviar una meta por " + valueDonation + " USD?")
+    });  
+
+     $(".request-donation").click(function(event) {
+      var valueDonation=document.getElementById("valor-request").value;
+      $('.request-donation').data('confirm', "Estas seguro de requerir una meta por " + valueDonation + " USD?")
+    });     
+  });    
+</script>

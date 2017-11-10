@@ -26,7 +26,7 @@ class TransactionWorker
 
   def block_sender_and_receiver transaction
     transaction.donation.user.update(blocked: true)
-    @receiver = User.find(transaction.receiver_id).update(blocked: true)
+    #@receiver = User.find(transaction.receiver_id).update(blocked: true)
     transaction.update(completed: 1)
   end
 end

@@ -105,6 +105,7 @@ class User < ApplicationRecord
 
       #transaccion generada para el owner
       transaction = donation.transactions.create(value: owner_tran_val, sender_id: self.id, receiver_id: owner_user.id)
+      TransactionMailer.transaction_with_owner(transaction).deliver_later
       TransactionWorker.perform_in(72.hours, transaction.id)
 
 
@@ -144,6 +145,8 @@ class User < ApplicationRecord
     end
     #crear la transacción
     transaction = donation.transactions.create(value: transaction_value, sender_id: donation.user_id, receiver_id: request.user_id, request_id: request.id)
+    TransactionMailer.transaction_created_reciver(transaction).deliver_later
+    TransactionMailer.transaction_created_sender(transaction).deliver_later
     TransactionWorker.perform_in(72.hours, transaction.id)
 
     #Creates notification for receiver incase exist.

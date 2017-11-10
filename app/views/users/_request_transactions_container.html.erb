@@ -85,11 +85,11 @@
                     <h4 style="border: 1px solid #5db65c;padding: 8px;background: #5db65c;color: #fff;border-radius: 5px;margin: 10px;width: 100%;">Transacción ya confirmada</h4>
                 <%else%>
                     <% if transaction.completed ==  "canceled" %>
-                        <h4 style="border: 1px solid #cc2626;padding: 8px;background: #cc2626;color: #fff;border-radius: 5px;margin: 10px;width: 100%;">Esta transacción fue cancelada y el saldo fue devuelto sin ser afectado</h4>
+                        <h4 style="border: 1px solid #cc2626;padding: 8px;background: #cc2626;color: #fff;border-radius: 5px;margin: 10px;width: 100%;">Esta transacción fue cancelada y su saldo será retornado. Contacte a soporte para su devolución</h4>
                     <%else%>
                         <div class="btn btn-success btn-md" style="margin:20px;">
                             <% if transaction.invoice.url %>
-                                <%= link_to "Confirmar transacción", transaction_confirm_path(transaction_id: transaction.id), method: :get,  data: { confirm: 'Está seguro?' }, style:'color:#fff;' %>
+                                <%= link_to "Confirmar transacción", transaction_confirm_path(transaction_id: transaction.id), method: :get,  data: { confirm: 'Está seguro de confirmar la transacción?' }, style:'color:#fff;' %>
                             <%else%>
                                 <span>Recibo no enviado</span>
                             <%end%>
