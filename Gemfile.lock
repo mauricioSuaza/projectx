@@ -84,6 +84,7 @@ GEM
     excon (0.55.0)
     execjs (2.7.0)
     ffi (1.9.18)
+    filterrific (2.1.2)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
     fog (1.38.0)
@@ -358,6 +359,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.2)
   devise
+  filterrific
   fog
   jbuilder (~> 2.5)
   jquery-rails

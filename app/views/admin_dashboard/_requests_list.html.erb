@@ -7,6 +7,7 @@
                         <th>Status</th>
                         <th>Pending</th>
                         <th>User</th>
+                        <th>Email</th>
                         <th># Transactions</th>
                         <th># Completed transactions</th>
                         <th colspan="3"></th>
@@ -26,6 +27,7 @@
                             <td><%=  req.pending%></td>
                             <% @user = User.find(req.user_id) %>
                             <td><%= link_to @user.name, user_show_path(@user.id) %></td>
+                            <td><%= link_to @user.email, user_show_path(@user.id) %></td>
                             <td><%= req.transactions.count %></td>
                             <td><%= req.transactions.where(status: true).count %></td>
                             <td><%= link_to 'Details', request_show_path(req) %></td>

@@ -10,11 +10,9 @@ class UserWorker
 		@donation = Donation.find(donation_id)
 		@user = User.find(@donation.user_id)
 
-		if @user.id <= 114
-			@user.update(saldo: @user.saldo + (@donation.value + (@donation.value*0.3)))
-		else
-		  	@user.update(saldo: @user.saldo + (@donation.value + (@donation.value*0.25)))
-		end
+		
+		@user.update(saldo: @user.saldo + (@donation.value + (@donation.value*0.3)))
+		
 
 		#Update all my parents
 		@padre_1 = @user.ancestors(:at_depth => -1).first

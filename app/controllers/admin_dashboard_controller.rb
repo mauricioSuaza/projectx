@@ -19,12 +19,24 @@ class AdminDashboardController < ApplicationController
     end
 
     def users_admin
-      @users = User.paginate(:page => params[:page], :per_page => 80)
+      @filterrific = initialize_filterrific(
+        User,
+        params[:filterrific],
+        persistence_id: false
+      ) or return
+
+      @users = @filterrific.find.paginate(:page => params[:page], :per_page => 80)
       @users = @users.order("created_at DESC")
     end
 
     def donations_admin
-      @donations = Donation.paginate(:page => params[:page], :per_page => 80)
+      @filterrific = initialize_filterrific(
+        Donation,
+        params[:filterrific],
+        persistence_id: false
+      ) or return
+     
+      @donations = @filterrific.find.paginate(:page => params[:page], :per_page => 80)
       @donations = @donations.order("created_at DESC")
     end
 
@@ -86,12 +98,26 @@ class AdminDashboardController < ApplicationController
     end
 
     def requests_admin
-      @requests = Request.paginate(:page => params[:page], :per_page => 80)
+
+      @filterrific = initialize_filterrific(
+        Request,
+        params[:filterrific],
+        persistence_id: false
+      ) or return
+      @requests = @filterrific.find.paginate(:page => params[:page], :per_page => 80)
       @requests = @requests.order("created_at DESC")
+
     end
 
     def transactions_admin
-      @transactions = Transaction.where("request_id IS NOT ?", nil).paginate(:page => params[:page], :per_page => 80)
+      
+      @filterrific = initialize_filterrific(
+        Transaction,
+        params[:filterrific],
+        persistence_id: false
+      ) or return
+
+      @transactions = @filterrific.find.where("request_id IS NOT ?", nil).paginate(:page => params[:page], :per_page => 80)      
       @transactions = @transactions.order("created_at DESC")
     end
 

@@ -24,6 +24,42 @@ class User < ApplicationRecord
 
   after_create :assign_default_role
 
+  filterrific(
+    default_filter_params: { },
+    available_filters: [
+    :search_name, 
+    :with_id
+    ]
+  )
+
+
+  scope :search_name, lambda { |query|
+     return nil  if query.blank?
+  
+     # condition query, parse into individual keywords
+     terms = query.downcase.split(/\s+/)
+  
+     # replace "*" with "%" for wildcard searches,
+     # append '%', remove duplicate '%'s
+     terms = terms.map { |e|
+       (e.gsub('*', '%') + '%').gsub(/%+/, '%')
+     }
+     # configure number of OR conditions for provision
+     # of interpolation arguments. Adjust this if you
+     # change the number of OR conditions.
+     num_or_conds = 2
+     where(
+       terms.map { |term|
+         "(LOWER(users.name) LIKE ? OR LOWER(users.email) LIKE ? )"
+       }.join(' AND '),
+       *terms.map { |e| [e] * num_or_conds }.flatten
+     )
+  }
+
+  scope :with_id, lambda { |query_id|
+    where('users.id = ?', query_id)
+  }
+
   def set_saldo_zero
     self.saldo ||= 0
   end
