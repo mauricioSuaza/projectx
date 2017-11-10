@@ -75,12 +75,12 @@
   $(document).ready(function(){
     $(".send-donation").click(function(event) {
       var valueDonation=document.getElementById("valor-donation").value;
-      $('.send-donation').data('confirm', "Estas seguro de enviar una meta por " + valueDonation + " USD?")
+      $('.send-donation').data('confirm', "Confirmar envio de donación por " + valueDonation + " USD?")
     });  
 
      $(".request-donation").click(function(event) {
       var valueDonation=document.getElementById("valor-request").value;
-      $('.request-donation').data('confirm', "Estas seguro de requerir una meta por " + valueDonation + " USD?")
+      $('.request-donation').data('confirm', "Confirmar solicitud de donación por " + valueDonation + " USD?")
     });     
   });    
 </script>
