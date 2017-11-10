@@ -4,6 +4,8 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.find(params[:transaction_id])
     @transaction.invoice = params[:invoice]
     @transaction.save!
+    transaction_receiver = User.find(@transaction.receiver_id).has_role? :user
+    TransactionMailer.transaction_invoice(@transaction).deliver_later if transaction_receiver == true
     redirect_to '/my_dashboard', notice: "Imagen enviada exitosamente"
   end
 
@@ -17,7 +19,7 @@ class TransactionsController < ApplicationController
           request_check @transaction
         end
         create_notification @transaction
-
+        TransactionMailer.transaction_confirm(@transaction).deliver_later
         if current_user.has_role?(:admin)
           redirect_to :back, notice: "Transacción confirmada exitósamente"
         else

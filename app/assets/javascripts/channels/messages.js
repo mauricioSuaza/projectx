@@ -12,7 +12,7 @@ App.messages = App.cable.subscriptions.create('MessagesChannel', {
   	if (data.text!==undefined) {
   		swal('Recuerde que solo puede enviar un mensaje hasta que el equipo de soporte se comunique con usted.');
   	}else{
-      if (data.current_is_sender === false) {
+      if (data.current_is_sender === true) {
         return "<div class='ui segment' style='display: flex; flex-direction: column;'>"
                 + "<div class='item align' style='padding: 20px'>"
                   + "<div class='content'>"

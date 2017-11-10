@@ -5,33 +5,25 @@ class MessagesController < ApplicationController
   end
 
   def index
-    #contains the id of the chat
-    @chatroom = @chat
-    @messages = @chat.messages
+    #prevents anyone to access the chat
+    if protect_chat(@chat) === false 
+      #contains the id of the chat
+      @chatroom = @chat
+      @messages = @chat.messages.order("created_at ASC")
 
-    #Mark last message as readed
-    mark_message_as_readed(@messages.last, @chatroom)
+      #Mark last message as readed
+      mark_message_as_readed(@messages.last, @chatroom)
 
-    if @messages.length > 10
-      @over_ten = true
-      @messages = @messages[-10..-1]
-    end
-    if params[:m]
-      @over_ten = false
-      @messages = @chat.messages
-    end
-    if @messages.last
-      if @messages.last.user_id != current_user.id
-        @messages.last.read = true;
+      @message = @chat.messages.new
+      #@notifications_count = @current_user.notifications.where("message_id IS NOT NULL").where(read: false).count
+      if current_user.admin?
+        render layout: "chats_dashboard_layout"
+      else
+        render layout: "dashboard_layout" 
       end
-    end
-    @message = @chat.messages.new
-    #@notifications_count = @current_user.notifications.where("message_id IS NOT NULL").where(read: false).count
-    if current_user.admin?
-      render layout: "chats_dashboard_layout"
-
     else
-      render layout: "dashboard_layout" 
+      redirect_to root_path
+      flash[:notice] = "No autorizado"
     end
   end
 
@@ -143,6 +135,14 @@ class MessagesController < ApplicationController
       current_user_admin: current_user.admin?,
       count: @chat.messages.count,
       current_is_sender: current_user.id == @chat.sender_id
+  end
+
+  def protect_chat chat
+    unless current_user.id == chat.sender_id or current_user.id == chat.recipient_id
+      return true
+    else
+      return false
+    end
   end
 
 private
