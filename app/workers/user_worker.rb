@@ -11,7 +11,7 @@ class UserWorker
 		@user = User.find(@donation.user_id)
 
 		
-		@user.update(saldo: @user.saldo + (@donation.value + (@donation.value*0.3)))
+		@user.update(saldo: @user.saldo + (@donation.value + (@donation.value*0.25)))
 		
 
 		#Update all my parents
