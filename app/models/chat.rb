@@ -12,7 +12,7 @@ class Chat < ActiveRecord::Base
 
   def self.search(search)
     if search
-      joins(:recipient).where("users.email LIKE ?", "#{search}%")
+      joins(:sender).where("users.email LIKE ?", "#{search}%")
     else
       all
     end
