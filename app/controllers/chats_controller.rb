@@ -13,7 +13,7 @@ class ChatsController < ApplicationController
 
   def index
     @users = User.all
-    @chats = Chat.search(params[:search]).paginate(page: params[:page], per_page: 10)
+    @chats = Chat.search(params[:search]).paginate(page: params[:page], per_page: 30)
     @admin = User.where(admin: true)
     if current_user.admin?
       render layout: "chats_dashboard_layout"
@@ -24,7 +24,7 @@ class ChatsController < ApplicationController
 
   def admin_index
     @users = User.all
-    @chats = Chat.search(params[:search]).paginate(page: params[:page], per_page: 10)
+    @chats = Chat.search(params[:search]).paginate(page: params[:page], per_page: 30)
     @admin = User.where(admin: true)
     #@notifications_count = @current_user.notifications.where("message_id IS NOT NULL").where(read: false).count
     render layout: "chats_dashboard_layout"
