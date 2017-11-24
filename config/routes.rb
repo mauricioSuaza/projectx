@@ -78,6 +78,10 @@ Rails.application.routes.draw do
 
   get '/my_transactions', to: 'admin_dashboard#owner_transactions'
 
+  get '/my_confirmed_transactions', to: 'admin_dashboard#owner_confirmed_transactions'
+
+  get '/my_canceled_transactions', to: 'admin_dashboard#owner_canceled_transactions'
+
   get '/donations/:id', to: 'donations#show', as: 'donation_show'
 
   get '/requests_admin', to: 'admin_dashboard#requests_admin'

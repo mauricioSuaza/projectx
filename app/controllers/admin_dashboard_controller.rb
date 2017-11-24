@@ -7,7 +7,7 @@ class AdminDashboardController < ApplicationController
 
     layout "admin_dashboard_layout", only: [:dashboard_home, :users_admin, :donations_admin,
                                             :owner_transactions, :transactions_panel, :blocked_users,
-                                            :requests_admin, :transactions_admin]
+                                            :requests_admin, :transactions_admin, :owner_confirmed_transactions, :owner_canceled_transactions]
     def is_admin
       unless current_user.has_role? :admin 
         redirect_to '/'
@@ -41,7 +41,8 @@ class AdminDashboardController < ApplicationController
     end
 
     def owner_transactions
-      @owner_transactions = Transaction.where(request_id: nil).paginate(:page => params[:page], :per_page => 80) 
+      @owner_transactions = Transaction.where(request_id: nil)
+      @owner_transactions = @owner_transactions.where(completed: "pending").where(status: false).paginate(:page => params[:page], :per_page => 80)
       @owner_transactions = @owner_transactions.order("created_at DESC")
       @transactions_total = 0
       @completed_total = 0
@@ -51,6 +52,37 @@ class AdminDashboardController < ApplicationController
           @completed_total += transaction.value
         end
       end
+    end
+    
+    def owner_confirmed_transactions
+      @owner_transactions = Transaction.where(request_id: nil)
+      @owner_transactions = @owner_transactions.where(status: true).paginate(:page => params[:page], :per_page => 80)
+      @owner_transactions = @owner_transactions.order("created_at DESC")
+      @transactions_total = 0
+      @completed_total = 0
+
+      @owner_transactions.each do |transaction|
+        @transactions_total += transaction.value
+        if transaction.status
+          @completed_total += transaction.value
+        end
+      end
+    end
+
+    def owner_canceled_transactions
+      @owner_transactions = Transaction.where(request_id: nil)
+      @owner_transactions = @owner_transactions.where(completed: "canceled").paginate(:page => params[:page], :per_page => 80)
+      @owner_transactions = @owner_transactions.order("created_at DESC")
+      @transactions_total = 0
+      @completed_total = 0
+
+      @owner_transactions.each do |transaction|
+        @transactions_total += transaction.value
+        if transaction.status
+          @completed_total += transaction.value
+        end
+      end
+
     end
 
     def restore_receiver_balance
