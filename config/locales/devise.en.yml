@@ -45,7 +45,7 @@ en:
       update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address."
       updated: "Your account has been updated successfully."
     sessions:
-      signed_in: "Queremos informarles a los usuarios, que a quienes por segunda vez el sistema los bloqueé por no realizar una transacción, serán bloqueados indefinidamente y perderán el derecho de pertenecer a la comunidad de Donating Goals. Esta decisión se ha tomado pensando en el bienestar de nuestra comunidad y para hacer un uso eficiente de la comunidad financiera."
+      signed_in: "ANUNCIO IMPORTANTE para la comunidad donating goals. El plazo para completar las transacciones se reducirá de 72 a 48 horas, es recomendable completar las donaciones en las primeras 24 horas, de lo contrario tu crecimiento podría ser menor al 25%, queremos que la comunidad sea mas rápida y eficiente cada dia para el bienestar de todos."
       already_signed_out: "Signed out successfully."
     unlocks:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
