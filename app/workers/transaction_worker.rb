@@ -25,8 +25,10 @@ class TransactionWorker
   end
 
   def block_sender_and_receiver transaction
-    transaction.donation.user.update(blocked: true)
-    #@receiver = User.find(transaction.receiver_id).update(blocked: true)
+    @sender = User.find(transaction.sender_id)
+    @receiver = User.find(transaction.receiver_id)
+    @sender.update(blocked: true)
     transaction.update(completed: 1)
+    @receiver.update(blocked: true) if transaction.invoice.present?
   end
 end

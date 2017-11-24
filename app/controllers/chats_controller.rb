@@ -5,15 +5,15 @@ class ChatsController < ApplicationController
   before_action :is_support, only: [:admin_index]
   
   def is_support
-      unless current_user.has_role? :support 
-          redirect_to '/'
-          flash[:notice] = "No tienes permiso para acceder a esta sección."
-      end
+    unless current_user.has_role? :support 
+      redirect_to '/'
+      flash[:notice] = "No tienes permiso para acceder a esta sección."
+    end
   end
 
   def index
     @users = User.all
-    @chats = Chat.all
+    @chats = Chat.search(params[:search]).paginate(page: params[:page], per_page: 10)
     @admin = User.where(admin: true)
     if current_user.admin?
       render layout: "chats_dashboard_layout"
@@ -24,7 +24,7 @@ class ChatsController < ApplicationController
 
   def admin_index
     @users = User.all
-    @chats = Chat.all
+    @chats = Chat.search(params[:search]).paginate(page: params[:page], per_page: 10)
     @admin = User.where(admin: true)
     #@notifications_count = @current_user.notifications.where("message_id IS NOT NULL").where(read: false).count
     render layout: "chats_dashboard_layout"
