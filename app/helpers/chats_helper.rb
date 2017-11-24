@@ -21,7 +21,7 @@ module ChatsHelper
   	else
   		recipient = User.find(chat.sender_id)
   	end
-  	recipient.email.html_safe
+  	recipient.email.html_safe[0..10]
   end
 end
 
