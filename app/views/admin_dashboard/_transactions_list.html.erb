@@ -25,9 +25,11 @@
                             <td><%= trans.id %></td>
                             <td><%=  trans.value%></td>
                             <% if trans.status %>
-                                <td>completed</td>
-                            <% else %>
-                                <td>incomplete</td>
+                              <td>completed</td>
+                            <% elsif trans.completed == "canceled"%>
+                              <td>cancelada</td>
+                            <%elsif trans.completed == "pending"%>
+                              <td>pendiente</td>
                             <% end %>
                             <td><%= link_to @sender.email, user_show_path(@sender.id) %></td>
                             <td><%= link_to @receiver.email, user_show_path(@receiver.id) %></td>

@@ -161,6 +161,10 @@
   border: 1px solid rgba(0, 0, 0, 0.37);
 }
 
+.chat-email-title{
+  font-size: 12px;
+}
+
 .title-chat-int{
   background: #1d5a96;
   font-size: 41px;

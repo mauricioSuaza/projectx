@@ -1,9 +1,18 @@
 <div class="">
   <div class="ui-segment">
-      
     <div class="row">
       <div class="col-md-8">
-        <h3><i class="fa fa-envelope-o mail-icon" aria-hidden="true"></i> Nuevos mensajes</h3>
+        <div class="row">
+          <div class="col-md-6">
+            <h3><i class="fa fa-envelope-o mail-icon" aria-hidden="true"></i> Nuevos mensajes</h3>
+          </div>
+          <div class="col-md-6">
+            <%= form_tag chats_path, :method => 'get', :id => "chats_search" do %>
+              <%= text_field_tag :search, params[:search], placeholder: "Buscar conversación", 
+              class: "form-control" %>
+            <% end %>
+          </div>
+        </div>
         <div class="messages-recived">
           <div class="row tables">
             <div class="col-md-4">
@@ -59,6 +68,9 @@
                 <% end %>    
               <%end%>
             <% end %>
+          </div>
+          <div class="text-center">
+            <%= will_paginate @chats %>
           </div>
         </div>
       </div>
