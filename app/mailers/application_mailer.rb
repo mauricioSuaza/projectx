@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'donatingoalsserver@donatingoals.com'
+  default from: 'donatingoalsinfo@donatingoals.com'
   layout 'mailer'
 end
