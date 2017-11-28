@@ -47,12 +47,12 @@ class UsersController < ApplicationController
       if params[:value].to_f > 0
         if current_user.saldo >= params[:value].to_f
           current_user.request_donation(donation_params[:value].to_i)
-          redirect_to '/my_dashboard', :notice => "Ayudamos a cumplir tus metas, si deseas puedes entrar al la sección de  <a href='/panel_donacion'>ayudanos</a>, para saber como puedes aportar para que Donating Goals continúe funcionando" 
+          redirect_to user_dashboard_path(:mensaje => "exito")
         else
-          redirect_to '/my_dashboard', :notice => "Saldo insuficiente" 
+          redirect_to user_dashboard_path, :notice => "Saldo insuficiente" 
         end
       else
-        redirect_to '/my_dashboard', :notice => "Valor inválido" 
+        redirect_to user_dashboard_path, :notice => "Valor invalido" 
       end
     end
 

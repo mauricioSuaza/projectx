@@ -1,3 +1,23 @@
+<%if params[:mensaje] %>
+    <script>     
+      swal({ 
+      title: "Ayudanos a seguir funcionando",
+      html:
+            'Ayudamos a cumplir tus metas, si deseas puedes entrar al la sección de ' +
+            '<a href="/panel_donacion">ayudanos</a> ' +
+            'para saber como puedes aportar para que Donating Goals continúe funcionando',
+      type: "info" 
+      }).then(function() {
+        window.location.href = "/panel_donacion";
+      });
+    </script>
+<%end%>
+ 
+  
+  
+  
+  
+  
   <nav class="own-navbar">
     <div class="container-fluid" style="padding:0px;">
       <!-- menu mobile display -->
