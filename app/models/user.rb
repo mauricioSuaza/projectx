@@ -251,6 +251,14 @@ class User < ApplicationRecord
     end
     return childrens_donation_500
   end
+
+  def descendants_email(level)
+    emails = []
+    descendants(at_depth: level).each do |son|
+      emails.push(son.email)
+    end
+    emails.count > 0 ? emails : "no tiene referidos en el nivel #{level}"
+  end
 end
     
 
