@@ -259,6 +259,11 @@ class User < ApplicationRecord
     end
     emails.count > 0 ? emails : "no tiene referidos en el nivel #{level}"
   end
+
+  def refferal
+    referral = ancestors(:at_depth => -1)
+    referral.present? ? referral.first.email : "vacio"
+  end
 end
     
 
