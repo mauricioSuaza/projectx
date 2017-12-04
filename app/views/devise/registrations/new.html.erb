@@ -26,7 +26,8 @@
                   <%= f.email_field :email, placeholder: "Email" %>
                 </div>
                 <div class="field">
-                  <%= f.text_field :btc, placeholder: "Monedero" %>
+                  <%= f.text_field :btc, placeholder: "Monedero", oninput: "bitcoinWalet(this)" %>
+                  <span id="text-wallet-btc"></span>
                 </div>
                 <div class="field">
                   <%= f.telephone_field :phone, id:"country", placeholder: "Phone"%>
@@ -35,7 +36,7 @@
               
               <div class="col-md-6">
                 <div class="field">
-                <%= f.email_field :refferal, placeholder: "Email del referido", class: "refferal-mail"  %>
+                <%= f.email_field :refferal, placeholder: "Quien te refirió?", class: "refferal-mail"  %>
                 </div>
                 <div class="field">
                   <%@password_min = ""%>
@@ -339,6 +340,22 @@
 </div>
 
 <script>
+  // if (($("#user_btc").val().length) < 27 && ($("#user_btc").val().length) > 34) {
+  //   alert("El numero de caracteres del monedero debe estar entre")  
+  // }
+
+  function bitcoinWalet() {
+    var x = document.getElementById("user_btc").value.length
+    if ((x) < 27 || (x) > 34) {
+      // console.log("El numero de caracteres de su monedero debe oscilar entre 27-34");
+      document.getElementById("text-wallet-btc").innerHTML = "El numero de caracteres de su monedero debe oscilar entre 27-34";
+      document.getElementById("text-wallet-btc").style.color = "Red";
+      document.getElementById("text-wallet-btc").style.fontWeight = "900";
+    }else{
+      document.getElementById("text-wallet-btc").innerHTML = "";
+    }
+  }
+
   $(".button.button-md.btn-block.button-primary").attr("disabled", true);
 
   $("#country").intlTelInput({
@@ -377,7 +394,7 @@
   if (decodeURIComponent(window.location.hash.substring(1))) {
     $(".refferal-mail").val(decodeURIComponent(window.location.hash.substring(1)));
   }
-
+  
   
 </script>
 

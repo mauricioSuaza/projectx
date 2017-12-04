@@ -4,6 +4,7 @@
                         <th>Code</th>
                         <th>Value</th>
                         <th>Status</th>
+                        <th>Confirmaciónes</th>
                         <th>Sender</th>
                         <th>Donation</th>
                         <th>Receipt</th>
@@ -30,8 +31,14 @@
                                 <%elsif trans.completed == "pending"%>
                                   <td>pendiente</td>
                                 <% end %>
+                                <% if trans.status %>
+                                    <td> <%= link_to "Re-confirmar para re-programar pago", transaction_confirm_path(transaction_id: trans.id), method: :get,  data: { confirm: 'Are you sure?' } %></td>
+                                <%elsif trans.completed ==  "canceled"%>
+                                    <td> <%= link_to "Confirmar asi este cancelada", transaction_confirm_path(transaction_id: trans.id), method: :get,  data: { confirm: 'Are you sure?' }%></td>
+                                <%else%>
+                                   <td> <%= link_to "Confirm transaction", transaction_confirm_path(transaction_id: trans.id), method: :get,  data: { confirm: 'Are you sure?' } %></td>
+                                <%end%>
                                 <td><%= link_to @sender.name, user_show_path(@sender.id) %></td>
-                                
                                 <td><%= link_to @donation.id, donation_path(@donation.id) %></td>
                                 
                                 <% if trans.invoice.url.present? %>
@@ -54,13 +61,6 @@
                                     Message
                                 <%end%>
                                 </td>
-                                <% if trans.status %>
-                                    <td> <%= link_to "Re-confirmar para re-programar pago", transaction_confirm_path(transaction_id: trans.id), method: :get,  data: { confirm: 'Are you sure?' } %></td>
-                                <%elsif trans.completed ==  "canceled"%>
-                                    <td> <%= link_to "Confirmar asi este cancelada", transaction_confirm_path(transaction_id: trans.id), method: :get,  data: { confirm: 'Are you sure?' }%></td>
-                                <%else%>
-                                   <td> <%= link_to "Confirm transaction", transaction_confirm_path(transaction_id: trans.id), method: :get,  data: { confirm: 'Are you sure?' } %></td>
-                                <%end%>
                                 <td>
                                 <%= link_to "Devolver saldo", restore_balance_path(transaction_id: trans.id), method: :post,  data: { confirm: 'Estas seguro de devolver el saldo?' } %></td>
                                 </td>

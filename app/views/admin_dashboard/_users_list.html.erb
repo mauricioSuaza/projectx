@@ -20,7 +20,7 @@
         <td><%= user.id %></td>
         <td><%= user.email %></td>
         <td><%= number_with_precision( user.saldo, precision: 3)  %></td>
-        <td><a href="#" data-toggle="modal" data-target='#myModal<%= user.id %>'>Ver Referidos</a><td>
+        <td><a href="#" data-toggle="modal" data-target='#myModal<%= user.id %>'>Ver Referidos</a></td>
         <td>Activo</td>
         <td><%= user.donations.count %></td>
         <td><%= user.requests.count %></td>
@@ -36,7 +36,7 @@
               <button type="button" class="close" data-dismiss="modal">&times;</button>
               <h4 class="modal-title"><%= user.email%>
                 <br>
-                Padre: <%= user.refferal%>
+                Padre: <%= user.get_father%>
               </h4>
             </div>
             <h4 class="modal-title"><b>Nivel Uno </b></h4>

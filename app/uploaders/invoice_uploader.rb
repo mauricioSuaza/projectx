@@ -23,7 +23,7 @@ class InvoiceUploader < CarrierWave::Uploader::Base
   # process scale: [200, 300]
   #
 
-  process resize_to_fit: [550, 300]
+  process resize_to_fit: [1980, 1080]
   # def scale(width, height)
   #   # do something
   # end

@@ -67,12 +67,21 @@
               <%= f.text_field :btc, autofocus: true %>
             </div>
 
+            <div class="field own-field">
+              <%= f.label "Cambiar contraseña" %><br />
+              <%= f.password_field :password, autocomplete: "off" %>
+              <% if @minimum_password_length %>
+                <br />
+                <em><%= @minimum_password_length %> characters minimum</em>
+              <% end %>
+            </div>
+
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
               <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
             <% end %>
 
             <div class="field own-field">
-              <label> Password actual</label> <i>(Necesitamos tu password actual para confirmar los cambios)</i><br/>
+              <label> Contraseña actual</label> <i>(Necesitamos tu password actual para confirmar los cambios)</i><br/>
               <%= f.password_field :current_password, autocomplete: "off" %>
             </div>
 
