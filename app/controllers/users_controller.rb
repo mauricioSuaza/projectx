@@ -87,8 +87,8 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
-        @donations = @user.donations
-        @requests = @user.requests
+        @donations = @user.donations.order('created_at DESC')
+        @requests = @user.requests.order('created_at DESC')
         @completed_requests_number = @user.requests.where(completed: true).count
         @donations_number =  @user.donations.count 
         @completed_donations_number = @user.donations.where(completed: true).count

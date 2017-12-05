@@ -91,7 +91,9 @@ class User < ApplicationRecord
 
     owner_user = User.with_role(:owner).order("RANDOM()").last
 
-    owner_tran_val = (donation_value*0.1).ceil;
+    owner_transaction_percentage=  (rand(10..20).to_f)/100
+
+    owner_tran_val = (donation_value*owner_transaction_percentage).ceil;
 
     residuo = donation_value - (owner_tran_val) #valor pendiente por entregar de la donación, campo pending de la donación
 
