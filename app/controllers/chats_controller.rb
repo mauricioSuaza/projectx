@@ -25,7 +25,7 @@ class ChatsController < ApplicationController
   def admin_index
     @users = User.all
     @chats = Chat.search(params[:search])
-    @chats = @chats.includes(:messages).order("messages.created_at desc")
+    #@chats = @chats.includes(:messages).order("messages.created_at desc")
     @admin = User.where(admin: true)
     #@notifications_count = @current_user.notifications.where("message_id IS NOT NULL").where(read: false).count
     render layout: "chats_dashboard_layout"
