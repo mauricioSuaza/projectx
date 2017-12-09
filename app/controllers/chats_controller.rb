@@ -13,7 +13,11 @@ class ChatsController < ApplicationController
 
   def index
     @users = User.all
-    @chats = Chat.search(params[:search])
+    if params[:search]
+      @chats = Chat.search(params[:search])
+    else
+      @chats = current_user.chats
+    end
     @admin = User.where(admin: true)
     if current_user.admin?
       render layout: "chats_dashboard_layout"
@@ -24,8 +28,13 @@ class ChatsController < ApplicationController
 
   def admin_index
     @users = User.all
-    @chats = Chat.search(params[:search])
+   
     #@chats = @chats.includes(:messages).order("messages.created_at desc")
+    if params[:search]
+      @chats = Chat.search(params[:search])
+    else
+      @chats = current_user.chats
+    end
     @admin = User.where(admin: true)
     #@notifications_count = @current_user.notifications.where("message_id IS NOT NULL").where(read: false).count
     render layout: "chats_dashboard_layout"

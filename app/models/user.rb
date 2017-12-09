@@ -6,7 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
 
-  has_many :chats, :foreign_key => :sender_id
+  
   has_many :donations, dependent: :destroy
   has_many :requests, dependent: :destroy
   has_many :notifications, dependent: :destroy
@@ -67,6 +67,10 @@ class User < ApplicationRecord
 
   def update_test
     self.update(name: 'test')
+  end
+
+  def chats
+    Chat.where("recipient_id = ? OR sender_id = ?", self.id, self.id)
   end
 
   def assign_default_role
