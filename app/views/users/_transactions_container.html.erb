@@ -23,7 +23,7 @@
 
             <%if transaction.status == false && transaction.completed === "pending"%>
               <tr>
-                <%@remaining = transaction.created_at + 48.hours %>
+                <%@remaining = transaction.created_at + 72.hours %>
                 <%@time_now = DateTime.now %>
                 <%@time_left = (((@remaining - @time_now)/60)/60)%>
                 <%@time_left%>

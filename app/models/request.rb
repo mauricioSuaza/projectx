@@ -5,7 +5,7 @@ class Request < ApplicationRecord
   enum status: { pending: 0, completed: 1 }
   enum requested: { waiting: 0, done: 1 }
 
-  validates :value, presence: true, numericality: { greater_than: 9}
+  validates :value, presence: true, numericality: { greater_than: 99}
   
   after_create :set_pending
 
