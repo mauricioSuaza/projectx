@@ -14,7 +14,7 @@ class Chat < ActiveRecord::Base
     if search
       joins(:sender).where("users.email LIKE ?", "#{search}%")
     else
-      all
+      chats
     end
   end
 end
