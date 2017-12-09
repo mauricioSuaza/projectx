@@ -93,13 +93,13 @@ class User < ApplicationRecord
 
     #calculo de valores generados para el owner
 
-    owner_user = User.with_role(:owner).order("RANDOM()").last
+    #owner_user = User.with_role(:owner).order("RANDOM()").last
 
-    owner_transaction_percentage=  (rand(10..20).to_f)/100
+   # owner_transaction_percentage=  (rand(10..20).to_f)/100
 
-    owner_tran_val = (donation_value*owner_transaction_percentage).ceil;
+   # owner_tran_val = (donation_value*owner_transaction_percentage).ceil;
 
-    residuo = donation_value - (owner_tran_val) #valor pendiente por entregar de la donación, campo pending de la donación
+    residuo = donation_value #valor pendiente por entregar de la donación, campo pending de la donación
 
     donation_state = 0  #estado de la donación, si ya ha sido repartida o aun no. 
     
@@ -110,9 +110,9 @@ class User < ApplicationRecord
       #crear transaction al owner 
 
       #transaccion generada para el owner
-      transaction = donation.transactions.create(value: owner_tran_val, sender_id: self.id, receiver_id: owner_user.id)
-      TransactionMailer.transaction_with_owner(transaction).deliver_later
-      TransactionWorker.perform_in(72.hours, transaction.id)
+     # transaction = donation.transactions.create(value: owner_tran_val, sender_id: self.id, receiver_id: owner_user.id)
+    #  TransactionMailer.transaction_with_owner(transaction).deliver_later
+     # TransactionWorker.perform_in(72.hours, transaction.id)
 
 
       while((donation.pending > 0) && request )
