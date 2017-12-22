@@ -12,12 +12,12 @@ require 'carrierwave/storage/fog'
         config.storage = :fog
         config.fog_credentials = {
           :provider               => 'AWS',                            # required
-          :aws_access_key_id      => ENV['AWS_ID_TWO'],                     # required
-          :aws_secret_access_key  => ENV['AWS_KEY_TWO'],
+          :aws_access_key_id      => ENV['AWS_ID'],                     # required
+          :aws_secret_access_key  => ENV['AWS_KEY'],
           :region                 => 'us-west-2'
         }
        
-        config.fog_directory  = 'goalsdon'                    # required
+        config.fog_directory  = 'donatingoals'                    # required
         config.fog_public     = true                                   # optional, defaults to true
         config.root = Rails.root.join('tmp')
         config.cache_dir = 'files'
