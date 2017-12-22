@@ -45,7 +45,7 @@ en:
       update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address."
       updated: "Datos actualizados."
     sessions:
-      signed_in: "Aviso importante para la comunidad Donating Goals, debido a los altos costos de las comisiones de Blockchain el valor minimo para las solicitudes será de 100Usd, también debido a la cantidad de usuarios bloqueados se volvera a dar un plazo de 72 horas para completar las donaciones, sin embargo les recordamos lo importante que es realizar esto de forma agíl para evitar ser bloqueados. Gracias por hacer parte de Donating Goals. "
+      signed_in: " "
       already_signed_out: "Signed out successfully."
     unlocks:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."

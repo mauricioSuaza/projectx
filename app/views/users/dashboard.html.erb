@@ -1,3 +1,6 @@
+
+
+
 <%if params[:mensaje] %>
     <script>     
       swal({ 
@@ -11,6 +14,30 @@
         window.location.href = "/panel_donacion";
       });
     </script>
+<%else%>
+
+  <script>     
+     swal({
+          html: '<h5>	La lentitud y alto costo de envíos en la red de billeteras bitcoin ha generado la mayor amenaza para nuestra comunidad debido a que esa situación ha generado lo siguiente</h5>' + '<br>' +
+         
+             '<h6>1.	Las personas se abstienen de ofrecer ayuda.</h6>' +
+             '<h6>2.	El alto costo de envío de la ayuda genera malestar y en algunos casos el incumplimiento del envío de la ayuda.</h6>' + 
+             '<h6>3.	Las ayudas demoran demasiado en ser confirmadas por la red y los receptores de ayuda no confirman su envío.</h6>' + 
+             '<h6>4.	Se disparó el nivel de miembros bloqueados.</h6>' + 
+             '<h6>4.	El flujo de donaciones efectivas de la comunidad no es suficiente para cumplir las asignaciones en el tiempo prometido.</h6>' + '<br>' +
+             '<h6>	Es preciso que el corporativo director de la comunidad destrabe el flujo de donaciones aportando los bitcoins faltantes. Sin embargo, esta medida no garantiza la fluidez del flujo de donaciones pues la problemática externa a DG seguirá afectándola y será cuestión de días el volver a tener nuestra comunidad en el mismo estado. Por ello se precisa de tomar medidas adicionales.</h6>' + '<br>' +
+             '<h5> Modificaciones en el funcionamiento de DG:</h5>' + '<br>' +
+             '<h6>1. Todas las billeteras de Bitcoin de los participantes deben pertenecer a la plataforma de pagos Xapo (las billeteras xapo inician por ‘3’). El plazo máximo para modificar las billeteras será el día 28 de diciembre. Xapo por el momento exime del costo de envío a aquellos envíos efectuados entre sus billeteras, y también genera envíos inmediatos entre las mismas. DG facilitará tutorial para el manejo adecuado de Xapo.</h6>' +
+             '<h6>2.	Para facilitar velocidad de confirmaciones y costos de envío mucho más bajos, se podrán efectuar envíos en Bitcoin, Ethereum y Bitcoin Cash, y será el donador quien decida qué moneda utilizar. Cada miembro deberá adjuntar las direcciones de sus monederos ETH y BCH, de lo contrario no podrá participar de nuestra comunidad. DG facilitará tutoriales para el manejo adecuado de ETH y BCH.</h6>' + 
+             '<h6>3.	Las reglas de juego de DG seguirán siendo válidas y exigidas en su cumplimiento a cada uno de sus miembros, en especial la regla de la no multicuenta o suplantación de identidad. Miembro que no conteste su teléfono, correo electrónico o chat interno será bloqueado por 30 días sin derecho a obtener sus rendimientos. Se exigirán también pruebas de identidad y conocimiento de su participación en DG a cada miembro sospechoso de multicuenta o suplantación de identidad. Tanto el upline de un miembro con multicuentas como su líder estrella ascendente serán sancionados con la no liquidación de la totalidad de los bonos de red de su período. </h6>' + 
+             '<h6>4.	Solamente se podrá solicitar ayuda una vez cumplido el día 15 de su ciclo..</h6>' + 
+             '<h6>5.	Debido a que los cambios a implementar requieren la adaptación de todos los miembros DG, la plataforma de la página y del mismo flujo de donaciones, las solicitudes de ayuda serán anuladas y el saldo pendiente será reembolsado a tu balance para ser cobrado con rendimientos adicionales de 1 quincena a partir del día 7 de enero de 2018. Se seguirán aceptando donaciones que serán redimibles como ayuda a partir de día 7 de enero de 2018</h6>' + 
+             '<h6>6.	Estamos afrontando un gran reto frente a nuestro propósito de ayudar a lograr tus sueños más descabellados y con tu voluntad lograremos avanzar más allá de las actuales dificultades. Te invitamos a unirte a nosotros y ante todo a creer que unidos comunidad podemos lograr mucho más que actuando solos. Muy pronto al ver nuestras wallets recibir ayudas de nuevo, volveremos a lanzar nuestro grito: SUEÑO CUMPLIDO!.</h6>' 
+
+          
+        })
+    </script>
+
 <%end%>
  
   
